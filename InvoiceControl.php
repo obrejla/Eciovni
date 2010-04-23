@@ -7,7 +7,7 @@
  * @license    New BSD License
  * @link       http://github.com/OndrejBrejla/Nette-InvoiceControl
  * @package    Nette\Extras
- * @version    0.3.1
+ * @version    0.3.2
  */
 class InvoiceControl extends Control {
     
@@ -355,7 +355,6 @@ class InvoiceControl extends Control {
         $template = $this->template;
 
         $template->setFile(dirname(__FILE__) . '/InvoiceControl.phtml');
-		$template->registerFilter('CurlyBracketsFilter::invoke');
         $template->registerHelper('round', 'InvoiceControl::round');
 
         $template->title = $this->getTitle();
