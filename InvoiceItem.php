@@ -7,9 +7,9 @@
  * @license    New BSD License
  * @link       http://github.com/OndrejBrejla/Nette-InvoiceControl
  * @package    Nette\Extras
- * @version    0.3.1
+ * @version    0.4
  */
-interface IInvoiceItem {
+interface InvoiceItem {
 
     /**
      * Returns the description of the item.

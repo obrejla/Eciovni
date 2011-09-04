@@ -1,15 +1,17 @@
 <?php
 
+use Nette\Object;
+
 /**
- * MyInvoiceItem - part of Invoice control plugin for Nette Framework.
+ * InvoiceItemImpl - part of Invoice control plugin for Nette Framework.
  *
  * @copyright  Copyright (c) 2009 Ondřej Brejla
  * @license    New BSD License
  * @link       http://github.com/OndrejBrejla/Nette-InvoiceControl
  * @package    Nette\Extras
- * @version    0.3.1
+ * @version    0.4
  */
-class MyInvoiceItem extends Object implements IInvoiceItem {
+class InvoiceItemImpl extends Object implements InvoiceItem {
 
     /** @var string */
     private $description;

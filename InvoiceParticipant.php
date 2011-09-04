@@ -1,15 +1,15 @@
 <?php
 
 /**
- * IInvoiceParticipant - part of Invoice control plugin for Nette Framework.
+ * InvoiceParticipant - part of Invoice control plugin for Nette Framework.
  *
  * @copyright  Copyright (c) 2009 Ondřej Brejla
  * @license    New BSD License
  * @link       http://github.com/OndrejBrejla/Nette-InvoiceControl
  * @package    Nette\Extras
- * @version    0.3.1
+ * @version    0.4
  */
-interface IInvoiceParticipant {
+interface InvoiceParticipant {
 
     /**
      * Returns the name of participant.

@@ -5,7 +5,7 @@
  * @license    New BSD License
  * @link       http://github.com/OndrejBrejla/Nette-InvoiceControl
  * @package    Nette\Extras
- * @version    0.3.1
+ * @version    0.4
  *
  * @param    string                $title
  * @param    string                $id
@@ -36,7 +36,7 @@
  * @param    string                $customerTin
  * @param    string                $customerAccountNumber
  *
- * @param    array of InvoiceItem  $items
+ * @param    InvoiceItem[]  $items
  *
  * @param    double                $finalUntaxedValue
  * @param    double                $finalTaxValue
@@ -79,37 +79,37 @@
 
                 <table style="color: #1A5DAC; margin-bottom: 15px;">
                     <tr>
-                        <td>IČ:</td>
+                        <td>ID:</td>
                         <td>{$supplierIn}</td>
                     </tr>
                     <tr>
-                        <td>DIČ:</td>
+                        <td>VAT ID:</td>
                         <td>{$supplierTin}</td>
                     </tr>
                 </table>
 
                 <table style="width: 100%; margin-bottom: 15px;">
                     <tr>
-                        <td>Číslo účtu:</td>
+                        <td>Account number:</td>
                         <td style="text-align: center; border: 3px solid #000000; font-weight: bold" width="220">{$supplierAccountNumber}</td>
                     </tr>
                 </table>
 
                 <table style="width: 100%;">
                     <tr>
-                        <td>Forma úhrady:</td>
-                        <td style="text-align: center;">převodem</td>
+                        <td>Form of payment:</td>
+                        <td style="text-align: center;">transfer</td>
                     </tr>
                     <tr>
-                        <td>Datum vystavení:</td>
+                        <td>Date of issuance:</td>
                         <td style="text-align: center;">{$dateOfIssuance}</td>
                     </tr>
                     <tr>
-                        <td>Datum splatnosti:</td>
+                        <td>Expiration date:</td>
                         <td style="text-align: center;">{$expirationDate}</td>
                     </tr>
                     <tr>
-                        <td>Datum uskutečnění zdanitelného plnění:</td>
+                        <td>Date of VAT revenue recognition:</td>
                         <td style="text-align: center;">{$dateOfVatRevenueRecognition}</td>
                     </tr>
                 </table>
@@ -117,15 +117,15 @@
             <td width="60%" align="right">
                 <table style="margin-bottom: 15px;">
                     <tr>
-                        <td style="text-align: right;">Variabilní symbol:</td>
+                        <td style="text-align: right;">Variable symbol:</td>
                         <td style="text-align: center;">{$variableSymbol}</td>
                     </tr>
                     <tr>
-                        <td style="text-align: right;">Specifický symbol:</td>
+                        <td style="text-align: right;">Specific symbol:</td>
                         <td style="text-align: center;">{$specificSymbol}</td>
                     </tr>
                     <tr>
-                        <td style="text-align: right;">Konstantní symbol:</td>
+                        <td style="text-align: right;">Constant symbol:</td>
                         <td style="text-align: center;">{$constantSymbol}</td>
                     </tr>
                 </table>
@@ -133,18 +133,18 @@
                 <table style="border: 3px solid #000000;">
                     <tr>
                         <td width="350">
-                            <span style="color: #1A5DAC; font-weight: bold; font-size: 12px;">Odběratel:</span>
+                            <span style="color: #1A5DAC; font-weight: bold; font-size: 12px;">Customer:</span>
                             <table style="margin-bottom: 15px;">
                                 <tr>
-                                    <td>IČ:</td>
+                                    <td>ID:</td>
                                     <td>{$customerIn == 0 ? '' : $customerIn}</td>
                                 </tr>
                                 <tr>
-                                    <td>DIČ:</td>
+                                    <td>VAT ID:</td>
                                     <td>{$customerTin}</td>
                                 </tr>
                                 <tr>
-                                    <td>Číslo účtu:</td>
+                                    <td>Account number:</td>
                                     <td>{$customerAccountNumber}</td>
                                 </tr>
                             </table>
@@ -170,11 +170,11 @@
         <table style="width: 100%;">
             <tr>
                 <td><strong>Položka</strong></td>
-                <td style="text-align: right;"><strong>Cena/jedn.</strong></td>
-                <td style="text-align: right;"><strong>Počet</strong></td>
-                <td style="text-align: right;"><strong>%DPH</strong></td>
-                <td style="text-align: right;"><strong>DPH</strong></td>
-                <td style="text-align: right;"><strong>Cena (Kč)</strong></td>
+                <td style="text-align: right;"><strong>Price/unit</strong></td>
+                <td style="text-align: right;"><strong>Quantity</strong></td>
+                <td style="text-align: right;"><strong>%VAT</strong></td>
+                <td style="text-align: right;"><strong>VAT</strong></td>
+                <td style="text-align: right;"><strong>Price (CZK)</strong></td>
             </tr>
             {foreach $items as $item}
             <tr>

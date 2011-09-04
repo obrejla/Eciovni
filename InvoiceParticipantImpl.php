@@ -1,15 +1,17 @@
 <?php
 
+use Nette\Object;
+
 /**
- * MyInvoiceParticipant - part of Invoice control plugin for Nette Framework.
+ * InvoiceParticipantImpl - part of Invoice control plugin for Nette Framework.
  *
  * @copyright  Copyright (c) 2009 Ondřej Brejla
  * @license    New BSD License
  * @link       http://github.com/OndrejBrejla/Nette-InvoiceControl
  * @package    Nette\Extras
- * @version    0.3.1
+ * @version    0.4
  */
-class MyInvoiceParticipant extends Object implements IInvoiceParticipant {
+class InvoiceParticipantImpl extends Object implements InvoiceParticipant {
     
     /** @var string */
     private $name;

@@ -1,5 +1,7 @@
 <?php
 
+use Nette\Application\UI\Control;
+
 /**
  * InvoiceControl - plugin for Nette Framework for generating invoices using mPDF library.
  *
@@ -7,7 +9,7 @@
  * @license    New BSD License
  * @link       http://github.com/OndrejBrejla/Nette-InvoiceControl
  * @package    Nette\Extras
- * @version    0.3.2
+ * @version    0.4
  */
 class InvoiceControl extends Control {
     
@@ -17,10 +19,10 @@ class InvoiceControl extends Control {
     /** @var string */
     private $id;
 
-    /** @var IInvoiceParticipant */
+    /** @var InvoiceParticipant */
     private $supplier;
 
-    /** @var IInvoiceParticipant */
+    /** @var InvoiceParticipant */
     private $customer;
 
     /** @var int */
@@ -41,7 +43,7 @@ class InvoiceControl extends Control {
     /** @var DateTime */
     private $dateOfVatRevenueRecognition;
 
-    /** @var array of IInvoiceItem */
+    /** @var InvoiceItem[] */
     private $items = array();
 
     /**
@@ -258,7 +260,7 @@ class InvoiceControl extends Control {
     /**
      * Adds an item to the invoice.
      *
-     * @param IInvoiceItem $item
+     * @param InvoiceItem $item
      * @return void
      */
     public function addItem(IInvoiceItem $item) {
@@ -268,7 +270,7 @@ class InvoiceControl extends Control {
     /**
      * Adds array of items to the invoice.
      *
-     * @param array of IInvoiceItem $items
+     * @param array of InvoiceItem $items
      * @return void
      */
     public function addItems($items) {
