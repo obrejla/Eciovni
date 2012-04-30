@@ -354,7 +354,7 @@ class InvoiceControl extends Control {
     public function generate() {
         $template = $this->template;
 
-        $template->setFile(dirname(__FILE__) . '/InvoiceControl.phtml');
+        $template->setFile(dirname(__FILE__) . '/InvoiceControl.latte');
         $template->registerHelper('round', 'InvoiceControl::round');
 
         $template->title = $this->getTitle();
