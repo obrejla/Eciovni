@@ -1,18 +1,18 @@
 <?php
 
-namespace OndrejBrejla\NetteInvoiceControl;
+namespace OndrejBrejla\Eciovni;
 
 use Nette\Templating\ITemplate;
 use \mPDF;
 
 /**
- * InvoiceControl - plugin for Nette Framework for generating invoices using mPDF library.
+ * Eciovni - plugin for Nette Framework for generating invoices using mPDF library.
  *
  * @copyright  Copyright (c) 2009 Ondřej Brejla
  * @license    New BSD License
- * @link       http://github.com/OndrejBrejla/Nette-InvoiceControl
+ * @link       http://github.com/OndrejBrejla/Eciovni
  */
-class InvoiceControl extends Control {
+class Eciovni extends Control {
 
     /** @var Data */
     private $data;
@@ -106,8 +106,8 @@ class InvoiceControl extends Control {
      * @return void
      */
     private function generate(ITemplate $template) {
-        $template->setFile(dirname(__FILE__) . '/InvoiceControl.latte');
-        $template->registerHelper('round', 'InvoiceControl::round');
+        $template->setFile(dirname(__FILE__) . '/Eciovni.latte');
+        $template->registerHelper('round', 'Eciovni::round');
 
         $template->title = $this->data->getTitle();
         $template->id = $this->data->getId();

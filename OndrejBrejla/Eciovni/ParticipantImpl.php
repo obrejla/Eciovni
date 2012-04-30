@@ -1,15 +1,15 @@
 <?php
 
-namespace OndrejBrejla\NetteInvoiceControl;
+namespace OndrejBrejla\Eciovni;
 
 use Nette\Object;
 
 /**
- * ParticipantImpl - part of Invoice control plugin for Nette Framework.
+ * ParticipantImpl - part of Eciovni plugin for Nette Framework.
  *
  * @copyright  Copyright (c) 2009 Ondřej Brejla
  * @license    New BSD License
- * @link       http://github.com/OndrejBrejla/Nette-InvoiceControl
+ * @link       http://github.com/OndrejBrejla/Eciovni
  */
 class ParticipantImpl extends Object implements Participant {
 
