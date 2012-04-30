@@ -3,13 +3,13 @@
 namespace OndrejBrejla\NetteInvoiceControl;
 
 /**
- * InvoiceItem - part of Invoice control plugin for Nette Framework.
+ * Item - part of Invoice control plugin for Nette Framework.
  *
  * @copyright  Copyright (c) 2009 Ondřej Brejla
  * @license    New BSD License
  * @link       http://github.com/OndrejBrejla/Nette-InvoiceControl
  */
-interface IInvoiceItem {
+interface Item {
 
     /**
      * Returns the description of the item.

@@ -17,10 +17,10 @@ class InvoiceControl extends Control {
     /** @var string */
     private $id;
 
-    /** @var IInvoiceParticipant */
+    /** @var Participant */
     private $supplier;
 
-    /** @var IInvoiceParticipant */
+    /** @var Participant */
     private $customer;
 
     /** @var int */
@@ -41,7 +41,7 @@ class InvoiceControl extends Control {
     /** @var DateTime */
     private $dateOfVatRevenueRecognition;
 
-    /** @var array of IInvoiceItem */
+    /** @var array of Item */
     private $items = array();
 
     /**
@@ -104,17 +104,17 @@ class InvoiceControl extends Control {
     /**
      * Sets the invoice supplier.
      *
-     * @param InvoiceParticipant $supplier
+     * @param Participant $supplier
      * @return void
      */
-    public function setSupplier(IInvoiceParticipant $supplier) {
+    public function setSupplier(Participant $supplier) {
         $this->supplier = $supplier;
     }
 
     /**
      * Returns the invoice supplier.
      *
-     * @return InvoiceParticipant
+     * @return Participant
      */
     public function getSupplier() {
         return $this->supplier;
@@ -123,17 +123,17 @@ class InvoiceControl extends Control {
     /**
      * Sets the invoice customer.
      *
-     * @param InvoiceParticipant $customer
+     * @param Participant $customer
      * @return void
      */
-    public function setCustomer(IInvoiceParticipant $customer) {
+    public function setCustomer(Participant $customer) {
         $this->customer = $customer;
     }
 
     /**
      * Returns the invoice customer.
      *
-     * @return InvoiceParticipant
+     * @return Participant
      */
     public function getCustomer() {
         return $this->customer;
@@ -258,17 +258,17 @@ class InvoiceControl extends Control {
     /**
      * Adds an item to the invoice.
      *
-     * @param IInvoiceItem $item
+     * @param Item $item
      * @return void
      */
-    public function addItem(IInvoiceItem $item) {
+    public function addItem(Item $item) {
         $this->items[] = $item;
     }
 
     /**
      * Adds array of items to the invoice.
      *
-     * @param array of IInvoiceItem $items
+     * @param array of Item $items
      * @return void
      */
     public function addItems($items) {

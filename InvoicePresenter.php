@@ -33,18 +33,18 @@ class InvoicePresenter {
         $invoice->setDateOfVatRevenueRecognition($dateNow);
 
         // Definition of Participants
-        $supplier = new MyInvoiceParticipant('Jan Vosáhlo', 'Českobratrská', '11', 'Praha 3 - Žižkov', '13000', '12345678', 'CZ12345678', '123456789 / 1111');
-        $customer = new MyInvoiceParticipant('Pepa Pivrnec', 'Někde', '3', 'Praha 9 - Prosek', '19000', '', '', '123456789 / 1111');
+        $supplier = new ParticipantImpl('Jan Vosáhlo', 'Českobratrská', '11', 'Praha 3 - Žižkov', '13000', '12345678', 'CZ12345678', '123456789 / 1111');
+        $customer = new ParticipantImpl('Pepa Pivrnec', 'Někde', '3', 'Praha 9 - Prosek', '19000', '', '', '123456789 / 1111');
         $invoice->setSupplier($supplier);
         $invoice->setCustomer($customer);
 
         // Definition of Items
-        $item = new MyInvoiceItem('Testovací item 1', 1, 900, 1.19, TRUE);
+        $item = new ItemImpl('Testovací item 1', 1, 900, 1.19, TRUE);
         $invoice->addItem($item);
 
         $invoice->addItems(array(
-            new MyInvoiceItem('Testovací item 2', 1, 900, 1.19, TRUE),
-            new MyInvoiceItem('Testovací item 3', 1, 900, 1.19, TRUE),
+            new ItemImpl('Testovací item 2', 1, 900, 1.19, TRUE),
+            new ItemImpl('Testovací item 3', 1, 900, 1.19, TRUE),
         ));
 
         // Definition of new mPDF

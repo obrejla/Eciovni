@@ -3,13 +3,13 @@
 namespace OndrejBrejla\NetteInvoiceControl;
 
 /**
- * MyInvoiceItem - part of Invoice control plugin for Nette Framework.
+ * ItemImpl - part of Invoice control plugin for Nette Framework.
  *
  * @copyright  Copyright (c) 2009 Ondřej Brejla
  * @license    New BSD License
  * @link       http://github.com/OndrejBrejla/Nette-InvoiceControl
  */
-class MyInvoiceItem extends Object implements IInvoiceItem {
+class ItemImpl extends Object implements Item {
 
     /** @var string */
     private $description;
