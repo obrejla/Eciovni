@@ -2,6 +2,8 @@
 
 namespace OndrejBrejla\NetteInvoiceControl;
 
+use Nette\Object;
+
 /**
  * ParticipantBuilder - part of Invoice control plugin for Nette Framework.
  *
@@ -9,7 +11,7 @@ namespace OndrejBrejla\NetteInvoiceControl;
  * @license    New BSD License
  * @link       http://github.com/OndrejBrejla/Nette-InvoiceControl
  */
-class ParticipantBuilder {
+class ParticipantBuilder extends Object {
 
     /** @var string */
     private $name;

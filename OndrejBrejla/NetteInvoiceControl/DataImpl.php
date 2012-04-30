@@ -2,6 +2,8 @@
 
 namespace OndrejBrejla\NetteInvoiceControl;
 
+use Nette\Object;
+
 /**
  * DataImpl - part of Invoice control plugin for Nette Framework.
  *

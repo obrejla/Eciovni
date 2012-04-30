@@ -2,6 +2,8 @@
 
 namespace OndrejBrejla\NetteInvoiceControl;
 
+use Nette\Object;
+
 /**
  * ParticipantImpl - part of Invoice control plugin for Nette Framework.
  *
