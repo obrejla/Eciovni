@@ -35,7 +35,7 @@ class InvoiceControl extends Control {
     public function countFinalUntaxedValue() {
         $sum = 0;
         foreach ($this->data->items as $item) {
-            $sum += $item->getUntaxedUnitValue() * $item->getUnits();
+            $sum += $item->countUntaxedUnitValue() * $item->getUnits();
         }
 
         return $sum;
@@ -49,7 +49,7 @@ class InvoiceControl extends Control {
     public function countFinalTaxValue() {
         $sum = 0;
         foreach ($this->data->items as $item) {
-            $sum += $item->getTaxValue();
+            $sum += $item->countTaxValue();
         }
 
         return $sum;
@@ -63,7 +63,7 @@ class InvoiceControl extends Control {
     public function countFinalValues() {
         $sum = 0;
         foreach ($this->data->items as $item) {
-            $sum += $item->getFinalValue();
+            $sum += $item->countFinalValue();
         }
 
         return $sum;

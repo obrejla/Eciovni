@@ -44,28 +44,21 @@ interface Item {
      *
      * @return double
      */
-    public function getTaxValue();
-
-    /**
-     * Returns the taxed value of one unit.
-     *
-     * @return double
-     */
-    public function getTaxedUnitValue();
+    public function countTaxValue();
 
     /**
      * Returns the value of unit without tax.
      *
      * @return double
      */
-    public function getUntaxedUnitValue();
+    public function countUntaxedUnitValue();
 
     /**
      * Returns the final value of all taxed units.
      *
      * @return double
      */
-    public function getFinalValue();
+    public function countFinalValue();
 
 }
 

@@ -95,8 +95,8 @@ class ItemImpl extends Object implements Item {
      *
      * @return double
      */
-    public function getTaxValue() {
-        return ($this->getTaxedUnitValue() - $this->getUntaxedUnitValue()) * $this->getUnits();
+    public function countTaxValue() {
+        return ($this->countTaxedUnitValue() - $this->getUntaxedUnitValue()) * $this->getUnits();
     }
 
     /**
@@ -104,7 +104,7 @@ class ItemImpl extends Object implements Item {
      *
      * @return double
      */
-    public function getTaxedUnitValue() {
+    private function countTaxedUnitValue() {
         if ($this->isUnitValueTaxed()) {
             return $this->getUnitValue();
         } else {
@@ -117,7 +117,7 @@ class ItemImpl extends Object implements Item {
      *
      * @return double
      */
-    public function getUntaxedUnitValue() {
+    public function countUntaxedUnitValue() {
         if ($this->isUnitValueTaxed()) {
             return $this->getUnitValue() / $this->getTax();
         } else {
@@ -130,8 +130,8 @@ class ItemImpl extends Object implements Item {
      *
      * @return double
      */
-    public function getFinalValue() {
-        return $this->getUnits() * $this->getTaxedUnitValue();
+    public function countFinalValue() {
+        return $this->getUnits() * $this->countTaxedUnitValue();
     }
 
 }
