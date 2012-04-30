@@ -2,8 +2,6 @@
 
 namespace OndrejBrejla\NetteInvoiceControl;
 
-use \DateTime;
-
 /**
  * InvoiceControl - plugin for Nette Framework for generating invoices using mPDF library.
  *
