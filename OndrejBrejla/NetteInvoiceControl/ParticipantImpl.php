@@ -41,9 +41,6 @@ class ParticipantImpl extends Object implements Participant {
      * @param ParticipantBuilder $participantBuilder
      */
     public function __construct(ParticipantBuilder $participantBuilder) {
-        if ($participantBuilder === NULL) {
-            throw new \InvalidArgumentException('ParticipantBuilder can not be NULL.');
-        }
         $this->name = $participantBuilder->getName();
         $this->street = $participantBuilder->getStreet();
         $this->houseNumber = $participantBuilder->getHouseNumber();
