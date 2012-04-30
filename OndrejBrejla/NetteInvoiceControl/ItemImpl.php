@@ -38,21 +38,11 @@ class ItemImpl extends Object implements Item {
      * @param boolean $unitValueIsTaxed
      */
     public function __construct($description, $units, $unitValue, $tax, $unitValueIsTaxed = TRUE) {
-        $this->setDescription($description);
-        $this->setUnits($units);
-        $this->setUnitValue($unitValue);
-        $this->setTax($tax);
-        $this->setUnitValueIsTaxed($unitValueIsTaxed);
-    }
-
-    /**
-     * Sets the description of the item.
-     *
-     * @param string $description
-     * @return void
-     */
-    public function setDescription($description) {
         $this->description = $description;
+        $this->units = $units;
+        $this->unitValue = $unitValue;
+        $this->tax = $tax;
+        $this->unitValueIsTaxed = $unitValueIsTaxed;
     }
 
     /**
@@ -65,32 +55,12 @@ class ItemImpl extends Object implements Item {
     }
 
     /**
-     * Sets the tax of item.
-     *
-     * @param double $tax
-     * @return void
-     */
-    public function setTax($tax) {
-        $this->tax = $tax;
-    }
-
-    /**
      * Returns the tax of the item.
      *
      * @return double
      */
     public function getTax() {
         return $this->tax;
-    }
-
-    /**
-     * Sets the value of one unit of the item.
-     *
-     * @param double $unitValue
-     * @return void
-     */
-    public function setUnitValue($unitValue) {
-        $this->unitValue = $unitValue;
     }
 
     /**
@@ -103,32 +73,12 @@ class ItemImpl extends Object implements Item {
     }
 
     /**
-     * Sets the unit value as taxed.
-     *
-     * @param boolean $isTaxed
-     * @return void
-     */
-    public function setUnitValueIsTaxed($isTaxed) {
-        $this->unitValueIsTaxed = $isTaxed;
-    }
-
-    /**
      * Returns TRUE, if the unit value is taxed (otherwise FALSE).
      *
      * @return boolean
      */
     public function isUnitValueTaxed() {
         return $this->unitValueIsTaxed;
-    }
-
-    /**
-     * Sets the number of item units.
-     *
-     * @param int $units
-     * @return void
-     */
-    public function setUnits($units) {
-        $this->units = $units;
     }
 
     /**
