@@ -47,14 +47,36 @@ class DataBuilder extends Object {
     /** @var Item[] */
     private $items = array();
 
-    public function __construct($id, $title, Participant $supplier, Participant $customer, DateTime $expirationDate, DateTime $dateOfIssuance, $items) {
+    public function __construct($id, $title, Participant $supplier, Participant $customer, DateTime $expirationDate, DateTime $dateOfIssuance, array $items) {
         $this->id = $id;
         $this->title = $title;
         $this->supplier = $supplier;
         $this->customer = $customer;
         $this->expirationDate = $expirationDate;
         $this->dateOfIssuance = $dateOfIssuance;
-        $this->items = $items;
+        $this->addItems($items);
+    }
+
+    /**
+     * Adds array of items to the invoice.
+     *
+     * @param Item[] $items
+     * @return void
+     */
+    private function addItems($items) {
+        foreach ($items as $item) {
+            $this->addItem($item);
+        }
+    }
+
+    /**
+     * Adds an item to the invoice.
+     *
+     * @param Item $item
+     * @return void
+     */
+    private function addItem(Item $item) {
+        $this->items[] = $item;
     }
 
     /**
