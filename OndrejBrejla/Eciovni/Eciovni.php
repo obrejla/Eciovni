@@ -3,7 +3,7 @@
 namespace OndrejBrejla\Eciovni;
 
 use Nette\Templating\ITemplate;
-use \mPDF;
+use mPDF;
 
 /**
  * Eciovni - plugin for Nette Framework for generating invoices using mPDF library.

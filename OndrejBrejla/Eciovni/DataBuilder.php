@@ -3,7 +3,7 @@
 namespace OndrejBrejla\Eciovni;
 
 use Nette\Object;
-use \DateTime;
+use DateTime;
 
 /**
  * DataBuilder - part of Eciovni plugin for Nette Framework.
