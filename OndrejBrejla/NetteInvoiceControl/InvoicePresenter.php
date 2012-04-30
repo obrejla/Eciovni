@@ -33,8 +33,10 @@ class InvoicePresenter {
         $invoice->setDateOfVatRevenueRecognition($dateNow);
 
         // Definition of Participants
-        $supplier = new ParticipantImpl('Jan Vosáhlo', 'Českobratrská', '11', 'Praha 3 - Žižkov', '13000', '12345678', 'CZ12345678', '123456789 / 1111');
-        $customer = new ParticipantImpl('Pepa Pivrnec', 'Někde', '3', 'Praha 9 - Prosek', '19000', '', '', '123456789 / 1111');
+        $supplierBuilder = new ParticipantBuilder('Jan Vosáhlo', 'Českobratrská', '11', 'Praha 3 - Žižkov', '13000');
+        $supplier = $supplierBuilder->setIn('12345678')->setTin('CZ12345678')->setAccountNumber('123456789 / 1111')->build();
+        $customerBuilder = new ParticipantBuilder('Pepa Pivrnec', 'Někde', '3', 'Praha 9 - Prosek', '19000');
+        $customer = $customerBuilder->setAccountNumber('123456789 / 1111')->build();
         $invoice->setSupplier($supplier);
         $invoice->setCustomer($customer);
 

@@ -3,13 +3,13 @@
 namespace OndrejBrejla\NetteInvoiceControl;
 
 /**
- * ParticipantImpl - part of Invoice control plugin for Nette Framework.
+ * ParticipantBuilder - part of Invoice control plugin for Nette Framework.
  *
  * @copyright  Copyright (c) 2009 Ondřej Brejla
  * @license    New BSD License
  * @link       http://github.com/OndrejBrejla/Nette-InvoiceControl
  */
-class ParticipantImpl extends Object implements Participant {
+class ParticipantBuilder {
 
     /** @var string */
     private $name;
@@ -27,31 +27,62 @@ class ParticipantImpl extends Object implements Participant {
     private $zip;
 
     /** @var string */
-    private $in;
+    private $in = NULL;
 
     /** @var string */
-    private $tin;
+    private $tin = NULL;
 
     /** @var string */
-    private $accountNumber;
+    private $accountNumber = NULL;
 
     /**
-     * Initializes the Participant.
+     * Initializes the Participant builder.
      *
-     * @param ParticipantBuilder $participantBuilder
+     * @param string $name
+     * @param string $street
+     * @param string $houseNumber
+     * @param string $city
+     * @param string $zip
      */
-    public function __construct(ParticipantBuilder $participantBuilder) {
-        if ($participantBuilder === NULL) {
-            throw new \InvalidArgumentException('ParticipantBuilder can not be NULL.');
-        }
-        $this->name = $participantBuilder->getName();
-        $this->street = $participantBuilder->getStreet();
-        $this->houseNumber = $participantBuilder->getHouseNumber();
-        $this->city = $participantBuilder->getCity();
-        $this->zip = $participantBuilder->getZip();
-        $this->in = $participantBuilder->getIn();
-        $this->tin = $participantBuilder->getTin();
-        $this->accountNumber = $participantBuilder->getAccountNumber();
+    public function __construct($name, $street, $houseNumber, $city, $zip) {
+        $this->name = $name;
+        $this->street = $street;
+        $this->houseNumber = $houseNumber;
+        $this->city = $city;
+        $this->zip = $zip;
+    }
+
+    /**
+     * Sets the identification number of participant.
+     *
+     * @param string $in
+     * @return ParticipantBuilder
+     */
+    public function setIn($in) {
+        $this->in = $in;
+        return $this;
+    }
+
+    /**
+     * Sets the tax identification number of participant.
+     *
+     * @param string $tin
+     * @return ParticipantBuilder
+     */
+    public function setTin($tin) {
+        $this->tin = $tin;
+        return $this;
+    }
+
+    /**
+     * Sets the account number of participant.
+     *
+     * @param string $accountNumber
+     * @return ParticipantBuilder
+     */
+    public function setAccountNumber($accountNumber) {
+        $this->accountNumber = $accountNumber;
+        return $this;
     }
 
     /**
@@ -124,6 +155,15 @@ class ParticipantImpl extends Object implements Participant {
      */
     public function getAccountNumber() {
         return $this->accountNumber;
+    }
+
+    /**
+     * Returns new Participant.
+     *
+     * @return Participant
+     */
+    public function build() {
+        return new ParticipantImpl($this);
     }
 
 }
