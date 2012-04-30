@@ -37,7 +37,6 @@ class Eciovni extends Control {
         foreach ($this->data->items as $item) {
             $sum += $item->countUntaxedUnitValue() * $item->getUnits();
         }
-
         return $sum;
     }
 
@@ -51,7 +50,6 @@ class Eciovni extends Control {
         foreach ($this->data->items as $item) {
             $sum += $item->countTaxValue();
         }
-
         return $sum;
     }
 
@@ -65,7 +63,6 @@ class Eciovni extends Control {
         foreach ($this->data->items as $item) {
             $sum += $item->countFinalValue();
         }
-
         return $sum;
     }
 

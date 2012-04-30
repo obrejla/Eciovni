@@ -61,4 +61,3 @@ interface Item {
     public function countFinalValue();
 
 }
-

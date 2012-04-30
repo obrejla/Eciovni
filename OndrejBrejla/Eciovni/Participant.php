@@ -69,4 +69,3 @@ interface Participant {
     public function getAccountNumber();
 
 }
-
