@@ -5,13 +5,13 @@ namespace OndrejBrejla\NetteInvoiceControl;
 use Nette\Object;
 
 /**
- * DataImpl - part of Invoice control plugin for Nette Framework.
+ * DataBuilder - part of Invoice control plugin for Nette Framework.
  *
  * @copyright  Copyright (c) 2009 Ondřej Brejla
  * @license    New BSD License
  * @link       http://github.com/OndrejBrejla/Nette-InvoiceControl
  */
-class DataImpl extends Object implements Data {
+class DataBuilder extends Object {
 
     /** @var string */
     private $title;
@@ -46,18 +46,58 @@ class DataImpl extends Object implements Data {
     /** @var Item[] */
     private $items = array();
 
-    public function __construct(DataBuilder $dataBuilder) {
-        $this->title = $dataBuilder->getTitle();
-        $this->id = $dataBuilder->getId();
-        $this->supplier = $dataBuilder->getSupplier();
-        $this->customer = $dataBuilder->getCustomer();
-        $this->variableSymbol = $dataBuilder->getVariableSymbol();
-        $this->constantSymbol = $dataBuilder->getConstantSymbol();
-        $this->specificSymbol = $dataBuilder->getSpecificSymbol();
-        $this->expirationDate = $dataBuilder->getExpirationDate();
-        $this->dateOfIssuance = $dataBuilder->getDateOfIssuance();
-        $this->dateOfVatRevenueRecognition = $dataBuilder->getDateOfVatRevenueRecognition();
-        $this->items = $dataBuilder->getItems();
+    public function __construct($id, $title, Participant $supplier, Participant $customer, DateTime $expirationDate, DateTime $dateOfIssuance, $items) {
+        $this->id = $id;
+        $this->title = $title;
+        $this->supplier = $supplier;
+        $this->customer = $customer;
+        $this->expirationDate = $expirationDate;
+        $this->dateOfIssuance = $dateOfIssuance;
+        $this->items = $items;
+    }
+
+    /**
+     * Sets the variable symbol.
+     *
+     * @param int $variableSymbol
+     * @return DataBuilder
+     */
+    public function setVariableSymbol($variableSymbol) {
+        $this->variableSymbol = $variableSymbol;
+        return $this;
+    }
+
+    /**
+     * Sets the constant symbol.
+     *
+     * @param int $constantSymbol
+     * @return DataBuilder
+     */
+    public function setConstantSymbol($constantSymbol) {
+        $this->constantSymbol = $constantSymbol;
+        return $this;
+    }
+
+    /**
+     * Sets the specific symbol.
+     *
+     * @param int $specificSymbol
+     * @return DataBuilder
+     */
+    public function setSpecificSymbol($specificSymbol) {
+        $this->specificSymbol = $specificSymbol;
+        return $this;
+    }
+
+    /**
+     * Sets the date of VAT revenue recognition.
+     *
+     * @param DateTime $dateOfTaxablePayment
+     * @return DataBuilder
+     */
+    public function setDateOfVatRevenueRecognition(DateTime $dateOfTaxablePayment) {
+        $this->dateOfVatRevenueRecognition = $dateOfTaxablePayment;
+        return $this;
     }
 
     /**
@@ -126,31 +166,28 @@ class DataImpl extends Object implements Data {
     /**
      * Returns the expiration date in defined format.
      *
-     * @param string $format
      * @return string
      */
-    public function getExpirationDate($format = 'd.m.Y') {
-        return $this->expirationDate->format($format);
+    public function getExpirationDate() {
+        return $this->expirationDate;
     }
 
     /**
      * Returns the date of issuance in defined format.
      *
-     * @param string $format
      * @return string
      */
-    public function getDateOfIssuance($format = 'd.m.Y') {
-        return $this->dateOfIssuance->format($format);
+    public function getDateOfIssuance() {
+        return $this->dateOfIssuance;
     }
 
     /**
      * Returns the date of VAT revenue recognition in defined format.
      *
-     * @param string $format
      * @return string
      */
-    public function getDateOfVatRevenueRecognition($format = 'd.m.Y') {
-        return $this->dateOfVatRevenueRecognition->format($format);
+    public function getDateOfVatRevenueRecognition() {
+        return $this->dateOfVatRevenueRecognition;
     }
 
     /**
@@ -160,6 +197,15 @@ class DataImpl extends Object implements Data {
      */
     public function getItems() {
         return $this->items;
+    }
+
+    /**
+     * Returns new Data.
+     *
+     * @return Data
+     */
+    public function build() {
+        return new DataImpl($this);
     }
 
 }
