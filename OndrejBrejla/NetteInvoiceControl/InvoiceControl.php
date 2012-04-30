@@ -2,6 +2,9 @@
 
 namespace OndrejBrejla\NetteInvoiceControl;
 
+use Nette\Templating\ITemplate;
+use \mPDF;
+
 /**
  * InvoiceControl - plugin for Nette Framework for generating invoices using mPDF library.
  *
@@ -72,7 +75,7 @@ class InvoiceControl extends Control {
      * @return void
      */
     public function exportToPdf(mPDF $mpdf, $name = NULL, $dest = NULL) {
-        $this->generate();
+        $this->generate($this->template);
         $mpdf->WriteHTML((string) $this->template);
 
         if (($name !== '') && ($dest !== NULL)) {
@@ -85,61 +88,89 @@ class InvoiceControl extends Control {
     }
 
     /**
-     * Generates the invoice to the defined template.
-     *
-     * @return void
-     */
-    public function generate() {
-        $template = $this->template;
-
-        $template->setFile(dirname(__FILE__) . '/InvoiceControl.latte');
-        $template->registerHelper('round', 'InvoiceControl::round');
-
-        $template->title = $this->data->getTitle();
-        $template->id = $this->data->getId();
-
-        $template->supplierName = $this->data->getSupplier()->getName();
-        $template->supplierStreet = $this->data->getSupplier()->getStreet();
-        $template->supplierHouseNumber = $this->data->getSupplier()->getHouseNumber();
-        $template->supplierCity = $this->data->getSupplier()->getCity();
-        $template->supplierZip = $this->data->getSupplier()->getZip();
-        $template->supplierIn = $this->data->getSupplier()->getIn();
-        $template->supplierTin = $this->data->getSupplier()->getTin();
-        $template->supplierAccountNumber = $this->data->getSupplier()->getAccountNumber();
-
-        $template->dateOfIssuance = $this->data->getDateOfIssuance();
-        $template->expirationDate = $this->data->getExpirationDate();
-        $template->dateOfVatRevenueRecognition = $this->data->getDateOfVatRevenueRecognition();
-
-        $template->variableSymbol = $this->data->getVariableSymbol();
-        $template->specificSymbol = $this->data->getSpecificSymbol();
-        $template->constantSymbol = $this->data->getConstantSymbol();
-
-        $template->customerName = $this->data->getCustomer()->getName();
-        $template->customerStreet = $this->data->getCustomer()->getStreet();
-        $template->customerHouseNumber = $this->data->getCustomer()->getHouseNumber();
-        $template->customerCity = $this->data->getCustomer()->getCity();
-        $template->customerZip = $this->data->getCustomer()->getZip();
-        $template->customerIn = $this->data->getCustomer()->getIn();
-        $template->customerTin = $this->data->getCustomer()->getTin();
-        $template->customerAccountNumber = $this->data->getCustomer()->getAccountNumber();
-
-        $template->items = $this->data->getItems();
-
-        $template->finalUntaxedValue = $this->countFinalUntaxedValue();
-        $template->finalTaxValue = $this->countFinalTaxValue();
-        $template->finalValue = $this->countFinalValues();
-    }
-
-    /**
      * Renderers the invoice to the defined template.
      *
      * @return void
      */
     public function render() {
-        $this->generate();
-
+        $this->generate($this->template);
         $this->template->render();
+    }
+
+    /**
+     * Generates the invoice to the defined template.
+     *
+     * @return void
+     */
+    private function generate(ITemplate $template) {
+        $template->setFile(dirname(__FILE__) . '/InvoiceControl.latte');
+        $template->registerHelper('round', 'InvoiceControl::round');
+
+        $template->title = $this->data->getTitle();
+        $template->id = $this->data->getId();
+        $template->items = $this->data->getItems();
+        $this->geterateSupplier($template);
+        $this->generateCustomer($template);
+        $this->generateDates($template);
+        $this->generateSymbols($template);
+        $this->generateFinalValues($template);
+    }
+
+    /**
+     * Generates supplier data into template.
+     */
+    private function geterateSupplier(ITemplate $template) {
+        $supplier = $this->data->getSupplier();
+        $template->supplierName = $supplier->getName();
+        $template->supplierStreet = $supplier->getStreet();
+        $template->supplierHouseNumber = $supplier->getHouseNumber();
+        $template->supplierCity = $supplier->getCity();
+        $template->supplierZip = $supplier->getZip();
+        $template->supplierIn = $supplier->getIn();
+        $template->supplierTin = $supplier->getTin();
+        $template->supplierAccountNumber = $supplier->getAccountNumber();
+    }
+
+    /**
+     * Generates customer data into template.
+     */
+    private function generateCustomer(ITemplate $template) {
+        $customer = $this->data->getCustomer();
+        $template->customerName = $customer->getName();
+        $template->customerStreet = $customer->getStreet();
+        $template->customerHouseNumber = $customer->getHouseNumber();
+        $template->customerCity = $customer->getCity();
+        $template->customerZip = $customer->getZip();
+        $template->customerIn = $customer->getIn();
+        $template->customerTin = $customer->getTin();
+        $template->customerAccountNumber = $customer->getAccountNumber();
+    }
+
+    /**
+     * Generates dates into template.
+     */
+    private function generateDates(ITemplate $template) {
+        $template->dateOfIssuance = $this->data->getDateOfIssuance();
+        $template->expirationDate = $this->data->getExpirationDate();
+        $template->dateOfVatRevenueRecognition = $this->data->getDateOfVatRevenueRecognition();
+    }
+
+    /**
+     * Generates symbols into template.
+     */
+    private function generateSymbols(ITemplate $template) {
+        $template->variableSymbol = $this->data->getVariableSymbol();
+        $template->specificSymbol = $this->data->getSpecificSymbol();
+        $template->constantSymbol = $this->data->getConstantSymbol();
+    }
+
+    /**
+     * Generates final values into template.
+     */
+    private function generateFinalValues(ITemplate $template) {
+        $template->finalUntaxedValue = $this->countFinalUntaxedValue();
+        $template->finalTaxValue = $this->countFinalTaxValue();
+        $template->finalValue = $this->countFinalValues();
     }
 
     /**
