@@ -6,11 +6,9 @@
  * @copyright  Copyright (c) 2009 Ondřej Brejla
  * @license    New BSD License
  * @link       http://github.com/OndrejBrejla/Nette-InvoiceControl
- * @package    Nette\Extras
- * @version    0.3.2
  */
 class InvoiceControl extends Control {
-    
+
     /** @var string */
     private $title;
 
@@ -314,7 +312,7 @@ class InvoiceControl extends Control {
 
     /**
      * Counts final value of all items.
-     * 
+     *
      * @return int
      */
     public function getFinalValues() {
@@ -387,7 +385,7 @@ class InvoiceControl extends Control {
         $template->customerAccountNumber = $this->customer->getAccountNumber();
 
         $template->items = $this->getItems();
-        
+
         $template->finalUntaxedValue = $this->getFinalUntaxedValue();
         $template->finalTaxValue = $this->getFinalTaxValue();
         $template->finalValue = $this->getFinalValues();

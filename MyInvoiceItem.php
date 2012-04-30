@@ -6,8 +6,6 @@
  * @copyright  Copyright (c) 2009 Ondřej Brejla
  * @license    New BSD License
  * @link       http://github.com/OndrejBrejla/Nette-InvoiceControl
- * @package    Nette\Extras
- * @version    0.3.1
  */
 class MyInvoiceItem extends Object implements IInvoiceItem {
 
@@ -181,5 +179,5 @@ class MyInvoiceItem extends Object implements IInvoiceItem {
     public function getFinalValue() {
         return $this->getUnits() * $this->getTaxedUnitValue();
     }
-    
+
 }

@@ -6,11 +6,9 @@
  * @copyright  Copyright (c) 2009 Ondřej Brejla
  * @license    New BSD License
  * @link       http://github.com/OndrejBrejla/Nette-InvoiceControl
- * @package    Nette\Extras
- * @version    0.3.1
  */
 class MyInvoiceParticipant extends Object implements IInvoiceParticipant {
-    
+
     /** @var string */
     private $name;
 
@@ -209,5 +207,5 @@ class MyInvoiceParticipant extends Object implements IInvoiceParticipant {
     public function getAccountNumber() {
         return $this->accountNumber;
     }
-    
+
 }
