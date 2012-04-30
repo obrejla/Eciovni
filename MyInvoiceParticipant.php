@@ -12,7 +12,7 @@ class MyInvoiceParticipant extends Object implements IInvoiceParticipant {
     /** @var string */
     private $name;
 
-    /** @var street */
+    /** @var string */
     private $street;
 
     /** @var string */
