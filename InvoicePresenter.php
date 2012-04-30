@@ -1,5 +1,7 @@
 <?php
 
+namespace OndrejBrejla\NetteInvoiceControl;
+
 /**
  * InvoicePresenter - example of usage of Invoice control plugin for Nette Framework
  *

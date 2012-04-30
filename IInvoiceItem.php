@@ -1,5 +1,7 @@
 <?php
 
+namespace OndrejBrejla\NetteInvoiceControl;
+
 /**
  * InvoiceItem - part of Invoice control plugin for Nette Framework.
  *

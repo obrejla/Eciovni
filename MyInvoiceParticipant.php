@@ -1,5 +1,7 @@
 <?php
 
+namespace OndrejBrejla\NetteInvoiceControl;
+
 /**
  * MyInvoiceParticipant - part of Invoice control plugin for Nette Framework.
  *

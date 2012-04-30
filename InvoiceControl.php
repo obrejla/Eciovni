@@ -1,5 +1,7 @@
 <?php
 
+namespace OndrejBrejla\NetteInvoiceControl;
+
 /**
  * InvoiceControl - plugin for Nette Framework for generating invoices using mPDF library.
  *
