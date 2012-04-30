@@ -1,0 +1,17 @@
+{
+    "name": "OndrejBrejla/Nette-InvoiceControl",
+    "description": "Component for generating invoices using Nette Framework and mPDF library.",
+    "keywords": ["invoice", "generator", "nette", "latte", "mpdf"],
+    "license": "BSD-3",
+    "authors" : [
+        {
+            "name": "Ondřej Brejla",
+            "email": "ondrej@brejla.cz",
+            "homepage": "http://brejla.cz"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.1",
+        "nette/nette": "2.0.*"
+    }
+}
