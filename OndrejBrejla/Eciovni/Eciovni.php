@@ -107,7 +107,9 @@ class Eciovni extends Control {
      */
     private function generate(ITemplate $template) {
         $template->setFile(dirname(__FILE__) . '/Eciovni.latte');
-        $template->registerHelper('round', 'Eciovni::round');
+        $template->registerHelper('round', function($value, $precision = 2) {
+            return number_format(round($value, $precision), 2, ',', '');
+        });
 
         $template->title = $this->data->getTitle();
         $template->id = $this->data->getId();
@@ -174,17 +176,6 @@ class Eciovni extends Control {
         $template->finalUntaxedValue = $this->countFinalUntaxedValue();
         $template->finalTaxValue = $this->countFinalTaxValue();
         $template->finalValue = $this->countFinalValues();
-    }
-
-    /**
-     * Rounds value to defined precision.
-     *
-     * @param double $value
-     * @param int $precision
-     * @return string
-     */
-    public static function round($value, $precision = 2) {
-        return number_format(round($value, $precision), 2, ',', '');
     }
 
 }
