@@ -41,7 +41,7 @@ class InvoiceControl extends Control {
     /** @var DateTime */
     private $dateOfVatRevenueRecognition;
 
-    /** @var array of Item */
+    /** @var Item[] */
     private $items = array();
 
     /**
@@ -268,7 +268,7 @@ class InvoiceControl extends Control {
     /**
      * Adds array of items to the invoice.
      *
-     * @param array of Item $items
+     * @param Item[] $items
      * @return void
      */
     public function addItems($items) {
@@ -280,7 +280,7 @@ class InvoiceControl extends Control {
     /**
      * Returns the array of items.
      *
-     * @return array of IInvoiceItem
+     * @return Item[]
      */
     public function getItems() {
         return $this->items;
