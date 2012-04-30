@@ -3,6 +3,7 @@
 namespace OndrejBrejla\NetteInvoiceControl;
 
 use Nette\Object;
+use \DateTime;
 
 /**
  * DataBuilder - part of Invoice control plugin for Nette Framework.
