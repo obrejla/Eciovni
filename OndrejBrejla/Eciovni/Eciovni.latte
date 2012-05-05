@@ -178,8 +178,8 @@
             <tr>
                 <td>{$item->getDescription()}</td>
                 <td style="text-align: right;">{$item->countUntaxedUnitValue()|round}</td>
-                <td style="text-align: right;">{$item->countUnits()|round}</td>
-                <td style="text-align: right;">{$item->countTax() * 100 - 100|round}</td>
+                <td style="text-align: right;">{$item->getUnits()|round}</td>
+                <td style="text-align: right;">{$item->getTax() * 100 - 100|round}</td>
                 <td style="text-align: right;">{$item->countTaxValue()|round}</td>
                 <td style="text-align: right;">{$item->countFinalValue()|round}</td>
             </tr>
