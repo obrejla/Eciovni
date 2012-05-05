@@ -2,6 +2,7 @@
 
 namespace OndrejBrejla\Eciovni;
 
+use Nette\Application\UI\Control;
 use Nette\Templating\ITemplate;
 use mPDF;
 
