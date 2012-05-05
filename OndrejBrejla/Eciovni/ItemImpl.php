@@ -96,7 +96,7 @@ class ItemImpl extends Object implements Item {
      * @return double
      */
     public function countTaxValue() {
-        return ($this->countTaxedUnitValue() - $this->getUntaxedUnitValue()) * $this->getUnits();
+        return ($this->countTaxedUnitValue() - $this->countUntaxedUnitValue()) * $this->getUnits();
     }
 
     /**
