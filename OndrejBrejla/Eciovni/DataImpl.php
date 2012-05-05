@@ -151,7 +151,7 @@ class DataImpl extends Object implements Data {
      * @return string
      */
     public function getDateOfVatRevenueRecognition($format = 'd.m.Y') {
-        return $this->dateOfVatRevenueRecognition->format($format);
+        return $this->dateOfVatRevenueRecognition === NULL ? '' : $this->dateOfVatRevenueRecognition->format($format);
     }
 
     /**
