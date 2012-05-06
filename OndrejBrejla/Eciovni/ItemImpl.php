@@ -37,11 +37,11 @@ class ItemImpl extends Object implements Item {
      * @param double $tax
      * @param boolean $unitValueIsTaxed
      */
-    public function __construct($description, $units, $unitValue, $tax, $unitValueIsTaxed = TRUE) {
+    public function __construct($description, $units, $unitValue, Tax $tax, $unitValueIsTaxed = TRUE) {
         $this->description = $description;
         $this->units = $units;
         $this->unitValue = $unitValue;
-        $this->tax = $tax;
+        $this->tax = $tax->inUpperDecimal();
         $this->unitValueIsTaxed = $unitValueIsTaxed;
     }
 
