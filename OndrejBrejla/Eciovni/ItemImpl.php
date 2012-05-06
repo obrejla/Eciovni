@@ -16,7 +16,7 @@ class ItemImpl extends Object implements Item {
     /** @var string */
     private $description;
 
-    /** @var double */
+    /** @var Tax */
     private $tax;
 
     /** @var double */
@@ -34,14 +34,14 @@ class ItemImpl extends Object implements Item {
      * @param string $description
      * @param int $units
      * @param double $unitValue
-     * @param double $tax
+     * @param Tax $tax
      * @param boolean $unitValueIsTaxed
      */
     public function __construct($description, $units, $unitValue, Tax $tax, $unitValueIsTaxed = TRUE) {
         $this->description = $description;
         $this->units = $units;
         $this->unitValue = $unitValue;
-        $this->tax = $tax->inUpperDecimal();
+        $this->tax = $tax;
         $this->unitValueIsTaxed = $unitValueIsTaxed;
     }
 
@@ -57,7 +57,7 @@ class ItemImpl extends Object implements Item {
     /**
      * Returns the tax of the item.
      *
-     * @return double
+     * @return Tax
      */
     public function getTax() {
         return $this->tax;
@@ -108,7 +108,7 @@ class ItemImpl extends Object implements Item {
         if ($this->isUnitValueTaxed()) {
             return $this->getUnitValue();
         } else {
-            return $this->getUnitValue() * $this->getTax();
+            return $this->getUnitValue() * $this->getTax()->inUpperDecimal();
         }
     }
 
@@ -119,7 +119,7 @@ class ItemImpl extends Object implements Item {
      */
     public function countUntaxedUnitValue() {
         if ($this->isUnitValueTaxed()) {
-            return $this->getUnitValue() / $this->getTax();
+            return $this->getUnitValue() / $this->getTax()->inUpperDecimal();
         } else {
             return $this->getUnitValue();
         }
