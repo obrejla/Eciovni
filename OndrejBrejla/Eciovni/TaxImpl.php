@@ -27,7 +27,7 @@ class TaxImpl extends Object implements Tax {
         return new TaxImpl(($percent * 0.01) + 1);
     }
 
-    public static function fromDecimal($lowerDecimal) {
+    public static function fromLowerDecimal($lowerDecimal) {
         if (!is_double($lowerDecimal)) {
             throw new InvalidArgumentException('$lowerDecimal must be a double, but ' . $lowerDecimal . ' given.');
         }
