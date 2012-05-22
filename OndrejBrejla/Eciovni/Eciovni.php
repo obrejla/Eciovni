@@ -18,6 +18,9 @@ class Eciovni extends Control {
     /** @var Data */
     private $data;
 
+    /** @var string Path to invoice template file */
+    protected $templateFile = NULL;
+
     /**
      * Initializes new Invoice.
      *
@@ -26,6 +29,29 @@ class Eciovni extends Control {
      */
     public function __construct(Data $data) {
         $this->data = $data;
+    }
+
+    /**
+     * Gets the invoice template file
+     * Loads default template file if none is set
+     *
+     * @return string template file path
+     */
+    public function getTemplateFile() {
+        if (is_null($this->templateFile)) {
+            return $this->templateFile = __DIR__ . '/Eciovni.latte';
+        }
+
+        return $this->templateFile;
+    }
+
+    /**
+     * Sets template file to custom location
+     *
+     * @param string $file Path to invoice template file
+     */
+    public function setTemplateFile($file) {
+        $this->templateFile = $file;
     }
 
     /**
@@ -104,7 +130,7 @@ class Eciovni extends Control {
      * @return void
      */
     private function generate(ITemplate $template) {
-        $template->setFile(dirname(__FILE__) . '/Eciovni.latte');
+        $template->setFile($this->getTemplateFile());
         $template->registerHelper('round', function($value, $precision = 2) {
             return number_format(round($value, $precision), 2, ',', '');
         });
