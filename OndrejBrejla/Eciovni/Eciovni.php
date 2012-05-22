@@ -21,8 +21,7 @@ class Eciovni extends Control {
     /**
      * Initializes new Invoice.
      *
-     * @param string $id
-     * @param string $title
+     * @param Data $data 
      */
     public function __construct(Data $data) {
         $this->data = $data;
