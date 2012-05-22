@@ -21,7 +21,7 @@ class Eciovni extends Control {
     /**
      * Initializes new Invoice.
      *
-     * @param Data $data 
+     * @param Data $data
      */
     public function __construct(Data $data) {
         $this->data = $data;
@@ -103,7 +103,7 @@ class Eciovni extends Control {
      * @return void
      */
     private function generate(ITemplate $template) {
-        $template->setFile(dirname(__FILE__) . '/Eciovni.latte');
+        $template->setFile(__DIR__ . '/Eciovni.latte');
         $template->registerHelper('round', function($value, $precision = 2) {
             return number_format(round($value, $precision), 2, ',', '');
         });
