@@ -61,6 +61,7 @@ class Eciovni extends Control {
     /**
      * Generates the invoice to the defined template.
      *
+     * @param IFileTemplate $template
      * @return void
      */
     private function generate(IFileTemplate $template) {
@@ -81,6 +82,9 @@ class Eciovni extends Control {
 
     /**
      * Generates supplier data into template.
+     *
+     * @param IFileTemplate $template
+     * @return void
      */
     private function geterateSupplier(IFileTemplate $template) {
         $supplier = $this->data->getSupplier();
@@ -96,6 +100,9 @@ class Eciovni extends Control {
 
     /**
      * Generates customer data into template.
+     *
+     * @param IFileTemplate $template
+     * @return void
      */
     private function generateCustomer(IFileTemplate $template) {
         $customer = $this->data->getCustomer();
@@ -111,6 +118,9 @@ class Eciovni extends Control {
 
     /**
      * Generates dates into template.
+     *
+     * @param IFileTemplate $template
+     * @return void
      */
     private function generateDates(IFileTemplate $template) {
         $template->dateOfIssuance = $this->data->getDateOfIssuance();
@@ -120,6 +130,9 @@ class Eciovni extends Control {
 
     /**
      * Generates symbols into template.
+     *
+     * @param IFileTemplate $template
+     * @return void
      */
     private function generateSymbols(IFileTemplate $template) {
         $template->variableSymbol = $this->data->getVariableSymbol();
@@ -129,6 +142,9 @@ class Eciovni extends Control {
 
     /**
      * Generates final values into template.
+     *
+     * @param IFileTemplate $template
+     * @return void
      */
     private function generateFinalValues(IFileTemplate $template) {
         $template->finalUntaxedValue = $this->countFinalUntaxedValue();
