@@ -28,45 +28,6 @@ class Eciovni extends Control {
     }
 
     /**
-     * Counts final untaxed value of all items.
-     *
-     * @return int
-     */
-    public function countFinalUntaxedValue() {
-        $sum = 0;
-        foreach ($this->data->items as $item) {
-            $sum += $item->countUntaxedUnitValue() * $item->getUnits();
-        }
-        return $sum;
-    }
-
-    /**
-     * Counts final tax value of all items.
-     *
-     * @return int
-     */
-    public function countFinalTaxValue() {
-        $sum = 0;
-        foreach ($this->data->items as $item) {
-            $sum += $item->countTaxValue();
-        }
-        return $sum;
-    }
-
-    /**
-     * Counts final value of all items.
-     *
-     * @return int
-     */
-    public function countFinalValues() {
-        $sum = 0;
-        foreach ($this->data->items as $item) {
-            $sum += $item->countFinalValue();
-        }
-        return $sum;
-    }
-
-    /**
      * Exports Invoice template via passed mPDF.
      *
      * @param mPDF $mpdf
@@ -173,6 +134,45 @@ class Eciovni extends Control {
         $template->finalUntaxedValue = $this->countFinalUntaxedValue();
         $template->finalTaxValue = $this->countFinalTaxValue();
         $template->finalValue = $this->countFinalValues();
+    }
+
+    /**
+     * Counts final untaxed value of all items.
+     *
+     * @return int
+     */
+    private function countFinalUntaxedValue() {
+        $sum = 0;
+        foreach ($this->data->items as $item) {
+            $sum += $item->countUntaxedUnitValue() * $item->getUnits();
+        }
+        return $sum;
+    }
+
+    /**
+     * Counts final tax value of all items.
+     *
+     * @return int
+     */
+    private function countFinalTaxValue() {
+        $sum = 0;
+        foreach ($this->data->items as $item) {
+            $sum += $item->countTaxValue();
+        }
+        return $sum;
+    }
+
+    /**
+     * Counts final value of all items.
+     *
+     * @return int
+     */
+    private function countFinalValues() {
+        $sum = 0;
+        foreach ($this->data->items as $item) {
+            $sum += $item->countFinalValue();
+        }
+        return $sum;
     }
 
 }
