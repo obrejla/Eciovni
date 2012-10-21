@@ -73,7 +73,7 @@ class Eciovni extends Control {
         $template->title = $this->data->getTitle();
         $template->id = $this->data->getId();
         $template->items = $this->data->getItems();
-        $this->geterateSupplier($template);
+        $this->generateSupplier($template);
         $this->generateCustomer($template);
         $this->generateDates($template);
         $this->generateSymbols($template);
@@ -86,7 +86,7 @@ class Eciovni extends Control {
      * @param IFileTemplate $template
      * @return void
      */
-    private function geterateSupplier(IFileTemplate $template) {
+    private function generateSupplier(IFileTemplate $template) {
         $supplier = $this->data->getSupplier();
         $template->supplierName = $supplier->getName();
         $template->supplierStreet = $supplier->getStreet();
