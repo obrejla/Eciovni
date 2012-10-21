@@ -67,7 +67,7 @@ class Eciovni extends Control {
     private function generate(IFileTemplate $template) {
         $template->setFile(__DIR__ . '/Eciovni.latte');
         $template->registerHelper('round', function($value, $precision = 2) {
-            return number_format(round($value, $precision), 2, ',', '');
+            return number_format(round($value, $precision), $precision, ',', '');
         });
 
         $template->title = $this->data->getTitle();
