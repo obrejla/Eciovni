@@ -16,15 +16,17 @@ use mPDF;
 class Eciovni extends Control {
 
     /** @var Data */
-    private $data;
+    private $data = NULL;
 
     /**
      * Initializes new Invoice.
      *
      * @param Data $data
      */
-    public function __construct(Data $data) {
-        $this->data = $data;
+    public function __construct(Data $data = NULL) {
+        if ($data !== NULL) {
+            $this->setData($data);
+        }
     }
 
     /**
@@ -54,8 +56,44 @@ class Eciovni extends Control {
      * @return void
      */
     public function render() {
+        $this->processRender();
+    }
+
+    /**
+     * Renderers the invoice to the defined template.
+     *
+     * @param Data $data
+     * @return void
+     * @throws IllegalStateException If data has already been set.
+     */
+    public function renderData(Data $data) {
+        $this->setData($data);
+        $this->processRender();
+    }
+
+    /**
+     * Renderers the invoice to the defined template.
+     *
+     * @return void
+     */
+    private function processRender() {
         $this->generate($this->template);
         $this->template->render();
+    }
+
+    /**
+     * Sets the data, but only if it hasn't been set already.
+     *
+     * @param Data $data
+     * @return void
+     * @throws IllegalStateException If data has already been set.
+     */
+    private function setData(Data $data) {
+        if ($this->data == NULL) {
+            $this->data = $data;
+        } else {
+            throw new IllegalStateException('Data have already been set!');
+        }
     }
 
     /**
@@ -190,5 +228,9 @@ class Eciovni extends Control {
         }
         return $sum;
     }
+
+}
+
+class IllegalStateException extends \RuntimeException {
 
 }
