@@ -18,6 +18,9 @@ class Eciovni extends Control {
     /** @var Data */
     private $data = NULL;
 
+    /** @var string */
+    private $templatePath;
+
     /**
      * Initializes new Invoice.
      *
@@ -27,7 +30,20 @@ class Eciovni extends Control {
         if ($data !== NULL) {
             $this->setData($data);
         }
+
+        $this->templatePath = __DIR__ . '/Eciovni.latte';
     }
+
+    /**
+     * Setter for path to template
+     *
+     * @param string $templatePath
+     */
+    public function setTemplatePath($templatePath)
+    {
+        $this->templatePath = $templatePath;
+    }
+
 
     /**
      * Exports Invoice template via passed mPDF.
@@ -103,7 +119,7 @@ class Eciovni extends Control {
      * @return void
      */
     private function generate(IFileTemplate $template) {
-        $template->setFile(__DIR__ . '/Eciovni.latte');
+        $template->setFile($this->templatePath);
         $template->registerHelper('round', function($value, $precision = 2) {
             return number_format(round($value, $precision), $precision, ',', '');
         });
