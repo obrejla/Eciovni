@@ -24,6 +24,9 @@ class ItemImpl extends Object implements Item {
 
     /** @var int */
     private $units;
+    
+    /** @var string */
+    private $qUnits;
 
     /** @var boolean */
     private $unitValueIsTaxed;
@@ -33,13 +36,15 @@ class ItemImpl extends Object implements Item {
      *
      * @param string $description
      * @param int $units
+     * @param string $qUnits
      * @param double $unitValue
      * @param Tax $tax
      * @param boolean $unitValueIsTaxed
      */
-    public function __construct($description, $units, $unitValue, Tax $tax, $unitValueIsTaxed = TRUE) {
+    public function __construct($description, $units, $qUnits, $unitValue, Tax $tax, $unitValueIsTaxed = TRUE) {
         $this->description = $description;
         $this->units = $units;
+        $this->qUnits = $qUnits;
         $this->unitValue = $unitValue;
         $this->tax = $tax;
         $this->unitValueIsTaxed = $unitValueIsTaxed;
@@ -88,6 +93,16 @@ class ItemImpl extends Object implements Item {
      */
     public function getUnits() {
         return $this->units;
+    }
+    
+    /**
+     * Returns the quantity of item units.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return string
+     */
+    public function getQUnits() {
+        return $this->qUnits;
     }
 
     /**

@@ -43,9 +43,21 @@ class DataImpl extends Object implements Data {
 
     /** @var DateTime */
     private $dateOfVatRevenueRecognition;
+    
+    /** @var Decimal */
+    private $inoviceRound;
+    
+    /** @var String */
+    private $logo;
+    
+    /** @var String */
+    private $stamp;
 
     /** @var Item[] */
     private $items = array();
+    
+    /** @var Taxes[] */
+    private $taxes = array();
 
     public function __construct(DataBuilder $dataBuilder) {
         $this->title = $dataBuilder->getTitle();
@@ -58,7 +70,11 @@ class DataImpl extends Object implements Data {
         $this->expirationDate = $dataBuilder->getExpirationDate();
         $this->dateOfIssuance = $dataBuilder->getDateOfIssuance();
         $this->dateOfVatRevenueRecognition = $dataBuilder->getDateOfVatRevenueRecognition();
+        $this->inoviceRound = $dataBuilder->getInoviceRound();
+        $this->logo = $dataBuilder->getLogo();
+        $this->stamp = $dataBuilder->getStamp();
         $this->items = $dataBuilder->getItems();
+        $this->taxes = $dataBuilder->getTaxes();
     }
 
     /**
@@ -153,7 +169,38 @@ class DataImpl extends Object implements Data {
     public function getDateOfVatRevenueRecognition($format = 'd.m.Y') {
         return $this->dateOfVatRevenueRecognition === NULL ? '' : $this->dateOfVatRevenueRecognition->format($format);
     }
-
+ 
+    /**
+     * Returns the inovice round.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return decimal
+     */
+    public function getInoviceRound() {
+        return $this->inoviceRound;
+    }
+    
+     /**
+     * Returns the logo company.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return string
+     */
+    public function getLogo() {
+        return $this->logo;
+    }
+    
+    /**
+     * Returns the stamp company.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return string
+     */
+    public function getStamp()
+    {
+        return $this->stamp;
+    }
+    
     /**
      * Returns the array of items.
      *
@@ -161,6 +208,15 @@ class DataImpl extends Object implements Data {
      */
     public function getItems() {
         return $this->items;
+    }
+    
+    /**
+     * Returns the array of taxes.
+     *
+     * @return Taxes[]
+     */
+    public function getTaxes() {
+        return $this->taxes;
     }
 
 }

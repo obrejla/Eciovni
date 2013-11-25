@@ -67,5 +67,46 @@ interface Participant {
      * @return string
      */
     public function getAccountNumber();
+    
+     /**
+     * Returns the bank name of participant.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return string
+     */
+    public function getBankName();
+
+    /**
+     * Returns the payment.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return string
+     */
+    public function getPayment();
+    
+    /**
+     * Returns the registration.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return string
+     */
+    public function getRegistration();
+    
+    
+    /**
+     * Returns the vat payper.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return bool
+     */
+    public function getVatPayer();
+    
+    /**
+     * Returns the order number.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return string
+     */
+    public function getOrder();
 
 }

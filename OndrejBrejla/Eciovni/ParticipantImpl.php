@@ -37,6 +37,21 @@ class ParticipantImpl extends Object implements Participant {
     /** @var string */
     private $accountNumber;
 
+    /** @var string */
+    private $bankName = NULL;
+
+    /** @var string */
+    private $payment = NULL;
+
+    /** @var string */
+    private $registration = NULL;
+    
+    /** @var bool */
+    private $vatPayer = NULL;
+    
+    /** @var string */
+    private $order = NULL;
+
     /**
      * Initializes the Participant.
      *
@@ -51,6 +66,11 @@ class ParticipantImpl extends Object implements Participant {
         $this->in = $participantBuilder->getIn();
         $this->tin = $participantBuilder->getTin();
         $this->accountNumber = $participantBuilder->getAccountNumber();
+        $this->bankName = $participantBuilder->getBankName();
+        $this->payment = $participantBuilder->getPayment();
+        $this->registration = $participantBuilder->getRegistration();
+        $this->vatPayer = $participantBuilder->getVatPayer();
+        $this->order = $participantBuilder->getOrder();
     }
 
     /**
@@ -125,4 +145,53 @@ class ParticipantImpl extends Object implements Participant {
         return $this->accountNumber;
     }
 
+    /**
+     * Returns the bank name of participant.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return string
+     */
+    public function getBankName() {
+        return $this->bankName;
+    }
+
+    /**
+     * Returns the payment.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return string
+     */
+    public function getPayment() {
+        return $this->payment;
+    }
+    
+    /**
+     * Returns the registration.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return string
+     */
+    public function getRegistration() {
+        return $this->registration;
+    }
+    
+    /**
+     * Returns the vat payper.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return bool
+     */
+    public function getVatPayer() {
+        return $this->vatPayer;
+    }
+    
+    /**
+     * Returns the order number.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return string
+     */
+    public function getOrder() {
+        return $this->order;
+    }
 }

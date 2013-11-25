@@ -7,6 +7,8 @@
  *
  * @param    string                $title
  * @param    string                $id
+ * @param    string                $logo
+ * @param    string                $stamp
  *
  * @param    string                $supplierName
  * @param    string                $supplierStreet
@@ -16,6 +18,10 @@
  * @param    string                $supplierIn
  * @param    string                $supplierTin
  * @param    string                $supplierAccountNumber
+ * @param    string                $supplierBankName
+ * @param    string                $supplierPayment
+ * @param    bool                  $vatPayer
+ * @param    string                $supplierOrder
  *
  * @param    string                $dateOfIssuance
  * @param    string                $expirationDate
@@ -33,12 +39,15 @@
  * @param    string                $customerIn
  * @param    string                $customerTin
  * @param    string                $customerAccountNumber
+ * @param    string                $customerOrder
  *
  * @param    Item[]                $items
  *
  * @param    double                $finalUntaxedValue
  * @param    double                $finalTaxValue
  * @param    double                $finalValue
+ * @param    double                $inoviceRound
+ * @param    double                $finalValueRound
  *}
 <html>
 <head>
@@ -57,7 +66,8 @@
     }
 </style>
 <div>
-    <div style="text-align: right; border-bottom: 2px solid #000000; color: #1A5DAC; font-weight: bold; font-size: 20px;">{$title} - {$id}</div>
+    {if $logo != null}<img src="{$basePath}/images/{$logo}" style="width:220px;height:60px;float:left;margin-bottom:10px" alt="Logo" />{/if}
+    <div style="text-align: right; border-bottom: 2px solid #000000; color: #1A5DAC; font-weight: bold; font-size: 20px;clear:both;">{$title} {$id}</div>
 
     <table>
         <tr>
@@ -95,8 +105,12 @@
 
                 <table style="width: 100%;">
                     <tr>
+                        <td>Banka:</td>
+                        <td style="text-align: center;">{$supplierBankName}</td>
+                    </tr>
+                    <tr>
                         <td>Forma úhrady:</td>
-                        <td style="text-align: center;">převodem</td>
+                        <td style="text-align: center;">{$supplierPayment}</td>
                     </tr>
                     <tr>
                         <td>Datum vystavení:</td>
@@ -106,10 +120,12 @@
                         <td>Datum splatnosti:</td>
                         <td style="text-align: center;">{$expirationDate}</td>
                     </tr>
+                    {if $vatPayer}
                     <tr>
                         <td>Datum uskutečnění zdanitelného plnění:</td>
                         <td style="text-align: center;">{$dateOfVatRevenueRecognition}</td>
                     </tr>
+                    {/if}
                 </table>
             </td>
             <td width="60%" align="right">
@@ -125,6 +141,10 @@
                     <tr>
                         <td style="text-align: right;">Konstantní symbol:</td>
                         <td style="text-align: center;">{$constantSymbol}</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right;">Objednávka číslo:</td>
+                        <td style="text-align: center;">{$supplierOrder}</td>
                     </tr>
                 </table>
 
@@ -142,8 +162,8 @@
                                     <td>{$customerTin}</td>
                                 </tr>
                                 <tr>
-                                    <td>Číslo účtu:</td>
-                                    <td>{$customerAccountNumber}</td>
+                                    <td>Vaše č. obj.:</td>
+                                    <td>{$customerOrder}</td>
                                 </tr>
                             </table>
 
@@ -170,8 +190,11 @@
                 <td><strong>Položka</strong></td>
                 <td style="text-align: right;"><strong>Cena/jedn.</strong></td>
                 <td style="text-align: right;"><strong>Počet</strong></td>
+                <td style="text-align: right;"><strong>MJ</strong></td>
+                {if $vatPayer}
                 <td style="text-align: right;"><strong>%DPH</strong></td>
                 <td style="text-align: right;"><strong>DPH</strong></td>
+                {/if}
                 <td style="text-align: right;"><strong>Cena (Kč)</strong></td>
             </tr>
             {foreach $items as $item}
@@ -179,35 +202,72 @@
                 <td>{$item->getDescription()}</td>
                 <td style="text-align: right;">{$item->countUntaxedUnitValue()|round}</td>
                 <td style="text-align: right;">{$item->getUnits()|round}</td>
+                <td style="text-align: right;">{$item->getQUnits()}</td>
+                {if $vatPayer}
                 <td style="text-align: right;">{$item->getTax()->inUpperDecimal() * 100 - 100|round}</td>
                 <td style="text-align: right;">{$item->countTaxValue()|round}</td>
+                {/if}
                 <td style="text-align: right;">{$item->countFinalValue()|round}</td>
             </tr>
             {/foreach}
         </table>
     </div>
-
     <div style="border: 2px solid #000000; margin-bottom: 15px;">
-        <table style="width: 100%;">
-            <tr>
-                <td>Celkem bez DPH (Kč):</td>
-                <td style="text-align: right;">{$finalUntaxedValue|round}</td>
-            </tr>
-            <tr>
-                <td>DPH (Kč):</td>
-                <td style="text-align: right;">{$finalTaxValue|round}</td>
-            </tr>
-            <tr style="font-size: 20px;">
-                <td><strong>Cena celkem s DPH (Kč):</strong></td>
-                <td style="text-align: right;"><strong>{$finalValue|round}</strong></td>
-            </tr>
-        </table>
+    <table style="width: 100%;">
+        {if $vatPayer}
+        <tr>
+            <td>Celkem bez DPH (Kč):</td>
+            <td style="text-align: right;">{$finalUntaxedValue|round}</td>
+        </tr>
+        <tr>
+            <td>DPH (Kč):</td>
+            <td style="text-align: right;">{$finalTaxValue|round}</td>
+        </tr>
+        <tr style="font-size: 20px;">
+            <td><strong>Cena celkem s DPH (Kč):</strong></td>
+            <td style="text-align: right;"><strong>{$finalValue|round}</strong></td>
+        </tr>
+        {if $inoviceRound != null}
+        <tr>
+            <td>Zaokrouhleno (Kč):</td>
+            <td style="text-align: right;">{$inoviceRound|round}</td>
+        </tr>
+        <tr style="font-size: 20px;">
+            <td><strong>Celkem k úhradě (Kč):</strong></td>
+            <td style="text-align: right;"><strong>{$finalValueRound|round}</strong></td>
+        </tr>
+        {/if}
+        {else}
+        <tr style="font-size: 20px;">
+            <td><strong>Celkem (Kč):</strong></td>
+            <td style="text-align: right;">{$finalUntaxedValue|round}</td>
+        </tr>
+        {/if}
+    </table>
+    </div>  
+    {if $vatPayer}
+    <table style="width:50%;border-top:1px solid #000;border-left:1px solid #000;border-collapse:collapse;">
+        <tr>
+            <td style="border-right:1px solid #000;border-bottom:1px solid #000;">Rekapitulace DPH v Kč</td>
+            <td style="border-right:1px solid #000;border-bottom:1px solid #000;">Základ</td>
+            <td style="border-right:1px solid #000;border-bottom:1px solid #000;">DPH</td>
+            <td style="border-right:1px solid #000;border-bottom:1px solid #000;">Včetně DPH</td>
+        </tr>
+        {foreach $finalSummary as $final}
+        <tr>
+            <td style="border-right:1px solid #000;border-bottom:1px solid #000;">{$final["name"]}</td>
+            <td style="border-right:1px solid #000;border-bottom:1px solid #000;">{$final["outTax"]|round}</td>
+            <td style="border-right:1px solid #000;border-bottom:1px solid #000;">{$final["tax"]|round}</td>
+            <td style="border-right:1px solid #000;border-bottom:1px solid #000;">{$final["withTax"]|round}</td>
+        </tr>
+        {/foreach}
+    </table>
+    {/if}
+    <div style="text-align: right; padding-right: 30px;margin-top:10px;">
+        {if $stamp != null}<img src="{$basePath}/images/{$stamp}" style="width:180px;" alt="Vystavil, razítko, podpis:" />{/if}
     </div>
-
-    <div style="text-align: right; padding-right: 100px;">
-        <div style="font-weight: bold;">Vystavil, razítko, podpis:</div>
-        <img src="" alt="Razitko s podpisem" />
-    </div>
+    <div style="float:right;text-align:center;width:150px;border-top:2px dashed #000000;font-weight: bold;margin-top:5px;margin-right:50px;">Razítko a podpis</div>
+    <div style="float:left;margin-top:0px;">Registrace:<br />{$supplierRegistration}</div>
 </div>
 </body>
 </html>

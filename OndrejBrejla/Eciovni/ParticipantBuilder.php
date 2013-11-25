@@ -37,6 +37,21 @@ class ParticipantBuilder extends Object {
     /** @var string */
     private $accountNumber = NULL;
 
+    /** @var string */
+    private $bankName = NULL;
+
+    /** @var string */
+    private $payment = NULL;
+    
+    /** @var string */
+    private $registration = NULL;
+    
+    /** @var bool */
+    private $vatPayer = NULL;
+    
+    /** @var string */
+    private $order = NULL;
+
     /**
      * Initializes the Participant builder.
      *
@@ -84,6 +99,66 @@ class ParticipantBuilder extends Object {
      */
     public function setAccountNumber($accountNumber) {
         $this->accountNumber = $accountNumber;
+        return $this;
+    }
+
+    /**
+     * Sets the bank name of participant.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @param string $bankName
+     * @return ParticipantBuilder
+     */
+    public function setBankName($bankName) {
+        $this->bankName = $bankName;
+        return $this;
+    }
+
+    /**
+     * Sets the payment.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @param string $payment
+     * @return ParticipantBuilder
+     */
+    public function setPayment($payment) {
+        $this->payment = $payment;
+        return $this;
+    }
+    
+    /**
+     * Sets the registration.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @param string $registration
+     * @return ParticipantBuilder
+     */
+    public function setRegistration($registration) {
+        $this->registration = $registration;
+        return $this;
+    }
+    
+    /**
+     * Sets the vat payper.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @param bool $vatPayer
+     * @return ParticipantBuilder
+     */
+    public function setVatPayer($vatPayer) {
+        $this->vatPayer = $vatPayer;
+        return $this;
+    }
+    
+    /**
+     * Sets the number order.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @param string $order
+     * @return ParticipantBuilder
+     */
+    public function setOrder($order) {
+        $this->order = $order;
         return $this;
     }
 
@@ -159,6 +234,56 @@ class ParticipantBuilder extends Object {
         return $this->accountNumber;
     }
 
+    /**
+     * Returns the bank name of participant.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return string
+     */
+    public function getBankName() {
+        return $this->bankName;
+    }
+
+    /**
+     * Returns the payment.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return string
+     */
+    public function getPayment() {
+        return $this->payment;
+    }
+    
+    /**
+     * Returns the registration.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return string
+     */
+    public function getRegistration() {
+        return $this->registration;
+    }
+
+    /**
+     * Returns the vat payper.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return bool
+     */
+    public function getVatPayer() {
+        return $this->vatPayer;
+    }
+    
+    /**
+     * Returns the order number.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return string
+     */
+    public function getOrder() {
+        return $this->order;
+    }
+    
     /**
      * Returns new Participant.
      *
