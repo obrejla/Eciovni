@@ -1,5 +1,5 @@
 {
-    "name": "OndrejBrejla/Eciovni",
+    "name": "ondrejbrejla/eciovni",
     "description": "Component for generating invoices using Nette Framework and mPDF library.",
     "keywords": ["invoice", "generator", "nette", "latte", "mpdf"],
     "license": "BSD-3",
