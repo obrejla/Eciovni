@@ -85,10 +85,41 @@ interface Data {
     public function getDateOfVatRevenueRecognition($format = 'd.m.Y');
 
     /**
+     * Returns the inovice round.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return decimal
+     */
+    public function getInoviceRound();
+    
+    /**
+     * Returns the logo company.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return string
+     */
+    public function getLogo();
+    
+    /**
+     * Returns the stamp company.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return string
+     */
+    public function getStamp();
+
+    /**
      * Returns the array of items.
      *
      * @return Item[]
      */
     public function getItems();
+
+    /**
+     * Returns the array of taxes.
+     *
+     * @return Taxes[]
+     */
+    public function getTaxes();
 
 }

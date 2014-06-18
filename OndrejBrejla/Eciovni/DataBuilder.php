@@ -44,8 +44,20 @@ class DataBuilder extends Object {
     /** @var DateTime */
     private $dateOfVatRevenueRecognition;
 
+    /** @var Decimal */
+    private $inoviceRound;
+
+    /** @var string */
+    private $logo;
+
+    /** @var string */
+    private $stamp;
+
     /** @var Item[] */
     private $items = array();
+
+    /** @var Taxes[] */
+    private $taxes = array();
 
     public function __construct($id, $title, Participant $supplier, Participant $customer, DateTime $expirationDate, DateTime $dateOfIssuance, array $items) {
         $this->id = $id;
@@ -77,6 +89,31 @@ class DataBuilder extends Object {
      */
     private function addItem(Item $item) {
         $this->items[] = $item;
+    }
+
+    /**
+     * Adds array of taxes to the invoice.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @param Taxes[] $taxes
+     * @return void
+     */
+    public function addTaxes($taxes) {
+        foreach ($taxes as $tax => $name) {
+            $this->addTax($tax, $name);
+        }
+    }
+
+    /**
+     * Adds an tax to the invoice.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @param $tax
+     * @param $name
+     * @return void
+     */
+    private function addTax($tax, $name) {
+        $this->taxes[$tax] = $name;
     }
 
     /**
@@ -120,6 +157,42 @@ class DataBuilder extends Object {
      */
     public function setDateOfVatRevenueRecognition(DateTime $dateOfTaxablePayment) {
         $this->dateOfVatRevenueRecognition = $dateOfTaxablePayment;
+        return $this;
+    }
+
+    /**
+     * Sets the inovice round.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @param decimal $inoviceRound
+     * @return DataBuilder
+     */
+    public function setInoviceRound($inoviceRound) {
+        $this->inoviceRound = $inoviceRound;
+        return $this;
+    }
+
+    /**
+     * Sets the logo company.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @param string $logo
+     * @return DataBuilder
+     */
+    public function setLogo($logo) {
+        $this->logo = $logo;
+        return $this;
+    }
+
+    /**
+     * Sets the stamp company.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @param string $stamp
+     * @return DataBuilder
+     */
+    public function setStamp($stamp) {
+        $this->stamp = $stamp;
         return $this;
     }
 
@@ -214,12 +287,52 @@ class DataBuilder extends Object {
     }
 
     /**
+     * Returns the inovice round.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return decimal
+     */
+    public function getInoviceRound() {
+        return $this->inoviceRound;
+    }
+
+    /**
+     * Returns the logo company.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return string
+     */
+    public function getLogo() {
+        return $this->logo;
+    }
+
+    /**
+     * Returns the stamp company.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return string
+     */
+    public function getStamp() {
+        return $this->stamp;
+    }
+
+    /**
      * Returns the array of items.
      *
      * @return Item[]
      */
     public function getItems() {
         return $this->items;
+    }
+
+    /**
+     * Returns the array of taxes.
+     * 
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return Taxes[]
+     */
+    public function getTaxes() {
+        return $this->taxes;
     }
 
     /**

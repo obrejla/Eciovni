@@ -38,6 +38,14 @@ interface Item {
      * @return int
      */
     public function getUnits();
+    
+    /**
+     * Returns the quantity of item units.
+     *
+     * @author Petr Láslo <petr.laslo@gmail.com>
+     * @return string
+     */
+    public function getQUnits();
 
     /**
      * Returns the value of taxes for all units.

@@ -127,6 +127,9 @@ class Eciovni extends Control {
         $template->title = $this->data->getTitle();
         $template->id = $this->data->getId();
         $template->items = $this->data->getItems();
+        $template->inoviceRound = $this->data->getInoviceRound();
+        $template->logo = $this->data->getLogo();
+        $template->stamp = $this->data->getStamp();
         $this->generateSupplier($template);
         $this->generateCustomer($template);
         $this->generateDates($template);
@@ -150,6 +153,11 @@ class Eciovni extends Control {
         $template->supplierIn = $supplier->getIn();
         $template->supplierTin = $supplier->getTin();
         $template->supplierAccountNumber = $supplier->getAccountNumber();
+        $template->supplierBankName = $supplier->getBankName();
+        $template->supplierPayment = $supplier->getPayment();
+        $template->supplierRegistration = $supplier->getRegistration();
+        $template->vatPayer = $supplier->getVatPayer();
+        $template->supplierOrder = $supplier->getOrder();
     }
 
     /**
@@ -168,6 +176,7 @@ class Eciovni extends Control {
         $template->customerIn = $customer->getIn();
         $template->customerTin = $customer->getTin();
         $template->customerAccountNumber = $customer->getAccountNumber();
+        $template->customerOrder= $customer->getOrder();
     }
 
     /**
@@ -201,9 +210,36 @@ class Eciovni extends Control {
      * @return void
      */
     private function generateFinalValues(IFileTemplate $template) {
+        $finalValues = $this->countFinalValues();
         $template->finalUntaxedValue = $this->countFinalUntaxedValue();
         $template->finalTaxValue = $this->countFinalTaxValue();
-        $template->finalValue = $this->countFinalValues();
+        $template->finalValue = $finalValues;
+        $template->finalValueRound = $finalValues + $this->data->getInoviceRound(); 
+        $template->finalSummary= $this->getFinalTaxSummary();
+    }
+    
+    
+    /**
+     * Generate final tax sumary
+     * 
+     * @return array
+     */
+    private function getFinalTaxSummary(){
+        $summary = array();
+        foreach ($this->data->getTaxes() as $key=>$value)
+        {
+            $sum = array("name"=>$value,"rate"=>$key,"outTax"=>0,"tax"=>0,"withTax"=>0);
+            foreach ($this->data->getItems() as $item) {
+                if($item->getTax()->inUpperDecimal() == (($key+100)/100))
+                {
+                    $sum["outTax"] += $item->getUnits()*$item->countUntaxedUnitValue();
+                    $sum["tax"] += $item->countTaxValue();
+                    $sum["withTax"] += $item->countFinalValue();
+                }
+            }
+            $summary[] = $sum;
+        }
+        return $summary;
     }
 
     /**
