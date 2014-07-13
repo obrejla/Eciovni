@@ -2,8 +2,10 @@
 
 namespace OndrejBrejla\Eciovni;
 
+
+
 use Nette\Application\UI\Control;
-use Nette\Templating\IFileTemplate;
+use Nette\Application\UI\ITemplate;
 use mPDF;
 
 /**
@@ -115,10 +117,10 @@ class Eciovni extends Control {
     /**
      * Generates the invoice to the defined template.
      *
-     * @param IFileTemplate $template
+     * @param ITemplate $template
      * @return void
      */
-    private function generate(IFileTemplate $template) {
+    private function generate(ITemplate $template) {
         $template->setFile($this->templatePath);
         $template->registerHelper('round', function($value, $precision = 2) {
             return number_format(round($value, $precision), $precision, ',', '');
@@ -137,10 +139,10 @@ class Eciovni extends Control {
     /**
      * Generates supplier data into template.
      *
-     * @param IFileTemplate $template
+     * @param ITemplate $template
      * @return void
      */
-    private function generateSupplier(IFileTemplate $template) {
+    private function generateSupplier(ITemplate $template) {
         $supplier = $this->data->getSupplier();
         $template->supplierName = $supplier->getName();
         $template->supplierStreet = $supplier->getStreet();
@@ -155,10 +157,10 @@ class Eciovni extends Control {
     /**
      * Generates customer data into template.
      *
-     * @param IFileTemplate $template
+     * @param ITemplate $template
      * @return void
      */
-    private function generateCustomer(IFileTemplate $template) {
+    private function generateCustomer(ITemplate $template) {
         $customer = $this->data->getCustomer();
         $template->customerName = $customer->getName();
         $template->customerStreet = $customer->getStreet();
@@ -173,10 +175,10 @@ class Eciovni extends Control {
     /**
      * Generates dates into template.
      *
-     * @param IFileTemplate $template
+     * @param ITemplate $template
      * @return void
      */
-    private function generateDates(IFileTemplate $template) {
+    private function generateDates(ITemplate $template) {
         $template->dateOfIssuance = $this->data->getDateOfIssuance();
         $template->expirationDate = $this->data->getExpirationDate();
         $template->dateOfVatRevenueRecognition = $this->data->getDateOfVatRevenueRecognition();
@@ -185,10 +187,10 @@ class Eciovni extends Control {
     /**
      * Generates symbols into template.
      *
-     * @param IFileTemplate $template
+     * @param ITemplate $template
      * @return void
      */
-    private function generateSymbols(IFileTemplate $template) {
+    private function generateSymbols(ITemplate $template) {
         $template->variableSymbol = $this->data->getVariableSymbol();
         $template->specificSymbol = $this->data->getSpecificSymbol();
         $template->constantSymbol = $this->data->getConstantSymbol();
@@ -197,10 +199,10 @@ class Eciovni extends Control {
     /**
      * Generates final values into template.
      *
-     * @param IFileTemplate $template
+     * @param ITemplate $template
      * @return void
      */
-    private function generateFinalValues(IFileTemplate $template) {
+    private function generateFinalValues(ITemplate $template) {
         $template->finalUntaxedValue = $this->countFinalUntaxedValue();
         $template->finalTaxValue = $this->countFinalTaxValue();
         $template->finalValue = $this->countFinalValues();
