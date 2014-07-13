@@ -60,11 +60,11 @@ class Eciovni extends Control {
         $mpdf->WriteHTML((string) $this->template);
 
         if (($name !== '') && ($dest !== NULL)) {
-            $mpdf->Output($name, $dest);
+            return $mpdf->Output($name, $dest);
         } elseif ($dest !== NULL) {
-            $mpdf->Output('', $dest);
+            return $mpdf->Output('', $dest);
         } else {
-            $mpdf->Output($name, $dest);
+            return $mpdf->Output($name, $dest);
         }
     }
 
