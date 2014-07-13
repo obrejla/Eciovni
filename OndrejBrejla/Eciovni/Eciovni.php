@@ -53,19 +53,21 @@ class Eciovni extends Control {
      * @param mPDF $mpdf
      * @param string $name
      * @param string $dest
-     * @return void
+     * @return string|NULL
      */
     public function exportToPdf(mPDF $mpdf, $name = NULL, $dest = NULL) {
         $this->generate($this->template);
         $mpdf->WriteHTML((string) $this->template);
 
+        $result = NULL;
         if (($name !== '') && ($dest !== NULL)) {
-            $mpdf->Output($name, $dest);
+            $result = $mpdf->Output($name, $dest);
         } elseif ($dest !== NULL) {
-            $mpdf->Output('', $dest);
+            $result = $mpdf->Output('', $dest);
         } else {
-            $mpdf->Output($name, $dest);
+            $result = $mpdf->Output($name, $dest);
         }
+        return $result;
     }
 
     /**
