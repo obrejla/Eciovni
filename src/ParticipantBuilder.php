@@ -43,13 +43,22 @@ class ParticipantBuilder
 	private $accountNumber;
 
 
-	public function __construct(string $name, string $street, string $houseNumber, string $city, string $zip)
+	public function __construct(string $name, string $street, ?string $houseNumber, string $city, string $zip)
 	{
+		if (preg_match('/^(.+)\s+([\d\/\-]+)$/', $street, $streetParser)) { // case like "Rubešova 10"
+			$street = (string) $streetParser[1];
+			$houseNumber = (string) $streetParser[2];
+		}
+
 		$this->name = $name;
 		$this->street = $street;
 		$this->houseNumber = $houseNumber;
 		$this->city = $city;
 		$this->zip = $zip;
+
+		if ($houseNumber === null) {
+			throw new \InvalidArgumentException('House number can not be empty. Did you mean street with house number?');
+		}
 	}
 
 
