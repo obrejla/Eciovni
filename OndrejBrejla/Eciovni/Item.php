@@ -24,9 +24,9 @@ interface Item
 	/**
 	 * Returns the tax of the item.
 	 *
-	 * @return float
+	 * @return Tax
 	 */
-	public function getTax(): float;
+	public function getTax(): Tax;
 
 	/**
 	 * Returns the value of one unit of the item.
