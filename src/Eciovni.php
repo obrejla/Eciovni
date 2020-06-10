@@ -53,15 +53,15 @@ class Eciovni
 	/**
 	 * Exports Invoice template via passed mPDF.
 	 *
-	 * @param Mpdf $mpdf
 	 * @param string|null $name
 	 * @param string|null $dest
 	 * @return string|null
 	 * @throws MpdfException
 	 */
-	public function exportToPdf(Mpdf $mpdf, ?string $name = null, ?string $dest = null): ?string
+	public function exportToPdf(?string $name = null, ?string $dest = null): ?string
 	{
-		$mpdf->WriteHTML((new Engine)->renderToString($this->templatePath, $this->computeParams()));
+		$mpdf = new Mpdf;
+		$mpdf->WriteHTML($this->getEngine()->renderToString($this->templatePath, $this->computeParams()));
 
 		$result = null;
 		if ($name !== '' && $dest !== null) {
@@ -81,7 +81,7 @@ class Eciovni
 	 */
 	public function render(): void
 	{
-		(new Engine)->render($this->templatePath, $this->computeParams());
+		$this->getEngine()->render($this->templatePath, $this->computeParams());
 	}
 
 
@@ -206,5 +206,14 @@ class Eciovni
 		}
 
 		return $sum;
+	}
+
+
+	private function getEngine(): Engine
+	{
+		return (new Engine)
+			->addFilter('round', static function (float $value, int $precision = 2) {
+				return number_format(round($value, $precision), $precision, ',', '');
+			});
 	}
 }
