@@ -22,9 +22,19 @@
 		"latte/latte": "^2.5",
 		"mpdf/mpdf": "^8.0"
 	},
+	"require-dev": {
+		"phpstan/phpstan": "^0.12.18",
+		"tracy/tracy": "^2.7",
+		"phpstan/phpstan-nette": "^0.12.6"
+	},
 	"autoload": {
 		"classmap": [
 			"src/"
+		]
+	},
+	"scripts": {
+		"phpstan": [
+			"vendor/bin/phpstan analyse src -c phpstan.neon --level 6 --no-progress"
 		]
 	},
 	"minimum-stability": "stable"
