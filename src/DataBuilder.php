@@ -175,10 +175,10 @@ class DataBuilder
 	/**
 	 * Sets the specific symbol.
 	 *
-	 * @param int $specificSymbol
+	 * @param string $specificSymbol
 	 * @return DataBuilder
 	 */
-	public function setSpecificSymbol(int $specificSymbol): self
+	public function setSpecificSymbol(string $specificSymbol): self
 	{
 		$this->specificSymbol = $specificSymbol;
 
