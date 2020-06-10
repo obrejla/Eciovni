@@ -1,11 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace OndrejBrejla\Eciovni;
 
 
-
-use Nette\Application\UI\Control;
-use Nette\Application\UI\ITemplate;
+use Latte\Engine;
 use mPDF;
 
 /**
@@ -15,242 +15,194 @@ use mPDF;
  * @license    New BSD License
  * @link       http://github.com/OndrejBrejla/Eciovni
  */
-class Eciovni extends Control {
+class Eciovni
+{
 
-    /** @var Data */
-    private $data = NULL;
+	/** @var Data */
+	private $data;
 
-    /** @var string */
-    private $templatePath;
-
-    /**
-     * Initializes new Invoice.
-     *
-     * @param Data $data
-     */
-    public function __construct(Data $data = NULL) {
-        if ($data !== NULL) {
-            $this->setData($data);
-        }
-
-        $this->templatePath = __DIR__ . '/Eciovni.latte';
-    }
-
-    /**
-     * Setter for path to template
-     *
-     * @param string $templatePath
-     */
-    public function setTemplatePath($templatePath)
-    {
-        $this->templatePath = $templatePath;
-    }
+	/** @var string */
+	private $templatePath;
 
 
-    /**
-     * Exports Invoice template via passed mPDF.
-     *
-     * @param mPDF $mpdf
-     * @param string $name
-     * @param string $dest
-     * @return string|NULL
-     */
-    public function exportToPdf(mPDF $mpdf, $name = NULL, $dest = NULL) {
-        $this->generate($this->template);
-        $mpdf->WriteHTML((string) $this->template);
+	/**
+	 * @param Data|null $data
+	 */
+	public function __construct(?Data $data = null)
+	{
+		if ($data !== null) {
+			$this->setData($data);
+		}
 
-        $result = NULL;
-        if (($name !== '') && ($dest !== NULL)) {
-            $result = $mpdf->Output($name, $dest);
-        } elseif ($dest !== NULL) {
-            $result = $mpdf->Output('', $dest);
-        } else {
-            $result = $mpdf->Output($name, $dest);
-        }
-        return $result;
-    }
+		$this->templatePath = __DIR__ . '/Eciovni.latte';
+	}
 
-    /**
-     * Renderers the invoice to the defined template.
-     *
-     * @return void
-     */
-    public function render() {
-        $this->processRender();
-    }
 
-    /**
-     * Renderers the invoice to the defined template.
-     *
-     * @param Data $data
-     * @return void
-     * @throws IllegalStateException If data has already been set.
-     */
-    public function renderData(Data $data) {
-        $this->setData($data);
-        $this->processRender();
-    }
+	/**
+	 * Setter for path to template
+	 *
+	 * @param string $templatePath
+	 */
+	public function setTemplatePath(string $templatePath): void
+	{
+		$this->templatePath = $templatePath;
+	}
 
-    /**
-     * Renderers the invoice to the defined template.
-     *
-     * @return void
-     */
-    private function processRender() {
-        $this->generate($this->template);
-        $this->template->render();
-    }
 
-    /**
-     * Sets the data, but only if it hasn't been set already.
-     *
-     * @param Data $data
-     * @return void
-     * @throws IllegalStateException If data has already been set.
-     */
-    private function setData(Data $data) {
-        if ($this->data == NULL) {
-            $this->data = $data;
-        } else {
-            throw new IllegalStateException('Data have already been set!');
-        }
-    }
+	/**
+	 * Exports Invoice template via passed mPDF.
+	 *
+	 * @param mPDF $mpdf
+	 * @param string|null $name
+	 * @param string|null $dest
+	 * @return string|null
+	 */
+	public function exportToPdf(mPDF $mpdf, ?string $name = null, ?string $dest = null): ?string
+	{
+		$mpdf->WriteHTML((new Engine)->renderToString($this->templatePath, $this->computeParams()));
 
-    /**
-     * Generates the invoice to the defined template.
-     *
-     * @param ITemplate $template
-     * @return void
-     */
-    private function generate(ITemplate $template) {
-        $template->setFile($this->templatePath);
-        $template->registerHelper('round', function($value, $precision = 2) {
-            return number_format(round($value, $precision), $precision, ',', '');
-        });
+		$result = null;
+		if ($name !== '' && $dest !== null) {
+			$result = $mpdf->Output($name, $dest);
+		} elseif ($dest !== null) {
+			$result = $mpdf->Output('', $dest);
+		} else {
+			$result = $mpdf->Output($name, $dest);
+		}
 
-        $template->title = $this->data->getTitle();
-        $template->id = $this->data->getId();
-        $template->items = $this->data->getItems();
-        $this->generateSupplier($template);
-        $this->generateCustomer($template);
-        $this->generateDates($template);
-        $this->generateSymbols($template);
-        $this->generateFinalValues($template);
-    }
+		return $result;
+	}
 
-    /**
-     * Generates supplier data into template.
-     *
-     * @param ITemplate $template
-     * @return void
-     */
-    private function generateSupplier(ITemplate $template) {
-        $supplier = $this->data->getSupplier();
-        $template->supplierName = $supplier->getName();
-        $template->supplierStreet = $supplier->getStreet();
-        $template->supplierHouseNumber = $supplier->getHouseNumber();
-        $template->supplierCity = $supplier->getCity();
-        $template->supplierZip = $supplier->getZip();
-        $template->supplierIn = $supplier->getIn();
-        $template->supplierTin = $supplier->getTin();
-        $template->supplierAccountNumber = $supplier->getAccountNumber();
-    }
 
-    /**
-     * Generates customer data into template.
-     *
-     * @param ITemplate $template
-     * @return void
-     */
-    private function generateCustomer(ITemplate $template) {
-        $customer = $this->data->getCustomer();
-        $template->customerName = $customer->getName();
-        $template->customerStreet = $customer->getStreet();
-        $template->customerHouseNumber = $customer->getHouseNumber();
-        $template->customerCity = $customer->getCity();
-        $template->customerZip = $customer->getZip();
-        $template->customerIn = $customer->getIn();
-        $template->customerTin = $customer->getTin();
-        $template->customerAccountNumber = $customer->getAccountNumber();
-    }
+	/**
+	 * Renderers the invoice to the defined template.
+	 */
+	public function render(): void
+	{
+		(new Engine)->render($this->templatePath, $this->computeParams());
+	}
 
-    /**
-     * Generates dates into template.
-     *
-     * @param ITemplate $template
-     * @return void
-     */
-    private function generateDates(ITemplate $template) {
-        $template->dateOfIssuance = $this->data->getDateOfIssuance();
-        $template->expirationDate = $this->data->getExpirationDate();
-        $template->dateOfVatRevenueRecognition = $this->data->getDateOfVatRevenueRecognition();
-    }
 
-    /**
-     * Generates symbols into template.
-     *
-     * @param ITemplate $template
-     * @return void
-     */
-    private function generateSymbols(ITemplate $template) {
-        $template->variableSymbol = $this->data->getVariableSymbol();
-        $template->specificSymbol = $this->data->getSpecificSymbol();
-        $template->constantSymbol = $this->data->getConstantSymbol();
-    }
+	/**
+	 * Renderers the invoice to the defined template.
+	 *
+	 * @param Data $data
+	 * @throws IllegalStateException If data has already been set.
+	 */
+	public function renderData(Data $data): void
+	{
+		$this->setData($data);
+		$this->render();
+	}
 
-    /**
-     * Generates final values into template.
-     *
-     * @param ITemplate $template
-     * @return void
-     */
-    private function generateFinalValues(ITemplate $template) {
-        $template->finalUntaxedValue = $this->countFinalUntaxedValue();
-        $template->finalTaxValue = $this->countFinalTaxValue();
-        $template->finalValue = $this->countFinalValues();
-    }
 
-    /**
-     * Counts final untaxed value of all items.
-     *
-     * @return int
-     */
-    private function countFinalUntaxedValue() {
-        $sum = 0;
-        foreach ($this->data->items as $item) {
-            $sum += $item->countUntaxedUnitValue() * $item->getUnits();
-        }
-        return $sum;
-    }
+	/**
+	 * Sets the data, but only if it hasn't been set already.
+	 *
+	 * @param Data|null $data
+	 * @throws IllegalStateException If data has already been set.
+	 */
+	private function setData(?Data $data = null): void
+	{
+		if ($this->data !== null) {
+			throw new IllegalStateException('Data have already been set!');
+		}
 
-    /**
-     * Counts final tax value of all items.
-     *
-     * @return int
-     */
-    private function countFinalTaxValue() {
-        $sum = 0;
-        foreach ($this->data->items as $item) {
-            $sum += $item->countTaxValue();
-        }
-        return $sum;
-    }
+		$this->data = $data;
+	}
 
-    /**
-     * Counts final value of all items.
-     *
-     * @return int
-     */
-    private function countFinalValues() {
-        $sum = 0;
-        foreach ($this->data->items as $item) {
-            $sum += $item->countFinalValue();
-        }
-        return $sum;
-    }
 
-}
+	/**
+	 * @return mixed[]
+	 */
+	private function computeParams(): array
+	{
+		$supplier = $this->data->getSupplier();
+		$customer = $this->data->getCustomer();
 
-class IllegalStateException extends \RuntimeException {
+		return [
+			// basic info
+			'title' => $this->data->getTitle(),
+			'id' => $this->data->getId(),
+			'items' => $this->data->getItems(),
+			// supplier
+			'supplierName' => $supplier->getName(),
+			'supplierStreet' => $supplier->getStreet(),
+			'supplierHouseNumber' => $supplier->getHouseNumber(),
+			'supplierCity' => $supplier->getCity(),
+			'supplierZip' => $supplier->getZip(),
+			'supplierIn' => $supplier->getIn(),
+			'supplierTin' => $supplier->getTin(),
+			'supplierAccountNumber' => $supplier->getAccountNumber(),
+			// customer
+			'customerName' => $customer->getName(),
+			'customerStreet' => $customer->getStreet(),
+			'customerHouseNumber' => $customer->getHouseNumber(),
+			'customerCity' => $customer->getCity(),
+			'customerZip' => $customer->getZip(),
+			'customerIn' => $customer->getIn(),
+			'customerTin' => $customer->getTin(),
+			'customerAccountNumber' => $customer->getAccountNumber(),
+			// dates
+			'dateOfIssuance' => $this->data->getDateOfIssuance(),
+			'expirationDate' => $this->data->getExpirationDate(),
+			'dateOfVatRevenueRecognition' => $this->data->getDateOfVatRevenueRecognition(),
+			// symbols
+			'variableSymbol' => $this->data->getVariableSymbol(),
+			'specificSymbol' => $this->data->getSpecificSymbol(),
+			'constantSymbol' => $this->data->getConstantSymbol(),
+			// final values
+			'finalUntaxedValue' => $this->countFinalUntaxedValue(),
+			'finalTaxValue' => $this->countFinalTaxValue(),
+			'finalValue' => $this->countFinalValues(),
+		];
+	}
 
+
+	/**
+	 * Counts final untaxed value of all items.
+	 *
+	 * @return float
+	 */
+	private function countFinalUntaxedValue(): float
+	{
+		$sum = 0;
+		foreach ($this->data->getItems() as $item) {
+			$sum += $item->countUntaxedUnitValue() * $item->getUnits();
+		}
+
+		return $sum;
+	}
+
+
+	/**
+	 * Counts final tax value of all items.
+	 *
+	 * @return float
+	 */
+	private function countFinalTaxValue(): float
+	{
+		$sum = 0;
+		foreach ($this->data->getItems() as $item) {
+			$sum += $item->countTaxValue();
+		}
+
+		return $sum;
+	}
+
+
+	/**
+	 * Counts final value of all items.
+	 *
+	 * @return float
+	 */
+	private function countFinalValues(): float
+	{
+		$sum = 0;
+		foreach ($this->data->getItems() as $item) {
+			$sum += $item->countFinalValue();
+		}
+
+		return $sum;
+	}
 }

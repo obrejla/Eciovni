@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace OndrejBrejla\Eciovni;
 
 /**
@@ -9,63 +11,62 @@ namespace OndrejBrejla\Eciovni;
  * @license    New BSD License
  * @link       http://github.com/OndrejBrejla/Eciovni
  */
-interface Participant {
+interface Participant
+{
 
-    /**
-     * Returns the name of participant.
-     *
-     * @return string
-     */
-    public function getName();
+	/**
+	 * Returns the name of participant.
+	 *
+	 * @return string
+	 */
+	public function getName(): string;
 
-    /**
-     * Sets the street of participant.
-     *
-     * @param string $street
-     * @return void
-     */
-    public function getStreet();
+	/**
+	 * Sets the street of participant.
+	 *
+	 * @return string
+	 */
+	public function getStreet(): string;
 
-    /**
-     * Returns the house number of participant.
-     *
-     * @return string
-     */
-    public function getHouseNumber();
+	/**
+	 * Returns the house number of participant.
+	 *
+	 * @return string
+	 */
+	public function getHouseNumber(): string;
 
-    /**
-     * Returns the city of participant.
-     *
-     * @return string
-     */
-    public function getCity();
+	/**
+	 * Returns the city of participant.
+	 *
+	 * @return string
+	 */
+	public function getCity(): string;
 
-    /**
-     * Returns the zip of participant.
-     *
-     * @return string
-     */
-    public function getZip();
+	/**
+	 * Returns the zip of participant.
+	 *
+	 * @return string
+	 */
+	public function getZip(): string;
 
-    /**
-     * Returns the identification number of participant.
-     *
-     * @return string
-     */
-    public function getIn();
+	/**
+	 * Returns the identification number of participant.
+	 *
+	 * @return string
+	 */
+	public function getIn(): string;
 
-    /**
-     * Returns the tax identification number of participant.
-     *
-     * @return string
-     */
-    public function getTin();
+	/**
+	 * Returns the tax identification number of participant.
+	 *
+	 * @return string
+	 */
+	public function getTin(): string;
 
-    /**
-     * Returns the account number of participant.
-     *
-     * @return string
-     */
-    public function getAccountNumber();
-
+	/**
+	 * Returns the account number of participant.
+	 *
+	 * @return string
+	 */
+	public function getAccountNumber(): string;
 }

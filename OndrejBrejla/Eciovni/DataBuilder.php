@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace OndrejBrejla\Eciovni;
 
-use Nette\Object;
-use DateTime;
+
+use Nette\SmartObject;
 
 /**
  * DataBuilder - part of Eciovni plugin for Nette Framework.
@@ -12,223 +14,267 @@ use DateTime;
  * @license    New BSD License
  * @link       http://github.com/OndrejBrejla/Eciovni
  */
-class DataBuilder extends Object {
+class DataBuilder
+{
+	use SmartObject;
 
-    /** @var string */
-    private $title;
+	/** @var string */
+	private $title;
 
-    /** @var string */
-    private $id;
+	/** @var string */
+	private $id;
 
-    /** @var Participant */
-    private $supplier;
+	/** @var Participant */
+	private $supplier;
 
-    /** @var Participant */
-    private $customer;
+	/** @var Participant */
+	private $customer;
 
-    /** @var int */
-    private $variableSymbol = 0;
+	/** @var int */
+	private $variableSymbol = 0;
 
-    /** @var int */
-    private $constantSymbol = 0;
+	/** @var int */
+	private $constantSymbol = 0;
 
-    /** @var int */
-    private $specificSymbol = 0;
+	/** @var int */
+	private $specificSymbol = 0;
 
-    /** @var DateTime */
-    private $expirationDate;
+	/** @var \DateTime */
+	private $expirationDate;
 
-    /** @var DateTime */
-    private $dateOfIssuance;
+	/** @var \DateTime */
+	private $dateOfIssuance;
 
-    /** @var DateTime */
-    private $dateOfVatRevenueRecognition;
+	/** @var \DateTime */
+	private $dateOfVatRevenueRecognition;
 
-    /** @var Item[] */
-    private $items = array();
+	/** @var Item[] */
+	private $items = [];
 
-    public function __construct($id, $title, Participant $supplier, Participant $customer, DateTime $expirationDate, DateTime $dateOfIssuance, array $items) {
-        $this->id = $id;
-        $this->title = $title;
-        $this->supplier = $supplier;
-        $this->customer = $customer;
-        $this->expirationDate = $expirationDate;
-        $this->dateOfIssuance = $dateOfIssuance;
-        $this->addItems($items);
-    }
 
-    /**
-     * Adds array of items to the invoice.
-     *
-     * @param Item[] $items
-     * @return void
-     */
-    private function addItems($items) {
-        foreach ($items as $item) {
-            $this->addItem($item);
-        }
-    }
+	/**
+	 * @param Item[] $items
+	 */
+	public function __construct(string $id, string $title, Participant $supplier, Participant $customer, \DateTime $expirationDate, \DateTime $dateOfIssuance, array $items)
+	{
+		$this->id = $id;
+		$this->title = $title;
+		$this->supplier = $supplier;
+		$this->customer = $customer;
+		$this->expirationDate = $expirationDate;
+		$this->dateOfIssuance = $dateOfIssuance;
+		$this->addItems($items);
+	}
 
-    /**
-     * Adds an item to the invoice.
-     *
-     * @param Item $item
-     * @return void
-     */
-    private function addItem(Item $item) {
-        $this->items[] = $item;
-    }
 
-    /**
-     * Sets the variable symbol.
-     *
-     * @param int $variableSymbol
-     * @return DataBuilder
-     */
-    public function setVariableSymbol($variableSymbol) {
-        $this->variableSymbol = $variableSymbol;
-        return $this;
-    }
+	/**
+	 * Returns the invoice title.
+	 *
+	 * @return string
+	 */
+	public function getTitle(): string
+	{
+		return $this->title;
+	}
 
-    /**
-     * Sets the constant symbol.
-     *
-     * @param int $constantSymbol
-     * @return DataBuilder
-     */
-    public function setConstantSymbol($constantSymbol) {
-        $this->constantSymbol = $constantSymbol;
-        return $this;
-    }
 
-    /**
-     * Sets the specific symbol.
-     *
-     * @param int $specificSymbol
-     * @return DataBuilder
-     */
-    public function setSpecificSymbol($specificSymbol) {
-        $this->specificSymbol = $specificSymbol;
-        return $this;
-    }
+	/**
+	 * Returns the invoice id.
+	 *
+	 * @return string
+	 */
+	public function getId(): string
+	{
+		return $this->id;
+	}
 
-    /**
-     * Sets the date of VAT revenue recognition.
-     *
-     * @param DateTime $dateOfTaxablePayment
-     * @return DataBuilder
-     */
-    public function setDateOfVatRevenueRecognition(DateTime $dateOfTaxablePayment) {
-        $this->dateOfVatRevenueRecognition = $dateOfTaxablePayment;
-        return $this;
-    }
 
-    /**
-     * Returns the invoice title.
-     *
-     * @return string
-     */
-    public function getTitle() {
-        return $this->title;
-    }
+	/**
+	 * Returns the invoice supplier.
+	 *
+	 * @return Participant
+	 */
+	public function getSupplier(): Participant
+	{
+		return $this->supplier;
+	}
 
-    /**
-     * Returns the invoice id.
-     *
-     * @return string
-     */
-    public function getId() {
-        return $this->id;
-    }
 
-    /**
-     * Returns the invoice supplier.
-     *
-     * @return Participant
-     */
-    public function getSupplier() {
-        return $this->supplier;
-    }
+	/**
+	 * Returns the invoice customer.
+	 *
+	 * @return Participant
+	 */
+	public function getCustomer(): Participant
+	{
+		return $this->customer;
+	}
 
-    /**
-     * Returns the invoice customer.
-     *
-     * @return Participant
-     */
-    public function getCustomer() {
-        return $this->customer;
-    }
 
-    /**
-     * Returns the variable symbol.
-     *
-     * @return int
-     */
-    public function getVariableSymbol() {
-        return $this->variableSymbol;
-    }
+	/**
+	 * Returns the variable symbol.
+	 *
+	 * @return int
+	 */
+	public function getVariableSymbol(): int
+	{
+		return $this->variableSymbol;
+	}
 
-    /**
-     * Returns the constant symbol.
-     *
-     * @return int
-     */
-    public function getConstantSymbol() {
-        return $this->constantSymbol;
-    }
 
-    /**
-     * Returns the specific symbol.
-     *
-     * @return int
-     */
-    public function getSpecificSymbol() {
-        return $this->specificSymbol;
-    }
+	/**
+	 * Sets the variable symbol.
+	 *
+	 * @param int $variableSymbol
+	 * @return DataBuilder
+	 */
+	public function setVariableSymbol(int $variableSymbol): self
+	{
+		$this->variableSymbol = $variableSymbol;
 
-    /**
-     * Returns the expiration date in defined format.
-     *
-     * @return string
-     */
-    public function getExpirationDate() {
-        return $this->expirationDate;
-    }
+		return $this;
+	}
 
-    /**
-     * Returns the date of issuance in defined format.
-     *
-     * @return string
-     */
-    public function getDateOfIssuance() {
-        return $this->dateOfIssuance;
-    }
 
-    /**
-     * Returns the date of VAT revenue recognition in defined format.
-     *
-     * @return string
-     */
-    public function getDateOfVatRevenueRecognition() {
-        return $this->dateOfVatRevenueRecognition;
-    }
+	/**
+	 * Returns the constant symbol.
+	 *
+	 * @return int
+	 */
+	public function getConstantSymbol(): int
+	{
+		return $this->constantSymbol;
+	}
 
-    /**
-     * Returns the array of items.
-     *
-     * @return Item[]
-     */
-    public function getItems() {
-        return $this->items;
-    }
 
-    /**
-     * Returns new Data.
-     *
-     * @return Data
-     */
-    public function build() {
-        return new DataImpl($this);
-    }
+	/**
+	 * Sets the constant symbol.
+	 *
+	 * @param int $constantSymbol
+	 * @return DataBuilder
+	 */
+	public function setConstantSymbol(int $constantSymbol): self
+	{
+		$this->constantSymbol = $constantSymbol;
 
+		return $this;
+	}
+
+
+	/**
+	 * Returns the specific symbol.
+	 *
+	 * @return int
+	 */
+	public function getSpecificSymbol(): int
+	{
+		return $this->specificSymbol;
+	}
+
+
+	/**
+	 * Sets the specific symbol.
+	 *
+	 * @param int $specificSymbol
+	 * @return DataBuilder
+	 */
+	public function setSpecificSymbol(int $specificSymbol): self
+	{
+		$this->specificSymbol = $specificSymbol;
+
+		return $this;
+	}
+
+
+	/**
+	 * Returns the expiration date in defined format.
+	 *
+	 * @return \DateTime
+	 */
+	public function getExpirationDate(): \DateTime
+	{
+		return $this->expirationDate;
+	}
+
+
+	/**
+	 * Returns the date of issuance in defined format.
+	 *
+	 * @return \DateTime
+	 */
+	public function getDateOfIssuance(): \DateTime
+	{
+		return $this->dateOfIssuance;
+	}
+
+
+	/**
+	 * Returns the date of VAT revenue recognition in defined format.
+	 *
+	 * @return \DateTime
+	 */
+	public function getDateOfVatRevenueRecognition(): \DateTime
+	{
+		return $this->dateOfVatRevenueRecognition;
+	}
+
+
+	/**
+	 * Sets the date of VAT revenue recognition.
+	 *
+	 * @param \DateTime $dateOfTaxablePayment
+	 * @return DataBuilder
+	 */
+	public function setDateOfVatRevenueRecognition(\DateTime $dateOfTaxablePayment): self
+	{
+		$this->dateOfVatRevenueRecognition = $dateOfTaxablePayment;
+
+		return $this;
+	}
+
+
+	/**
+	 * Returns the array of items.
+	 *
+	 * @return Item[]
+	 */
+	public function getItems(): array
+	{
+		return $this->items;
+	}
+
+
+	/**
+	 * Returns new Data.
+	 *
+	 * @return DataImpl
+	 */
+	public function build(): DataImpl
+	{
+		return new DataImpl($this);
+	}
+
+
+	/**
+	 * Adds array of items to the invoice.
+	 *
+	 * @param Item[] $items
+	 */
+	private function addItems(array $items): void
+	{
+		foreach ($items as $item) {
+			$this->addItem($item);
+		}
+	}
+
+
+	/**
+	 * Adds an item to the invoice.
+	 *
+	 * @param Item $item
+	 */
+	private function addItem(Item $item): void
+	{
+		$this->items[] = $item;
+	}
 }
