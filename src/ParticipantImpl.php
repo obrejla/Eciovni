@@ -33,13 +33,13 @@ class ParticipantImpl implements Participant
 	/** @var string */
 	private $zip;
 
-	/** @var string */
+	/** @var string|null */
 	private $in;
 
-	/** @var string */
+	/** @var string|null */
 	private $tin;
 
-	/** @var string */
+	/** @var string|null */
 	private $accountNumber;
 
 
@@ -114,9 +114,9 @@ class ParticipantImpl implements Participant
 	/**
 	 * Returns the identification number of participant.
 	 *
-	 * @return string
+	 * @return string|null
 	 */
-	public function getIn(): string
+	public function getIn(): ?string
 	{
 		return $this->in;
 	}
@@ -125,9 +125,9 @@ class ParticipantImpl implements Participant
 	/**
 	 * Returns the tax identification number of participant.
 	 *
-	 * @return string
+	 * @return string|null
 	 */
-	public function getTin(): string
+	public function getTin(): ?string
 	{
 		return $this->tin;
 	}
@@ -136,9 +136,9 @@ class ParticipantImpl implements Participant
 	/**
 	 * Returns the account number of participant.
 	 *
-	 * @return string
+	 * @return string|null
 	 */
-	public function getAccountNumber(): string
+	public function getAccountNumber(): ?string
 	{
 		return $this->accountNumber;
 	}

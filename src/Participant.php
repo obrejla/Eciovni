@@ -52,21 +52,21 @@ interface Participant
 	/**
 	 * Returns the identification number of participant.
 	 *
-	 * @return string
+	 * @return string|null
 	 */
-	public function getIn(): string;
+	public function getIn(): ?string;
 
 	/**
 	 * Returns the tax identification number of participant.
 	 *
-	 * @return string
+	 * @return string|null
 	 */
-	public function getTin(): string;
+	public function getTin(): ?string;
 
 	/**
 	 * Returns the account number of participant.
 	 *
-	 * @return string
+	 * @return string|null
 	 */
-	public function getAccountNumber(): string;
+	public function getAccountNumber(): ?string;
 }

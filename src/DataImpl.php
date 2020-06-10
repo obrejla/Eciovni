@@ -30,13 +30,13 @@ class DataImpl implements Data
 	/** @var Participant */
 	private $customer;
 
-	/** @var int */
+	/** @var string */
 	private $variableSymbol;
 
-	/** @var int */
+	/** @var string */
 	private $constantSymbol;
 
-	/** @var int */
+	/** @var string */
 	private $specificSymbol;
 
 	/** @var \DateTime */
@@ -115,9 +115,9 @@ class DataImpl implements Data
 	/**
 	 * Returns the variable symbol.
 	 *
-	 * @return int
+	 * @return string
 	 */
-	public function getVariableSymbol(): int
+	public function getVariableSymbol(): string
 	{
 		return $this->variableSymbol;
 	}
@@ -126,9 +126,9 @@ class DataImpl implements Data
 	/**
 	 * Returns the constant symbol.
 	 *
-	 * @return int
+	 * @return string
 	 */
-	public function getConstantSymbol(): int
+	public function getConstantSymbol(): string
 	{
 		return $this->constantSymbol;
 	}
@@ -137,9 +137,9 @@ class DataImpl implements Data
 	/**
 	 * Returns the specific symbol.
 	 *
-	 * @return int
+	 * @return string
 	 */
-	public function getSpecificSymbol(): int
+	public function getSpecificSymbol(): string
 	{
 		return $this->specificSymbol;
 	}

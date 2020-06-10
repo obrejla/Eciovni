@@ -30,14 +30,14 @@ class DataBuilder
 	/** @var Participant */
 	private $customer;
 
-	/** @var int */
-	private $variableSymbol = 0;
+	/** @var string */
+	private $variableSymbol = '0';
 
-	/** @var int */
-	private $constantSymbol = 0;
+	/** @var string */
+	private $constantSymbol = '0';
 
-	/** @var int */
-	private $specificSymbol = 0;
+	/** @var string */
+	private $specificSymbol = '0';
 
 	/** @var \DateTime */
 	private $expirationDate;
@@ -114,9 +114,9 @@ class DataBuilder
 	/**
 	 * Returns the variable symbol.
 	 *
-	 * @return int
+	 * @return string
 	 */
-	public function getVariableSymbol(): int
+	public function getVariableSymbol(): string
 	{
 		return $this->variableSymbol;
 	}
@@ -125,10 +125,10 @@ class DataBuilder
 	/**
 	 * Sets the variable symbol.
 	 *
-	 * @param int $variableSymbol
+	 * @param string $variableSymbol
 	 * @return DataBuilder
 	 */
-	public function setVariableSymbol(int $variableSymbol): self
+	public function setVariableSymbol(string $variableSymbol): self
 	{
 		$this->variableSymbol = $variableSymbol;
 
@@ -139,9 +139,9 @@ class DataBuilder
 	/**
 	 * Returns the constant symbol.
 	 *
-	 * @return int
+	 * @return string
 	 */
-	public function getConstantSymbol(): int
+	public function getConstantSymbol(): string
 	{
 		return $this->constantSymbol;
 	}
@@ -150,10 +150,10 @@ class DataBuilder
 	/**
 	 * Sets the constant symbol.
 	 *
-	 * @param int $constantSymbol
+	 * @param string $constantSymbol
 	 * @return DataBuilder
 	 */
-	public function setConstantSymbol(int $constantSymbol): self
+	public function setConstantSymbol(string $constantSymbol): self
 	{
 		$this->constantSymbol = $constantSymbol;
 
@@ -164,9 +164,9 @@ class DataBuilder
 	/**
 	 * Returns the specific symbol.
 	 *
-	 * @return int
+	 * @return string
 	 */
-	public function getSpecificSymbol(): int
+	public function getSpecificSymbol(): string
 	{
 		return $this->specificSymbol;
 	}

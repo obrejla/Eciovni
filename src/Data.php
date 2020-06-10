@@ -46,23 +46,23 @@ interface Data
 	/**
 	 * Returns the variable symbol.
 	 *
-	 * @return int
+	 * @return string
 	 */
-	public function getVariableSymbol(): int;
+	public function getVariableSymbol(): string;
 
 	/**
 	 * Returns the constant symbol.
 	 *
-	 * @return int
+	 * @return string
 	 */
-	public function getConstantSymbol(): int;
+	public function getConstantSymbol(): string;
 
 	/**
 	 * Returns the specific symbol.
 	 *
-	 * @return int
+	 * @return string
 	 */
-	public function getSpecificSymbol(): int;
+	public function getSpecificSymbol(): string;
 
 	/**
 	 * Returns the expiration date in defined format.

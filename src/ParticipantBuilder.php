@@ -50,11 +50,11 @@ class ParticipantBuilder
 			$houseNumber = (string) $streetParser[2];
 		}
 
-		$this->name = $name;
-		$this->street = $street;
-		$this->houseNumber = $houseNumber;
-		$this->city = $city;
-		$this->zip = $zip;
+		$this->name = trim($name);
+		$this->street = trim($street);
+		$this->houseNumber = trim($houseNumber ?? '');
+		$this->city = trim($city);
+		$this->zip = trim($zip);
 
 		if ($houseNumber === null) {
 			throw new \InvalidArgumentException('House number can not be empty. Did you mean street with house number?');
@@ -120,9 +120,9 @@ class ParticipantBuilder
 	/**
 	 * Returns the identification number of participant.
 	 *
-	 * @return string
+	 * @return string|null
 	 */
-	public function getIn(): string
+	public function getIn(): ?string
 	{
 		return $this->in;
 	}
@@ -145,9 +145,9 @@ class ParticipantBuilder
 	/**
 	 * Returns the tax identification number of participant.
 	 *
-	 * @return string
+	 * @return string|null
 	 */
-	public function getTin(): string
+	public function getTin(): ?string
 	{
 		return $this->tin;
 	}
@@ -170,9 +170,9 @@ class ParticipantBuilder
 	/**
 	 * Returns the account number of participant.
 	 *
-	 * @return string
+	 * @return string|null
 	 */
-	public function getAccountNumber(): string
+	public function getAccountNumber(): ?string
 	{
 		return $this->accountNumber;
 	}
