@@ -36,7 +36,7 @@ class TaxImpl implements Tax
 	 */
 	public static function fromPercent(float $percent): Tax
 	{
-		return new TaxImpl(($percent * 0.01) + 1);
+		return new self(($percent * 0.01) + 1);
 	}
 
 
@@ -49,7 +49,7 @@ class TaxImpl implements Tax
 	 */
 	public static function fromLowerDecimal(float $lowerDecimal): self
 	{
-		return new TaxImpl($lowerDecimal + 1);
+		return new self($lowerDecimal + 1);
 	}
 
 
@@ -62,7 +62,7 @@ class TaxImpl implements Tax
 	 */
 	public static function fromUpperDecimal(float $upperDecimal): self
 	{
-		return new TaxImpl($upperDecimal);
+		return new self($upperDecimal);
 	}
 
 
