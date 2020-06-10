@@ -6,7 +6,8 @@ namespace OndrejBrejla\Eciovni;
 
 
 use Latte\Engine;
-use mPDF;
+use Mpdf\Mpdf;
+use Mpdf\MpdfException;
 
 /**
  * Eciovni - plugin for Nette Framework for generating invoices using mPDF library.
@@ -56,8 +57,9 @@ class Eciovni
 	 * @param string|null $name
 	 * @param string|null $dest
 	 * @return string|null
+	 * @throws MpdfException
 	 */
-	public function exportToPdf(mPDF $mpdf, ?string $name = null, ?string $dest = null): ?string
+	public function exportToPdf(Mpdf $mpdf, ?string $name = null, ?string $dest = null): ?string
 	{
 		$mpdf->WriteHTML((new Engine)->renderToString($this->templatePath, $this->computeParams()));
 
