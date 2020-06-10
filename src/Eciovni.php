@@ -53,7 +53,7 @@ class Eciovni
 	/**
 	 * Exports Invoice template via passed mPDF.
 	 *
-	 * @param mPDF $mpdf
+	 * @param Mpdf $mpdf
 	 * @param string|null $name
 	 * @param string|null $dest
 	 * @return string|null
