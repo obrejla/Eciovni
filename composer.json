@@ -14,6 +14,11 @@
 			"name": "Ondřej Brejla",
 			"email": "ondrej@brejla.cz",
 			"homepage": "http://brejla.cz"
+		},
+		{
+			"name": "Jan Barášek",
+			"email": "jan@barasek.com",
+			"homepage": "https://baraja.cz"
 		}
 	],
 	"require": {
