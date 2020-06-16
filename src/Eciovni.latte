@@ -179,11 +179,11 @@
 			{foreach $items as $item}
 				<tr>
 					<td>{$item->getDescription()}</td>
-					<td style="text-align: right;">{$item->countUntaxedUnitValue()|round}</td>
-					<td style="text-align: right;">{$item->getUnits()|round}</td>
-					<td style="text-align: right;">{$item->getTax()->inUpperDecimal() * 100 - 100|round}</td>
-					<td style="text-align: right;">{$item->countTaxValue()|round}</td>
-					<td style="text-align: right;">{$item->countFinalValue()|round}</td>
+					<td style="text-align: right;">{$item->countUntaxedUnitValue()|round|replace:' ':'&nbsp;'|noescape}</td>
+					<td style="text-align: right;">{$item->getUnits()|round|replace:' ':'&nbsp;'|noescape}</td>
+					<td style="text-align: right;">{$item->getTax()->inUpperDecimal() * 100 - 100|round|replace:' ':'&nbsp;'|noescape}</td>
+					<td style="text-align: right;">{$item->countTaxValue()|round|replace:' ':'&nbsp;'|noescape}</td>
+					<td style="text-align: right;">{$item->countFinalValue()|round|replace:' ':'&nbsp;'|noescape}</td>
 				</tr>
 			{/foreach}
 		</table>
@@ -193,15 +193,15 @@
 		<table style="width: 100%;">
 			<tr>
 				<td>Celkem bez DPH (Kč):</td>
-				<td style="text-align: right;">{$finalUntaxedValue|round}</td>
+				<td style="text-align: right;">{$finalUntaxedValue|round|replace:' ':'&nbsp;'|noescape}</td>
 			</tr>
 			<tr>
 				<td>DPH (Kč):</td>
-				<td style="text-align: right;">{$finalTaxValue|round}</td>
+				<td style="text-align: right;">{$finalTaxValue|round|replace:' ':'&nbsp;'|noescape}</td>
 			</tr>
 			<tr style="font-size: 20px;">
 				<td><strong>Cena celkem s DPH (Kč):</strong></td>
-				<td style="text-align: right;"><strong>{$finalValue|round}</strong></td>
+				<td style="text-align: right;"><strong>{$finalValue|round|replace:' ':'&nbsp;'|noescape}</strong></td>
 			</tr>
 		</table>
 	</div>

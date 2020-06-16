@@ -213,7 +213,7 @@ class Eciovni
 	{
 		return (new Engine)
 			->addFilter('round', static function (float $value, int $precision = 2) {
-				return number_format(round($value, $precision), $precision, ',', '');
+				return number_format(round($value, $precision), $precision, ',', ' ');
 			});
 	}
 }
