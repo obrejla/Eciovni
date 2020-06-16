@@ -14,6 +14,7 @@ namespace OndrejBrejla\Eciovni;
  */
 interface Data
 {
+	public const DATE_FORMAT = 'd. m. Y';
 
 	/**
 	 * Returns the invoice title.

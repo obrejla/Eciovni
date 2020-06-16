@@ -155,7 +155,7 @@ class DataImpl implements Data
 	 * @param string $format
 	 * @return string
 	 */
-	public function getExpirationDate(string $format = 'd.m.Y'): string
+	public function getExpirationDate(string $format = self::DATE_FORMAT): string
 	{
 		return $this->expirationDate->format($format);
 	}
@@ -167,7 +167,7 @@ class DataImpl implements Data
 	 * @param string $format
 	 * @return string
 	 */
-	public function getDateOfIssuance(string $format = 'd.m.Y'): string
+	public function getDateOfIssuance(string $format = self::DATE_FORMAT): string
 	{
 		return $this->dateOfIssuance->format($format);
 	}
@@ -179,7 +179,7 @@ class DataImpl implements Data
 	 * @param string $format
 	 * @return string
 	 */
-	public function getDateOfVatRevenueRecognition(string $format = 'd.m.Y'): string
+	public function getDateOfVatRevenueRecognition(string $format = self::DATE_FORMAT): string
 	{
 		return $this->dateOfVatRevenueRecognition === null ? '' : $this->dateOfVatRevenueRecognition->format($format);
 	}
