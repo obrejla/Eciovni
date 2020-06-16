@@ -34,6 +34,9 @@ class Eciovni
 	 */
 	private $contactSizeRatio = 40;
 
+	/** @var string|null */
+	private $stampPath;
+
 
 	public function __construct(Data $data)
 	{
@@ -49,7 +52,26 @@ class Eciovni
 	 */
 	public function setTemplatePath(string $templatePath): void
 	{
+		if (\is_file($templatePath) === false) {
+			throw new \InvalidArgumentException('Template path "' . $templatePath . '" does not exist.');
+		}
+
 		$this->templatePath = $templatePath;
+	}
+
+
+	/**
+	 * Stamp path to PNG, JPG or GIF image with stamp.
+	 *
+	 * @param string|null $stampPath
+	 */
+	public function setStampPath(?string $stampPath): void
+	{
+		if (\is_file($stampPath) === false) {
+			throw new \InvalidArgumentException('Stamp path "' . $stampPath . '" does not exist.');
+		}
+
+		$this->stampPath = $stampPath;
 	}
 
 
@@ -148,6 +170,7 @@ class Eciovni
 			'items' => $this->data->getItems(),
 			'paymentMethod' => $this->data->getPaymentMethod() ?? 'převodem',
 			'contactSizeRatio' => $this->contactSizeRatio,
+			'stampPath' => $this->stampPath,
 			// supplier
 			'supplierName' => $supplier->getName(),
 			'supplierStreet' => $supplier->getStreet(),
