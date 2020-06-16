@@ -95,15 +95,15 @@
 					</tr>
 					<tr n:if="$dateOfIssuance">
 						<td>Datum vystavení:</td>
-						<td style="text-align:right">{$dateOfIssuance}</td>
+						<td style="text-align:right">{$dateOfIssuance|replace:' ':'&nbsp;'|noescape}</td>
 					</tr>
 					<tr n:if="$expirationDate">
 						<td>Datum splatnosti:</td>
-						<td style="text-align:right">{$expirationDate}</td>
+						<td style="text-align:right">{$expirationDate|replace:' ':'&nbsp;'|noescape}</td>
 					</tr>
 					<tr n:if="$dateOfVatRevenueRecognition">
 						<td>Datum uskutečnění zdanitelného plnění:</td>
-						<td style="text-align:right">{$dateOfVatRevenueRecognition}</td>
+						<td style="text-align:right">{$dateOfVatRevenueRecognition|replace:' ':'&nbsp;'|noescape}</td>
 					</tr>
 				</table>
 			</td>
