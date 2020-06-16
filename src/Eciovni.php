@@ -25,6 +25,15 @@ class Eciovni
 	/** @var string */
 	private $templatePath;
 
+	/**
+	 * Ratio between supplier and customer.
+	 *
+	 * | ratio <---> (100 - ratio) |
+	 *
+	 * @var int
+	 */
+	private $contactSizeRatio = 40;
+
 
 	/**
 	 * @param Data|null $data
@@ -102,6 +111,19 @@ class Eciovni
 
 
 	/**
+	 * @param int $contactSizeRatio
+	 */
+	public function setContactSizeRatio(int $contactSizeRatio): void
+	{
+		if ($contactSizeRatio < 1 || $contactSizeRatio > 99) {
+			throw new \InvalidArgumentException('Contact size ratio must be between 1 and 99.');
+		}
+
+		$this->contactSizeRatio = $contactSizeRatio;
+	}
+
+
+	/**
 	 * Sets the data, but only if it hasn't been set already.
 	 *
 	 * @param Data|null $data
@@ -131,6 +153,7 @@ class Eciovni
 			'id' => $this->data->getId(),
 			'items' => $this->data->getItems(),
 			'paymentMethod' => $this->data->getPaymentMethod() ?? 'převodem',
+			'contactSizeRatio' => $this->contactSizeRatio,
 			// supplier
 			'supplierName' => $supplier->getName(),
 			'supplierStreet' => $supplier->getStreet(),

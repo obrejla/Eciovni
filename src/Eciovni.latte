@@ -54,7 +54,7 @@
 	</div>
 	<table>
 		<tr>
-			<td width="40%">
+			<td width="{$contactSizeRatio}%">
 				<span style="color:#1A5DAC;font-weight:bold;font-size:12px">Dodavatel:</span>
 				<table style="font-weight:bold;margin-bottom:15px">
 					<tr>
@@ -88,7 +88,7 @@
 					</tr>
 				</table>
 
-				<table style="width: 100%">
+				<table style="width:100%">
 					<tr>
 						<td>Forma úhrady:</td>
 						<td style="text-align:right">{$paymentMethod}</td>
@@ -107,7 +107,7 @@
 					</tr>
 				</table>
 			</td>
-			<td width="60%" align="right">
+			<td width="{100 - $contactSizeRatio}%" align="right">
 				<table style="margin-bottom:15px" n:if="$constantSymbol || $specificSymbol || $variableSymbol">
 					<tr n:if="$variableSymbol">
 						<td style="text-align:right">Variabilní symbol:</td>
