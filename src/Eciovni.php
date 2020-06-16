@@ -55,13 +55,14 @@ class Eciovni
 	 *
 	 * @param string|null $name
 	 * @param string|null $dest
+	 * @param mixed[] $params
 	 * @return string|null
 	 * @throws MpdfException
 	 */
-	public function exportToPdf(?string $name = null, ?string $dest = null): ?string
+	public function exportToPdf(?string $name = null, ?string $dest = null, array $params = []): ?string
 	{
 		$mpdf = new Mpdf;
-		$mpdf->WriteHTML($this->getEngine()->renderToString($this->templatePath, $this->computeParams()));
+		$mpdf->WriteHTML($this->getEngine()->renderToString($this->templatePath, array_merge($this->computeParams(), $params)));
 
 		$result = null;
 		if ($name !== '' && $dest !== null) {
@@ -78,10 +79,12 @@ class Eciovni
 
 	/**
 	 * Renderers the invoice to the defined template.
+	 *
+	 * @param mixed[] $params
 	 */
-	public function render(): void
+	public function render(array $params = []): void
 	{
-		$this->getEngine()->render($this->templatePath, $this->computeParams());
+		$this->getEngine()->render($this->templatePath, array_merge($this->computeParams(), $params));
 	}
 
 
