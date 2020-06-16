@@ -35,15 +35,9 @@ class Eciovni
 	private $contactSizeRatio = 40;
 
 
-	/**
-	 * @param Data|null $data
-	 */
-	public function __construct(?Data $data = null)
+	public function __construct(Data $data)
 	{
-		if ($data !== null) {
-			$this->setData($data);
-		}
-
+		$this->setData($data);
 		$this->templatePath = __DIR__ . '/Eciovni.latte';
 	}
 
