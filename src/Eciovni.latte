@@ -90,19 +90,19 @@
 				<table style="width: 100%">
 					<tr>
 						<td>Forma úhrady:</td>
-						<td style="text-align:center">převodem</td>
+						<td style="text-align:right">převodem</td>
 					</tr>
 					<tr n:if="$dateOfIssuance">
 						<td>Datum vystavení:</td>
-						<td style="text-align:center">{$dateOfIssuance}</td>
+						<td style="text-align:right">{$dateOfIssuance}</td>
 					</tr>
 					<tr n:if="$expirationDate">
 						<td>Datum splatnosti:</td>
-						<td style="text-align:center">{$expirationDate}</td>
+						<td style="text-align:right">{$expirationDate}</td>
 					</tr>
 					<tr n:if="$dateOfVatRevenueRecognition">
 						<td>Datum uskutečnění zdanitelného plnění:</td>
-						<td style="text-align:center">{$dateOfVatRevenueRecognition}</td>
+						<td style="text-align:right">{$dateOfVatRevenueRecognition}</td>
 					</tr>
 				</table>
 			</td>
@@ -110,15 +110,15 @@
 				<table style="margin-bottom:15px" n:if="$constantSymbol || $specificSymbol || $variableSymbol">
 					<tr n:if="$variableSymbol">
 						<td style="text-align:right">Variabilní symbol:</td>
-						<td style="text-align:center">{$variableSymbol}</td>
+						<td style="text-align:left">{$variableSymbol}</td>
 					</tr>
 					<tr n:if="$specificSymbol">
 						<td style="text-align:right">Specifický symbol:</td>
-						<td style="text-align:center">{$specificSymbol}</td>
+						<td style="text-align:left">{$specificSymbol}</td>
 					</tr>
 					<tr n:if="$constantSymbol">
 						<td style="text-align:right">Konstantní symbol:</td>
-						<td style="text-align:center">{$constantSymbol}</td>
+						<td style="text-align:left">{$constantSymbol}</td>
 					</tr>
 				</table>
 
