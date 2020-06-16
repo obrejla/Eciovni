@@ -1,51 +1,43 @@
-{**
- * Template for Eciovni plugin for Nette Framework
+{*
+ * @param string $title
+ * @param string $id
  *
- * @copyright  Copyright (c) 2009 Ondřej Brejla
- * @license    New BSD License
- * @link       http://github.com/OndrejBrejla/Nette-InvoiceControl
+ * @param string $supplierName
+ * @param string $supplierStreet
+ * @param string $supplierHouseNumber
+ * @param string $supplierCity
+ * @param string $supplierZip
+ * @param string $supplierIn
+ * @param string $supplierTin
+ * @param string $supplierAccountNumber
  *
- * @param    string $title
- * @param    string $id
+ * @param string $dateOfIssuance
+ * @param string $expirationDate
+ * @param string $dateOfVatRevenueRecognition
  *
- * @param    string $supplierName
- * @param    string $supplierStreet
- * @param    string $supplierHouseNumber
- * @param    string $supplierCity
- * @param    string $supplierZip
- * @param    string $supplierIn
- * @param    string $supplierTin
- * @param    string $supplierAccountNumber
+ * @param string $variableSymbol
+ * @param string $specificSymbol
+ * @param string $constantSymbol
  *
- * @param    string $dateOfIssuance
- * @param    string $expirationDate
- * @param    string $dateOfVatRevenueRecognition
+ * @param string $customerName
+ * @param string $customerStreet
+ * @param string $customerHouseNumber
+ * @param string $customerCity
+ * @param string $customerZip
+ * @param string $customerIn
+ * @param string $customerTin
+ * @param string $customerAccountNumber
  *
- * @param    string $variableSymbol
- * @param    string $specificSymbol
- * @param    string $constantSymbol
+ * @param Item[] $items
  *
- * @param    string $customerName
- * @param    string $customerStreet
- * @param    string $customerHouseNumber
- * @param    string $customerCity
- * @param    string $customerZip
- * @param    string $customerIn
- * @param    string $customerTin
- * @param    string $customerAccountNumber
- *
- * @param    Item[] $items
- *
- * @param    float $finalUntaxedValue
- * @param    float $finalTaxValue
- * @param    float $finalValue
+ * @param float $finalUntaxedValue
+ * @param float $finalTaxValue
+ * @param float $finalValue
  *}
-<html>
+<html lang="cs">
 <head>
 	<meta http-equiv="Content-Language" content="cs">
-	<title></title>
 </head>
-
 <body>
 <style type="text/css">
 	body {
@@ -57,9 +49,9 @@
 	}
 </style>
 <div>
-	<div style="text-align:right;border-bottom:2px solid #000000;color:#1A5DAC;font-weight:bold;font-size:20px">{$title}
-		- {$id}</div>
-
+	<div style="text-align:right;border-bottom:2px solid #000000;color:#1A5DAC;font-weight:bold;font-size:20px">
+		{$title} - {$id}
+	</div>
 	<table>
 		<tr>
 			<td width="40%">
