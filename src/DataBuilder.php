@@ -259,6 +259,24 @@ class DataBuilder
 
 
 	/**
+	 * @return string|null
+	 */
+	public function getPaymentMethod(): ?string
+	{
+		return $this->paymentMethod;
+	}
+
+
+	/**
+	 * @param string|null $paymentMethod
+	 */
+	public function setPaymentMethod(?string $paymentMethod): void
+	{
+		$this->paymentMethod = $paymentMethod;
+	}
+
+
+	/**
 	 * Adds array of items to the invoice.
 	 *
 	 * @param Item[] $items
@@ -279,23 +297,5 @@ class DataBuilder
 	private function addItem(Item $item): void
 	{
 		$this->items[] = $item;
-	}
-
-
-	/**
-	 * @return string|null
-	 */
-	public function getPaymentMethod(): ?string
-	{
-		return $this->paymentMethod;
-	}
-
-
-	/**
-	 * @param string|null $paymentMethod
-	 */
-	public function setPaymentMethod(?string $paymentMethod): void
-	{
-		$this->paymentMethod = $paymentMethod;
 	}
 }
