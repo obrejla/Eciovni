@@ -199,9 +199,9 @@
 		</table>
 	</div>
 
-	<div style="text-align:right;padding-right:100px">
+	<div n:if="$stampPath" style="text-align:right;padding-right:100px">
 		<div style="font-weight:bold">Vystavil, razítko, podpis:</div>
-		<img src="" alt="Razitko s podpisem"/>
+		<img src="data:image/png;base64,{base64_encode(file_get_contents($stampPath))|noescape}" alt="Razitko s podpisem"/>
 	</div>
 </div>
 </body>
