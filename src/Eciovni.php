@@ -130,6 +130,7 @@ class Eciovni
 			'title' => $this->data->getTitle(),
 			'id' => $this->data->getId(),
 			'items' => $this->data->getItems(),
+			'paymentMethod' => $this->data->getPaymentMethod() ?? 'převodem',
 			// supplier
 			'supplierName' => $supplier->getName(),
 			'supplierStreet' => $supplier->getStreet(),

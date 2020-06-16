@@ -94,4 +94,6 @@ interface Data
 	 * @return Item[]
 	 */
 	public function getItems(): array;
+
+	public function getPaymentMethod(): ?string;
 }

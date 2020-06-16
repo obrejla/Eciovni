@@ -51,6 +51,9 @@ class DataImpl implements Data
 	/** @var Item[] */
 	private $items;
 
+	/** @var string|null */
+	private $paymentMethod;
+
 
 	public function __construct(DataBuilder $dataBuilder)
 	{
@@ -65,6 +68,7 @@ class DataImpl implements Data
 		$this->dateOfIssuance = $dataBuilder->getDateOfIssuance();
 		$this->dateOfVatRevenueRecognition = $dataBuilder->getDateOfVatRevenueRecognition();
 		$this->items = $dataBuilder->getItems();
+		$this->paymentMethod = $dataBuilder->getPaymentMethod();
 	}
 
 
@@ -189,5 +193,14 @@ class DataImpl implements Data
 	public function getItems(): array
 	{
 		return $this->items;
+	}
+
+
+	/**
+	 * @return string|null
+	 */
+	public function getPaymentMethod(): ?string
+	{
+		return $this->paymentMethod;
 	}
 }
