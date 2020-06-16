@@ -30,14 +30,14 @@ class DataBuilder
 	/** @var Participant */
 	private $customer;
 
-	/** @var string */
-	private $variableSymbol = '0';
+	/** @var string|null */
+	private $variableSymbol;
 
-	/** @var string */
-	private $constantSymbol = '0';
+	/** @var string|null */
+	private $constantSymbol;
 
-	/** @var string */
-	private $specificSymbol = '0';
+	/** @var string|null */
+	private $specificSymbol;
 
 	/** @var \DateTime */
 	private $expirationDate;
@@ -45,7 +45,7 @@ class DataBuilder
 	/** @var \DateTime */
 	private $dateOfIssuance;
 
-	/** @var \DateTime */
+	/** @var \DateTime|null */
 	private $dateOfVatRevenueRecognition;
 
 	/** @var Item[] */
@@ -121,7 +121,7 @@ class DataBuilder
 	 */
 	public function getVariableSymbol(): string
 	{
-		return $this->variableSymbol;
+		return $this->variableSymbol ?? '0';
 	}
 
 
@@ -146,7 +146,7 @@ class DataBuilder
 	 */
 	public function getConstantSymbol(): string
 	{
-		return $this->constantSymbol;
+		return $this->constantSymbol ?? '0';
 	}
 
 
@@ -171,7 +171,7 @@ class DataBuilder
 	 */
 	public function getSpecificSymbol(): string
 	{
-		return $this->specificSymbol;
+		return $this->specificSymbol ?? '0';
 	}
 
 
@@ -214,9 +214,9 @@ class DataBuilder
 	/**
 	 * Returns the date of VAT revenue recognition in defined format.
 	 *
-	 * @return \DateTime
+	 * @return \DateTime|null
 	 */
-	public function getDateOfVatRevenueRecognition(): \DateTime
+	public function getDateOfVatRevenueRecognition(): ?\DateTime
 	{
 		return $this->dateOfVatRevenueRecognition;
 	}
