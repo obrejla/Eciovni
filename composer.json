@@ -22,7 +22,7 @@
 	],
 	"require": {
 		"php": ">=7.1.0",
-		"nette/utils": "^3.0 || ^2.4",
+		"nette/utils": ">=2.4 <4.0.0",
 		"latte/latte": "^2.5",
 		"mpdf/mpdf": "^8.0"
 	},
