@@ -11,5 +11,5 @@ Installation
 Better is use Composer:
 
 ```shell
-composer require obrejla/eciovni
+composer require ondrejbrejla/eciovni
 ```
