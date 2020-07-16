@@ -11,7 +11,7 @@ Smart and simple tool for generating invoices using Nette Framework and mPDF lib
 Better is use Composer:
 
 ```shell
-$ composer require obrejla/eciovni
+$ composer require ondrejbrejla/eciovni
 ```
 
 📄 License
