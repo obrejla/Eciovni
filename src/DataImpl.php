@@ -12,7 +12,7 @@ use Nette\SmartObject;
  *
  * @copyright  Copyright (c) 2009 Ondřej Brejla
  * @license    New BSD License
- * @link       http://github.com/OndrejBrejla/Eciovni
+ * @link       https://github.com/obrejla/Eciovni
  */
 class DataImpl
 {

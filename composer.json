@@ -1,6 +1,7 @@
 {
 	"name": "ondrejbrejla/eciovni",
 	"description": "Component for generating invoices using Nette Framework and mPDF library.",
+	"homepage": "https://github.com/obrejla/Eciovni",
 	"keywords": [
 		"invoice",
 		"generator",
