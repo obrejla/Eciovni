@@ -19,7 +19,7 @@ use Mpdf\MpdfException;
 class Eciovni
 {
 
-	/** @var Data */
+	/** @var DataImpl */
 	private $data;
 
 	/** @var string */
@@ -38,9 +38,9 @@ class Eciovni
 	private $stampPath;
 
 
-	public function __construct(Data $data)
+	public function __construct(DataImpl $data)
 	{
-		$this->setData($data);
+		$this->data = $data;
 		$this->templatePath = __DIR__ . '/Eciovni.latte';
 	}
 
@@ -111,12 +111,11 @@ class Eciovni
 	/**
 	 * Renderers the invoice to the defined template.
 	 *
-	 * @param Data $data
 	 * @throws IllegalStateException If data has already been set.
 	 */
-	public function renderData(Data $data): void
+	public function renderData(DataImpl $data): void
 	{
-		$this->setData($data);
+		$this->data = $data;
 		$this->render();
 	}
 
@@ -128,22 +127,6 @@ class Eciovni
 		}
 
 		$this->contactSizeRatio = $contactSizeRatio;
-	}
-
-
-	/**
-	 * Sets the data, but only if it hasn't been set already.
-	 *
-	 * @param Data|null $data
-	 * @throws IllegalStateException If data has already been set.
-	 */
-	private function setData(?Data $data = null): void
-	{
-		if ($this->data !== null) {
-			throw new IllegalStateException('Data have already been set!');
-		}
-
-		$this->data = $data;
 	}
 
 
@@ -163,6 +146,7 @@ class Eciovni
 			'paymentMethod' => $this->data->getPaymentMethod() ?? 'převodem',
 			'contactSizeRatio' => $this->contactSizeRatio,
 			'stampPath' => $this->stampPath,
+			'textBottom' => $this->data->getTextBottom(),
 			// supplier
 			'supplierName' => $supplier->getName(),
 			'supplierStreet' => $supplier->getStreet(),
