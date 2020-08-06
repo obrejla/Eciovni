@@ -34,13 +34,6 @@ class ItemImpl implements Item
 	private $unitValueIsTaxed;
 
 
-	/**
-	 * @param string $description
-	 * @param int $units
-	 * @param float $unitValue
-	 * @param Tax $tax
-	 * @param bool $unitValueIsTaxed
-	 */
 	public function __construct(string $description, int $units, float $unitValue, Tax $tax, bool $unitValueIsTaxed = true)
 	{
 		$this->description = $description;
@@ -51,33 +44,18 @@ class ItemImpl implements Item
 	}
 
 
-	/**
-	 * Returns the description of the item.
-	 *
-	 * @return string
-	 */
 	public function getDescription(): string
 	{
 		return $this->description;
 	}
 
 
-	/**
-	 * Returns the tax of the item.
-	 *
-	 * @return Tax
-	 */
 	public function getTax(): Tax
 	{
 		return $this->tax;
 	}
 
 
-	/**
-	 * Returns the value of one unit of the item.
-	 *
-	 * @return float
-	 */
 	public function getUnitValue(): float
 	{
 		return $this->unitValue;
@@ -95,33 +73,18 @@ class ItemImpl implements Item
 	}
 
 
-	/**
-	 * Returns the number of item units.
-	 *
-	 * @return int
-	 */
 	public function getUnits(): int
 	{
 		return $this->units;
 	}
 
 
-	/**
-	 * Returns the value of taxes for all units.
-	 *
-	 * @return float
-	 */
 	public function countTaxValue(): float
 	{
 		return ($this->countTaxedUnitValue() - $this->countUntaxedUnitValue()) * $this->getUnits();
 	}
 
 
-	/**
-	 * Returns the value of unit without tax.
-	 *
-	 * @return float
-	 */
 	public function countUntaxedUnitValue(): float
 	{
 		return $this->isUnitValueTaxed()
@@ -130,22 +93,12 @@ class ItemImpl implements Item
 	}
 
 
-	/**
-	 * Returns the final value of all taxed units.
-	 *
-	 * @return float
-	 */
 	public function countFinalValue(): float
 	{
 		return $this->getUnits() * $this->countTaxedUnitValue();
 	}
 
 
-	/**
-	 * Returns the taxed value of one unit.
-	 *
-	 * @return float
-	 */
 	private function countTaxedUnitValue(): float
 	{
 		return $this->isUnitValueTaxed()

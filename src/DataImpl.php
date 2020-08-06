@@ -72,122 +72,67 @@ class DataImpl implements Data
 	}
 
 
-	/**
-	 * Returns the invoice title.
-	 *
-	 * @return string
-	 */
 	public function getTitle(): string
 	{
 		return $this->title;
 	}
 
 
-	/**
-	 * Returns the invoice id.
-	 *
-	 * @return string
-	 */
 	public function getId(): string
 	{
 		return $this->id;
 	}
 
 
-	/**
-	 * Returns the invoice supplier.
-	 *
-	 * @return Participant
-	 */
 	public function getSupplier(): Participant
 	{
 		return $this->supplier;
 	}
 
 
-	/**
-	 * Returns the invoice customer.
-	 *
-	 * @return Participant
-	 */
 	public function getCustomer(): Participant
 	{
 		return $this->customer;
 	}
 
 
-	/**
-	 * Returns the variable symbol.
-	 *
-	 * @return string
-	 */
 	public function getVariableSymbol(): string
 	{
 		return $this->variableSymbol;
 	}
 
 
-	/**
-	 * Returns the constant symbol.
-	 *
-	 * @return string
-	 */
 	public function getConstantSymbol(): string
 	{
 		return $this->constantSymbol;
 	}
 
 
-	/**
-	 * Returns the specific symbol.
-	 *
-	 * @return string
-	 */
 	public function getSpecificSymbol(): string
 	{
 		return $this->specificSymbol;
 	}
 
 
-	/**
-	 * Returns the expiration date in defined format.
-	 *
-	 * @param string $format
-	 * @return string
-	 */
-	public function getExpirationDate(string $format = self::DATE_FORMAT): string
+	public function getExpirationDate(string $format = Data::DATE_FORMAT): string
 	{
 		return $this->expirationDate->format($format);
 	}
 
 
-	/**
-	 * Returns the date of issuance in defined format.
-	 *
-	 * @param string $format
-	 * @return string
-	 */
-	public function getDateOfIssuance(string $format = self::DATE_FORMAT): string
+	public function getDateOfIssuance(string $format = Data::DATE_FORMAT): string
 	{
 		return $this->dateOfIssuance->format($format);
 	}
 
 
-	/**
-	 * Returns the date of VAT revenue recognition in defined format.
-	 *
-	 * @param string $format
-	 * @return string
-	 */
-	public function getDateOfVatRevenueRecognition(string $format = self::DATE_FORMAT): string
+	public function getDateOfVatRevenueRecognition(string $format = Data::DATE_FORMAT): string
 	{
 		return $this->dateOfVatRevenueRecognition === null ? '' : $this->dateOfVatRevenueRecognition->format($format);
 	}
 
 
 	/**
-	 * Returns the array of items.
-	 *
 	 * @return Item[]
 	 */
 	public function getItems(): array
@@ -196,9 +141,6 @@ class DataImpl implements Data
 	}
 
 
-	/**
-	 * @return string|null
-	 */
 	public function getPaymentMethod(): ?string
 	{
 		return $this->paymentMethod;

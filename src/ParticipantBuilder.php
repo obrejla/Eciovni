@@ -62,55 +62,30 @@ class ParticipantBuilder
 	}
 
 
-	/**
-	 * Returns the name of participant.
-	 *
-	 * @return string
-	 */
 	public function getName(): string
 	{
 		return $this->name;
 	}
 
 
-	/**
-	 * Returns the street of participant.
-	 *
-	 * @return string
-	 */
 	public function getStreet(): string
 	{
 		return $this->street;
 	}
 
 
-	/**
-	 * Returns the house number of participant.
-	 *
-	 * @return string
-	 */
 	public function getHouseNumber(): string
 	{
 		return $this->houseNumber;
 	}
 
 
-	/**
-	 * Returns the city of participant.
-	 *
-	 * @return string
-	 */
 	public function getCity(): string
 	{
 		return $this->city;
 	}
 
 
-	/**
-	 * Returns the zip of participant.
-	 *
-	 * @return string
-	 */
 	public function getZip(): string
 	{
 		return $this->zip;
@@ -119,8 +94,6 @@ class ParticipantBuilder
 
 	/**
 	 * Returns the identification number of participant.
-	 *
-	 * @return string|null
 	 */
 	public function getIn(): ?string
 	{
@@ -130,9 +103,6 @@ class ParticipantBuilder
 
 	/**
 	 * Sets the identification number of participant.
-	 *
-	 * @param string $in
-	 * @return ParticipantBuilder
 	 */
 	public function setIn(string $in): self
 	{
@@ -144,8 +114,6 @@ class ParticipantBuilder
 
 	/**
 	 * Returns the tax identification number of participant.
-	 *
-	 * @return string|null
 	 */
 	public function getTin(): ?string
 	{
@@ -155,9 +123,6 @@ class ParticipantBuilder
 
 	/**
 	 * Sets the tax identification number of participant.
-	 *
-	 * @param string $tin
-	 * @return ParticipantBuilder
 	 */
 	public function setTin(string $tin): self
 	{
@@ -167,23 +132,12 @@ class ParticipantBuilder
 	}
 
 
-	/**
-	 * Returns the account number of participant.
-	 *
-	 * @return string|null
-	 */
 	public function getAccountNumber(): ?string
 	{
 		return $this->accountNumber;
 	}
 
 
-	/**
-	 * Sets the account number of participant.
-	 *
-	 * @param string $accountNumber
-	 * @return ParticipantBuilder
-	 */
 	public function setAccountNumber(string $accountNumber): self
 	{
 		$this->accountNumber = $accountNumber;
@@ -192,11 +146,6 @@ class ParticipantBuilder
 	}
 
 
-	/**
-	 * Returns new Participant.
-	 *
-	 * @return ParticipantImpl
-	 */
 	public function build(): ParticipantImpl
 	{
 		return new ParticipantImpl($this);

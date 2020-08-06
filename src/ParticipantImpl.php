@@ -56,55 +56,30 @@ class ParticipantImpl implements Participant
 	}
 
 
-	/**
-	 * Returns the name of participant.
-	 *
-	 * @return string
-	 */
 	public function getName(): string
 	{
 		return $this->name;
 	}
 
 
-	/**
-	 * Returns the street of participant.
-	 *
-	 * @return string
-	 */
 	public function getStreet(): string
 	{
 		return $this->street;
 	}
 
 
-	/**
-	 * Returns the house number of participant.
-	 *
-	 * @return string
-	 */
 	public function getHouseNumber(): string
 	{
 		return $this->houseNumber;
 	}
 
 
-	/**
-	 * Returns the city of participant.
-	 *
-	 * @return string
-	 */
 	public function getCity(): string
 	{
 		return $this->city;
 	}
 
 
-	/**
-	 * Returns the zip of participant.
-	 *
-	 * @return string
-	 */
 	public function getZip(): string
 	{
 		return $this->zip;
@@ -113,8 +88,6 @@ class ParticipantImpl implements Participant
 
 	/**
 	 * Returns the identification number of participant.
-	 *
-	 * @return string|null
 	 */
 	public function getIn(): ?string
 	{
@@ -124,8 +97,6 @@ class ParticipantImpl implements Participant
 
 	/**
 	 * Returns the tax identification number of participant.
-	 *
-	 * @return string|null
 	 */
 	public function getTin(): ?string
 	{
@@ -133,11 +104,6 @@ class ParticipantImpl implements Participant
 	}
 
 
-	/**
-	 * Returns the account number of participant.
-	 *
-	 * @return string|null
-	 */
 	public function getAccountNumber(): ?string
 	{
 		return $this->accountNumber;

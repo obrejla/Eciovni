@@ -30,9 +30,6 @@ class TaxImpl implements Tax
 
 	/**
 	 * Creates new Tax from a percent value.
-	 *
-	 * @param float $percent
-	 * @return Tax
 	 */
 	public static function fromPercent(float $percent): Tax
 	{
@@ -43,9 +40,6 @@ class TaxImpl implements Tax
 	/**
 	 * Creates new Tax from a lower decimal value.
 	 * I.e. value must be '0.22' for a tax of '22%'.
-	 *
-	 * @param float $lowerDecimal
-	 * @return TaxImpl
 	 */
 	public static function fromLowerDecimal(float $lowerDecimal): self
 	{
@@ -56,9 +50,6 @@ class TaxImpl implements Tax
 	/**
 	 * Creates new Tax from a upper decimal value.
 	 * I.e. value must be '1.22' for a tax of '22%'.
-	 *
-	 * @param float $upperDecimal
-	 * @return TaxImpl
 	 */
 	public static function fromUpperDecimal(float $upperDecimal): self
 	{
@@ -69,8 +60,6 @@ class TaxImpl implements Tax
 	/**
 	 * Returns tax in a upper decimal format.
 	 * I.e. '1.22' for '22%'.
-	 *
-	 * @return float
 	 */
 	public function inUpperDecimal(): float
 	{

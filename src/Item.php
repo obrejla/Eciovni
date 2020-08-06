@@ -13,33 +13,12 @@ namespace OndrejBrejla\Eciovni;
  */
 interface Item
 {
-
-	/**
-	 * Returns the description of the item.
-	 *
-	 * @return string
-	 */
 	public function getDescription(): string;
 
-	/**
-	 * Returns the tax of the item.
-	 *
-	 * @return Tax
-	 */
 	public function getTax(): Tax;
 
-	/**
-	 * Returns the value of one unit of the item.
-	 *
-	 * @return float
-	 */
 	public function getUnitValue(): float;
 
-	/**
-	 * Returns the number of item units.
-	 *
-	 * @return int
-	 */
 	public function getUnits(): int;
 
 	/**

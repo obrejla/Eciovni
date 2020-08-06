@@ -45,11 +45,6 @@ class Eciovni
 	}
 
 
-	/**
-	 * Setter for path to template
-	 *
-	 * @param string $templatePath
-	 */
 	public function setTemplatePath(string $templatePath): void
 	{
 		if (\is_file($templatePath) === false) {
@@ -126,9 +121,6 @@ class Eciovni
 	}
 
 
-	/**
-	 * @param int $contactSizeRatio
-	 */
 	public function setContactSizeRatio(int $contactSizeRatio): void
 	{
 		if ($contactSizeRatio < 1 || $contactSizeRatio > 99) {
@@ -205,11 +197,6 @@ class Eciovni
 	}
 
 
-	/**
-	 * Counts final untaxed value of all items.
-	 *
-	 * @return float
-	 */
 	private function countFinalUntaxedValue(): float
 	{
 		$sum = 0;
@@ -221,11 +208,6 @@ class Eciovni
 	}
 
 
-	/**
-	 * Counts final tax value of all items.
-	 *
-	 * @return float
-	 */
 	private function countFinalTaxValue(): float
 	{
 		$sum = 0;
@@ -237,11 +219,6 @@ class Eciovni
 	}
 
 
-	/**
-	 * Counts final value of all items.
-	 *
-	 * @return float
-	 */
 	private function countFinalValues(): float
 	{
 		$sum = 0;
