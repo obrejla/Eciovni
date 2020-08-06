@@ -164,18 +164,26 @@
 			<tr>
 				<td><strong>Položka</strong></td>
 				<td style="text-align:right"><strong>Cena/jedn.</strong></td>
+				<td style="width:6px"></td>
 				<td style="text-align:right"><strong>Počet</strong></td>
+				<td style="width:6px"></td>
 				<td style="text-align:right"><strong>%DPH</strong></td>
+				<td style="width:6px"></td>
 				<td style="text-align:right"><strong>DPH</strong></td>
+				<td style="width:6px"></td>
 				<td style="text-align:right"><strong>Cena (Kč)</strong></td>
 			</tr>
 			{foreach $items as $item}
 				<tr>
 					<td>{$item->getDescription()}</td>
 					<td style="text-align:right">{$item->countUntaxedUnitValue()|round|replace:' ':'&nbsp;'|noescape}</td>
+					<td style="width:6px"></td>
 					<td style="text-align:right">{$item->getUnits()|round|replace:' ':'&nbsp;'|noescape}</td>
+					<td style="width:6px"></td>
 					<td style="text-align:right">{$item->getTax()->inUpperDecimal() * 100 - 100|round|replace:' ':'&nbsp;'|noescape}</td>
+					<td style="width:6px"></td>
 					<td style="text-align:right">{$item->countTaxValue()|round|replace:' ':'&nbsp;'|noescape}</td>
+					<td style="width:6px"></td>
 					<td style="text-align:right">{$item->countFinalValue()|round|replace:' ':'&nbsp;'|noescape}</td>
 				</tr>
 			{/foreach}
@@ -203,6 +211,9 @@
 		<div style="font-weight:bold">Vystavil, razítko, podpis:</div>
 		<img src="data:image/png;base64,{base64_encode(file_get_contents($stampPath))|noescape}" alt="Razitko s podpisem"/>
 	</div>
+</div>
+<div n:if="$textBottom !== null">
+	{$textBottom|noescape}
 </div>
 </body>
 </html>
