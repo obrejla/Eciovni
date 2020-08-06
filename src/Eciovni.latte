@@ -165,6 +165,10 @@
 				<td><strong>Položka</strong></td>
 				<td style="text-align:right"><strong>Cena/jedn.</strong></td>
 				<td style="width:6px"></td>
+				{if $unit !== null}
+					<td style="text-align:right"><strong>Jedn.</strong></td>
+					<td style="width:6px"></td>
+				{/if}
 				<td style="text-align:right"><strong>Počet</strong></td>
 				<td style="width:6px"></td>
 				<td style="text-align:right"><strong>%DPH</strong></td>
@@ -178,6 +182,10 @@
 					<td>{$item->getDescription()}</td>
 					<td style="text-align:right">{$item->countUntaxedUnitValue()|round|replace:' ':'&nbsp;'|noescape}</td>
 					<td style="width:6px"></td>
+					{if $unit !== null}
+						<td style="text-align:right">{$unit}</td>
+						<td style="width:6px"></td>
+					{/if}
 					<td style="text-align:right">{$item->getUnits()|round|replace:' ':'&nbsp;'|noescape}</td>
 					<td style="width:6px"></td>
 					<td style="text-align:right">{$item->getTax()->inUpperDecimal() * 100 - 100|round|replace:' ':'&nbsp;'|noescape}</td>

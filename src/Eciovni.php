@@ -147,6 +147,7 @@ class Eciovni
 			'contactSizeRatio' => $this->contactSizeRatio,
 			'stampPath' => $this->stampPath,
 			'textBottom' => $this->data->getTextBottom(),
+			'unit' => $this->data->getUnit(),
 			// supplier
 			'supplierName' => $supplier->getName(),
 			'supplierStreet' => $supplier->getStreet(),

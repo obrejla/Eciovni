@@ -53,6 +53,9 @@ class DataImpl
 	/** @var string|null */
 	private $textBottom;
 
+	/** @var string|null */
+	private $unit;
+
 	/** @var ItemImpl[] */
 	private $items;
 
@@ -262,6 +265,18 @@ class DataImpl
 		$this->items[] = $item;
 
 		return $this;
+	}
+
+
+	public function getUnit(): ?string
+	{
+		return $this->unit;
+	}
+
+
+	public function setUnit(?string $unit): void
+	{
+		$this->unit = trim($unit ?? '') ?: null;
 	}
 
 
