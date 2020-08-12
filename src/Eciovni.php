@@ -167,8 +167,8 @@ class Eciovni
 			'customerTin' => $customer->getTin(),
 			'customerAccountNumber' => $customer->getAccountNumber(),
 			// dates
-			'dateOfIssuance' => $this->data->getDateOfIssuance(),
-			'expirationDate' => $this->data->getExpirationDate(),
+			'createdDate' => $this->data->getCreatedDate(),
+			'dueDate' => $this->data->getDueDate(),
 			'dateOfVatRevenueRecognition' => $this->data->getDateOfVatRevenueRecognition(),
 			// symbols
 			'variableSymbol' => $this->data->getVariableSymbol(),

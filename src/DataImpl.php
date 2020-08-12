@@ -42,10 +42,10 @@ class DataImpl
 	private $specificSymbol;
 
 	/** @var \DateTime */
-	private $expirationDate;
+	private $dueDate;
 
 	/** @var \DateTime */
-	private $dateOfIssuance;
+	private $createdDate;
 
 	/** @var \DateTime|null */
 	private $dateOfVatRevenueRecognition;
@@ -72,8 +72,8 @@ class DataImpl
 		$this->setTitle($title);
 		$this->setSupplier($supplier);
 		$this->setCustomer($customer);
-		$this->setExpirationDate($expirationDate);
-		$this->setDateOfIssuance($dateOfIssuance);
+		$this->setDueDate($expirationDate);
+		$this->setCreatedDate($dateOfIssuance);
 		$this->setItems($items);
 	}
 
@@ -82,9 +82,9 @@ class DataImpl
 	 * @param ItemImpl[] $items
 	 * @return self
 	 */
-	public static function from(string $id, string $title, Participant $supplier, Participant $customer, \DateTime $expirationDate, \DateTime $dateOfIssuance, array $items): self
+	public static function from(string $id, string $title, Participant $supplier, Participant $customer, \DateTime $dueDate, \DateTime $createdDate, array $items): self
 	{
-		return new self($id, $title, $supplier, $customer, $expirationDate, $dateOfIssuance, $items);
+		return new self($id, $title, $supplier, $customer, $dueDate, $createdDate, $items);
 	}
 
 
@@ -178,27 +178,27 @@ class DataImpl
 	}
 
 
-	public function getExpirationDate(string $format = self::DATE_FORMAT): string
+	public function getDueDate(string $format = self::DATE_FORMAT): string
 	{
-		return $this->expirationDate->format($format);
+		return $this->dueDate->format($format);
 	}
 
 
-	public function setExpirationDate(\DateTime $expirationDate): void
+	public function setDueDate(\DateTime $dueDate): void
 	{
-		$this->expirationDate = $expirationDate;
+		$this->dueDate = $dueDate;
 	}
 
 
-	public function getDateOfIssuance(string $format = self::DATE_FORMAT): string
+	public function getCreatedDate(string $format = self::DATE_FORMAT): string
 	{
-		return $this->dateOfIssuance->format($format);
+		return $this->createdDate->format($format);
 	}
 
 
-	public function setDateOfIssuance(\DateTime $dateOfIssuance): void
+	public function setCreatedDate(\DateTime $createdDate): void
 	{
-		$this->dateOfIssuance = $dateOfIssuance;
+		$this->createdDate = $createdDate;
 	}
 
 
@@ -208,9 +208,9 @@ class DataImpl
 	}
 
 
-	public function setDateOfVatRevenueRecognition(?\DateTime $dateOfVatRevenueRecognition): void
+	public function setDateOfVatRevenueRecognition(?\DateTime $date): void
 	{
-		$this->dateOfVatRevenueRecognition = $dateOfVatRevenueRecognition;
+		$this->dateOfVatRevenueRecognition = $date;
 	}
 
 
@@ -276,7 +276,7 @@ class DataImpl
 
 	public function setUnit(?string $unit): void
 	{
-		$this->unit = trim($unit ?? '') ?: null;
+		$this->unit = $unit;
 	}
 
 

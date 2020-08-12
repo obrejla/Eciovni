@@ -12,7 +12,7 @@
  * @param string $supplierAccountNumber
  *
  * @param string $dateOfIssuance
- * @param string $expirationDate
+ * @param string $dueDate
  * @param string $dateOfVatRevenueRecognition
  *
  * @param string $variableSymbol
@@ -93,13 +93,13 @@
 						<td>Forma úhrady:</td>
 						<td style="text-align:right">{$paymentMethod}</td>
 					</tr>
-					<tr n:if="$dateOfIssuance">
+					<tr n:if="$createdDate">
 						<td>Datum vystavení:</td>
-						<td style="text-align:right">{$dateOfIssuance|replace:' ':'&nbsp;'|noescape}</td>
+						<td style="text-align:right">{$createdDate|replace:' ':'&nbsp;'|noescape}</td>
 					</tr>
-					<tr n:if="$expirationDate">
+					<tr n:if="$dueDate">
 						<td>Datum splatnosti:</td>
-						<td style="text-align:right">{$expirationDate|replace:' ':'&nbsp;'|noescape}</td>
+						<td style="text-align:right">{$dueDate|replace:' ':'&nbsp;'|noescape}</td>
 					</tr>
 					<tr n:if="$dateOfVatRevenueRecognition">
 						<td>Datum uskutečnění zdanitelného plnění:</td>
