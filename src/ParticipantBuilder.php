@@ -18,6 +18,8 @@ class ParticipantBuilder
 {
 	use SmartObject;
 
+	public const STREET_VALIDATOR = '/^(.+)\s+([\d\/\-]+[a-zA-Z]*)$/';
+
 	/** @var string */
 	private $name;
 
@@ -45,7 +47,7 @@ class ParticipantBuilder
 
 	public function __construct(string $name, string $street, ?string $houseNumber, string $city, string $zip)
 	{
-		if (preg_match('/^(.+)\s+([\d\/\-]+)$/', $street, $streetParser)) { // case like "Rubešova 10"
+		if (preg_match(self::STREET_VALIDATOR, $street, $streetParser)) { // case like "Rubešova 10"
 			$street = (string) $streetParser[1];
 			$houseNumber = (string) $streetParser[2];
 		}
@@ -57,7 +59,7 @@ class ParticipantBuilder
 		$this->zip = trim($zip);
 
 		if ($houseNumber === null) {
-			throw new \InvalidArgumentException('House number can not be empty. Did you mean street with house number?');
+			trigger_error('House number can not be empty. Did you mean street with house number?');
 		}
 	}
 
