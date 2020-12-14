@@ -5,15 +5,6 @@ declare(strict_types=1);
 namespace OndrejBrejla\Eciovni;
 
 
-use Nette\SmartObject;
-
-/**
- * DataImpl - part of Eciovni plugin for Nette Framework.
- *
- * @copyright  Copyright (c) 2009 Ondřej Brejla
- * @license    New BSD License
- * @link       https://github.com/obrejla/Eciovni
- */
 class DataImpl
 {
 	public const DATE_FORMAT = 'd. m. Y';
@@ -67,7 +58,6 @@ class DataImpl
 
 	/**
 	 * @param ItemImpl[] $items
-	 * @return self
 	 */
 	public static function from(string $id, string $title, Participant $supplier, Participant $customer, \DateTime $dueDate, \DateTime $createdDate, array $items): self
 	{

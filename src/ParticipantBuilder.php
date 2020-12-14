@@ -5,13 +5,6 @@ declare(strict_types=1);
 namespace OndrejBrejla\Eciovni;
 
 
-/**
- * ParticipantBuilder - part of Eciovni plugin for Nette Framework.
- *
- * @copyright  Copyright (c) 2009 Ondřej Brejla
- * @license    New BSD License
- * @link       https://github.com/obrejla/Eciovni
- */
 class ParticipantBuilder
 {
 	public const STREET_VALIDATOR = '/^(.+)\s+([\d\/\-]+[a-zA-Z]*)$/';

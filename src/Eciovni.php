@@ -9,13 +9,6 @@ use Latte\Engine;
 use Mpdf\Mpdf;
 use Mpdf\MpdfException;
 
-/**
- * Eciovni - plugin for Nette Framework for generating invoices using mPDF library.
- *
- * @copyright  Copyright (c) 2009 Ondřej Brejla
- * @license    New BSD License
- * @link       https://github.com/obrejla/Eciovni
- */
 class Eciovni
 {
 	private DataImpl $data;
