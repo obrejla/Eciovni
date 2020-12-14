@@ -18,24 +18,17 @@ use Mpdf\MpdfException;
  */
 class Eciovni
 {
+	private DataImpl $data;
 
-	/** @var DataImpl */
-	private $data;
-
-	/** @var string */
-	private $templatePath;
+	private string $templatePath;
 
 	/**
 	 * Ratio between supplier and customer.
-	 *
 	 * | ratio <---> (100 - ratio) |
-	 *
-	 * @var int
 	 */
-	private $contactSizeRatio = 40;
+	private int $contactSizeRatio = 40;
 
-	/** @var string|null */
-	private $stampPath;
+	private ?string $stampPath = null;
 
 
 	public function __construct(DataImpl $data)
@@ -57,8 +50,6 @@ class Eciovni
 
 	/**
 	 * Stamp path to PNG, JPG or GIF image with stamp.
-	 *
-	 * @param string|null $stampPath
 	 */
 	public function setStampPath(?string $stampPath): void
 	{
@@ -73,10 +64,7 @@ class Eciovni
 	/**
 	 * Exports Invoice template via passed mPDF.
 	 *
-	 * @param string|null $name
-	 * @param string|null $dest
 	 * @param mixed[] $params
-	 * @return string|null
 	 * @throws MpdfException
 	 */
 	public function exportToPdf(?string $name = null, ?string $dest = null, array $params = []): ?string

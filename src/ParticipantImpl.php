@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace OndrejBrejla\Eciovni;
 
 
-use Nette\SmartObject;
-
 /**
  * ParticipantImpl - part of Eciovni plugin for Nette Framework.
  *
@@ -16,31 +14,21 @@ use Nette\SmartObject;
  */
 class ParticipantImpl implements Participant
 {
-	use SmartObject;
+	private string $name;
 
-	/** @var string */
-	private $name;
+	private string $street;
 
-	/** @var string */
-	private $street;
+	private string $houseNumber;
 
-	/** @var string */
-	private $houseNumber;
+	private string $city;
 
-	/** @var string */
-	private $city;
+	private string $zip;
 
-	/** @var string */
-	private $zip;
+	private ?string $in;
 
-	/** @var string|null */
-	private $in;
+	private ?string $tin;
 
-	/** @var string|null */
-	private $tin;
-
-	/** @var string|null */
-	private $accountNumber;
+	private ?string $accountNumber;
 
 
 	public function __construct(ParticipantBuilder $participantBuilder)

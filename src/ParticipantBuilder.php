@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace OndrejBrejla\Eciovni;
 
 
-use Nette\SmartObject;
-
 /**
  * ParticipantBuilder - part of Eciovni plugin for Nette Framework.
  *
@@ -16,33 +14,23 @@ use Nette\SmartObject;
  */
 class ParticipantBuilder
 {
-	use SmartObject;
-
 	public const STREET_VALIDATOR = '/^(.+)\s+([\d\/\-]+[a-zA-Z]*)$/';
 
-	/** @var string */
-	private $name;
+	private string $name;
 
-	/** @var string */
-	private $street;
+	private string $street;
 
-	/** @var string */
-	private $houseNumber;
+	private string $houseNumber;
 
-	/** @var string */
-	private $city;
+	private string $city;
 
-	/** @var string */
-	private $zip;
+	private string $zip;
 
-	/** @var string|null */
-	private $in;
+	private ?string $in = null;
 
-	/** @var string|null */
-	private $tin;
+	private ?string $tin = null;
 
-	/** @var string|null */
-	private $accountNumber;
+	private ?string $accountNumber = null;
 
 
 	public function __construct(string $name, string $street, ?string $houseNumber, string $city, string $zip)

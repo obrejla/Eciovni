@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace OndrejBrejla\Eciovni;
 
 
-use Nette\SmartObject;
-
 /**
  * TaxImpl - part of Eciovni plugin for Nette Framework.
  *
@@ -16,10 +14,7 @@ use Nette\SmartObject;
  */
 class TaxImpl implements Tax
 {
-	use SmartObject;
-
-	/** @var float */
-	private $taxInUpperDecimal;
+	private float $taxInUpperDecimal;
 
 
 	private function __construct(float $upperDecimal)

@@ -25,11 +25,7 @@ interface Participant
 
 	public function getIn(): ?string;
 
-	/**
-	 * Returns the tax identification number of participant.
-	 *
-	 * @return string|null
-	 */
+	/** Returns the tax identification number of participant. */
 	public function getTin(): ?string;
 
 	public function getAccountNumber(): ?string;

@@ -16,51 +16,38 @@ use Nette\SmartObject;
  */
 class DataImpl
 {
-	use SmartObject;
-
 	public const DATE_FORMAT = 'd. m. Y';
 
 	/** @var string */
-	private $title;
+	private string $title;
 
 	/** @var string */
-	private $id;
+	private string $id;
 
-	/** @var Participant */
-	private $supplier;
+	private Participant $supplier;
 
-	/** @var Participant */
-	private $customer;
+	private Participant $customer;
 
-	/** @var string|null */
-	private $variableSymbol;
+	private ?string $variableSymbol = null;
 
-	/** @var string|null */
-	private $constantSymbol;
+	private ?string $constantSymbol = null;
 
-	/** @var string|null */
-	private $specificSymbol;
+	private ?string $specificSymbol = null;
 
-	/** @var \DateTime */
-	private $dueDate;
+	private \DateTime $dueDate;
 
-	/** @var \DateTime */
-	private $createdDate;
+	private \DateTime $createdDate;
 
-	/** @var \DateTime|null */
-	private $dateOfVatRevenueRecognition;
+	private ?\DateTime $dateOfVatRevenueRecognition = null;
 
-	/** @var string|null */
-	private $textBottom;
+	private ?string $textBottom = null;
 
-	/** @var string|null */
-	private $unit;
+	private ?string $unit = null;
 
 	/** @var ItemImpl[] */
-	private $items;
+	private array $items = [];
 
-	/** @var string|null */
-	private $paymentMethod;
+	private ?string $paymentMethod = null;
 
 
 	/**
@@ -230,7 +217,6 @@ class DataImpl
 
 	/**
 	 * @param ItemImpl[] $items
-	 * @return self
 	 */
 	public function addItems(array $items): self
 	{

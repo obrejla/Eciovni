@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace OndrejBrejla\Eciovni;
 
 
-use Nette\SmartObject;
-
 /**
  * ItemImpl - part of Eciovni plugin for Nette Framework.
  *
@@ -16,22 +14,15 @@ use Nette\SmartObject;
  */
 class ItemImpl
 {
-	use SmartObject;
+	private string $description;
 
-	/** @var string */
-	private $description;
+	private int $units;
 
-	/** @var int */
-	private $units;
+	private float $unitValue;
 
-	/** @var float */
-	private $unitValue;
+	private Tax $tax;
 
-	/** @var Tax */
-	private $tax;
-
-	/** @var bool */
-	private $unitValueIsTaxed;
+	private bool $unitValueIsTaxed;
 
 
 	public function __construct(string $description, int $units, float $unitValue, Tax $tax, bool $unitValueIsTaxed = true)
