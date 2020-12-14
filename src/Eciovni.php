@@ -46,7 +46,7 @@ class Eciovni
 	 */
 	public function setStampPath(?string $stampPath): void
 	{
-		if (\is_file($stampPath) === false) {
+		if ($stampPath !== null && \is_file($stampPath) === false) {
 			throw new \InvalidArgumentException('Stamp path "' . $stampPath . '" does not exist.');
 		}
 
