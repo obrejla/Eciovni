@@ -23,6 +23,8 @@ class ParticipantImpl implements Participant
 
 	private ?string $accountNumber;
 
+	private ?string $supplierAddressDescription;
+
 
 	public function __construct(ParticipantBuilder $participantBuilder)
 	{
@@ -34,6 +36,7 @@ class ParticipantImpl implements Participant
 		$this->in = $participantBuilder->getIn();
 		$this->tin = $participantBuilder->getTin();
 		$this->accountNumber = $participantBuilder->getAccountNumber();
+		$this->supplierAddressDescription = $participantBuilder->getSupplierAddressDescription();
 	}
 
 
@@ -88,5 +91,11 @@ class ParticipantImpl implements Participant
 	public function getAccountNumber(): ?string
 	{
 		return $this->accountNumber;
+	}
+
+
+	public function getSupplierAddressDescription(): ?string
+	{
+		return $this->supplierAddressDescription;
 	}
 }

@@ -25,6 +25,8 @@ class ParticipantBuilder
 
 	private ?string $accountNumber = null;
 
+	private ?string $supplierAddressDescription = null;
+
 
 	public function __construct(string $name, string $street, ?string $houseNumber, string $city, string $zip)
 	{
@@ -124,6 +126,20 @@ class ParticipantBuilder
 	public function setAccountNumber(string $accountNumber): self
 	{
 		$this->accountNumber = $accountNumber;
+
+		return $this;
+	}
+
+
+	public function getSupplierAddressDescription(): ?string
+	{
+		return $this->supplierAddressDescription;
+	}
+
+
+	public function setSupplierAddressDescription(?string $supplierAddressDescription): self
+	{
+		$this->supplierAddressDescription = $supplierAddressDescription;
 
 		return $this;
 	}

@@ -138,6 +138,7 @@ class Eciovni
 			'supplierIn' => $supplier->getIn(),
 			'supplierTin' => $supplier->getTin(),
 			'supplierAccountNumber' => $supplier->getAccountNumber(),
+			'supplierAddressDescription' => $supplier->getSupplierAddressDescription(),
 			// customer
 			'customerName' => $customer->getName(),
 			'customerStreet' => $customer->getStreet(),

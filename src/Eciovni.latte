@@ -31,7 +31,11 @@
 						<td>{$supplierCity}, {$supplierZip}</td>
 					</tr>
 				</table>
-
+				<table n:if="$supplierAddressDescription" style="margin-bottom:15px">
+					<tr>
+						<td>{$supplierAddressDescription|noescape}</td>
+					</tr>
+				</table>
 				<table style="color:#1A5DAC;margin-bottom:15px">
 					<tr n:if="$supplierIn">
 						<td>IČ:</td>

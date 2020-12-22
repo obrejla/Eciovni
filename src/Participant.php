@@ -23,4 +23,6 @@ interface Participant
 	public function getTin(): ?string;
 
 	public function getAccountNumber(): ?string;
+
+	public function getSupplierAddressDescription(): ?string;
 }
