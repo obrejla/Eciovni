@@ -66,7 +66,7 @@ class Eciovni
 		$mpdf->WriteHTML($this->getEngine()->renderToString($this->templatePath, array_merge($this->computeParams(), $params)));
 
 		$result = null;
-		if ($name !== '' && $dest !== null) {
+		if ($name !== null && $dest !== null) {
 			$result = $mpdf->Output($name, $dest);
 		} elseif ($dest !== null) {
 			$result = $mpdf->Output('', $dest);
