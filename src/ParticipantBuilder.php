@@ -33,6 +33,9 @@ class ParticipantBuilder
 		if (preg_match(self::STREET_VALIDATOR, $street, $streetParser)) { // case like "Rubešova 10"
 			$street = (string) $streetParser[1];
 			$houseNumber = (string) $streetParser[2];
+		} elseif (preg_match('/^([\d\/\-]+[a-zA-Z]*)\s+(.+)$/', $street, $streetParserInverse)) { // case like "1505 R. Novotného"
+			$street = (string) $streetParserInverse[2];
+			$houseNumber = (string) $streetParserInverse[1];
 		}
 
 		$this->name = trim($name);
