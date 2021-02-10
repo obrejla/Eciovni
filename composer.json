@@ -22,9 +22,9 @@
 		}
 	],
 	"require": {
-		"php": "^7.4 || ^8.0 <8.1",
-		"nette/utils": "^3.0 || ^2.4",
-		"latte/latte": "^2.5",
+		"php": "^8.0 <8.1",
+		"nette/utils": "^3.2",
+		"latte/latte": "^2.10",
 		"mpdf/mpdf": "^8.0"
 	},
 	"require-dev": {
