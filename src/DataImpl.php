@@ -44,8 +44,15 @@ class DataImpl
 	/**
 	 * @param ItemImpl[] $items
 	 */
-	public function __construct(string $id, string $title, Participant $supplier, Participant $customer, \DateTime $expirationDate, \DateTime $dateOfIssuance, array $items)
-	{
+	public function __construct(
+		string $id,
+		string $title,
+		Participant $supplier,
+		Participant $customer,
+		\DateTime $expirationDate,
+		\DateTime $dateOfIssuance,
+		array $items
+	) {
 		$this->setId($id);
 		$this->setTitle($title);
 		$this->setSupplier($supplier);
@@ -59,8 +66,15 @@ class DataImpl
 	/**
 	 * @param ItemImpl[] $items
 	 */
-	public static function from(string $id, string $title, Participant $supplier, Participant $customer, \DateTime $dueDate, \DateTime $createdDate, array $items): self
-	{
+	public static function from(
+		string $id,
+		string $title,
+		Participant $supplier,
+		Participant $customer,
+		\DateTime $dueDate,
+		\DateTime $createdDate,
+		array $items
+	): self {
 		return new self($id, $title, $supplier, $customer, $dueDate, $createdDate, $items);
 	}
 
@@ -181,7 +195,9 @@ class DataImpl
 
 	public function getDateOfVatRevenueRecognition(string $format = self::DATE_FORMAT): string
 	{
-		return $this->dateOfVatRevenueRecognition === null ? '' : $this->dateOfVatRevenueRecognition->format($format);
+		return $this->dateOfVatRevenueRecognition === null
+			? ''
+			: $this->dateOfVatRevenueRecognition->format($format);
 	}
 
 

@@ -18,8 +18,13 @@ class ItemImpl
 	private bool $unitValueIsTaxed;
 
 
-	public function __construct(string $description, int $count, float $unitPrice, Tax $tax, bool $unitPriceIsTaxed = true)
-	{
+	public function __construct(
+		string $description,
+		int $count,
+		float $unitPrice,
+		Tax $tax,
+		bool $unitPriceIsTaxed = true
+	) {
 		$this->description = $description;
 		$this->count = $count;
 		$this->unitPrice = $unitPrice;
