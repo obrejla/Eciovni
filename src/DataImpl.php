@@ -9,10 +9,8 @@ class DataImpl
 {
 	public const DATE_FORMAT = 'd. m. Y';
 
-	/** @var string */
 	private string $title;
 
-	/** @var string */
 	private string $id;
 
 	private Participant $supplier;

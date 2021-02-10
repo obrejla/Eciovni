@@ -168,7 +168,7 @@ class Eciovni
 	{
 		$sum = 0;
 		foreach ($this->data->getItems() as $item) {
-			$sum += $item->countUntaxedUnitValue() * $item->getUnits();
+			$sum += $item->countUntaxedUnitValue() * $item->getCount();
 		}
 
 		return $sum;

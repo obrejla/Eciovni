@@ -52,15 +52,6 @@ class ItemImpl
 
 
 	/**
-	 * @deprecated since 2021-01-12 use getUnitPrice().
-	 */
-	public function getUnitValue(): float
-	{
-		return $this->getUnitPrice();
-	}
-
-
-	/**
 	 * Returns TRUE, if the unit value is taxed (otherwise FALSE).
 	 */
 	public function isUnitValueTaxed(): bool
@@ -72,15 +63,6 @@ class ItemImpl
 	public function getCount(): int
 	{
 		return $this->count;
-	}
-
-
-	/**
-	 * @deprecated since 2021-01-12 use getCount().
-	 */
-	public function getUnits(): int
-	{
-		return $this->getCount();
 	}
 
 
