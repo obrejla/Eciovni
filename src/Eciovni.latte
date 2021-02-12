@@ -154,7 +154,7 @@
 						<td style="text-align:right">{$unit}</td>
 						<td style="width:6px"></td>
 					{/if}
-					<td style="text-align:right">{$item->getUnits()|round|replace:' ':'&nbsp;'|noescape}</td>
+					<td style="text-align:right">{$item->getCount()|round|replace:' ':'&nbsp;'|noescape}</td>
 					<td style="width:6px"></td>
 					<td style="text-align:right">{$item->getTax()->inUpperDecimal() * 100 - 100|round|replace:' ':'&nbsp;'|noescape}</td>
 					<td style="width:6px"></td>
