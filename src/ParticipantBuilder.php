@@ -7,7 +7,7 @@ namespace OndrejBrejla\Eciovni;
 
 class ParticipantBuilder
 {
-	public const STREET_VALIDATOR = '/^(.+)\s+([\d\/\-]+[a-zA-Z]*)$/';
+	public const STREET_VALIDATOR = '/^(.+)\s+([\d\/\-]+\s*[a-zA-Z]*)(?:\s*-.+)?$/';
 
 	private string $name;
 
