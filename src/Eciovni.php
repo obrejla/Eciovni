@@ -200,6 +200,6 @@ class Eciovni
 	private function getEngine(): Engine
 	{
 		return (new Engine)
-			->addFilter('round', static fn (float $value, int $precision = 2) => number_format(round($value, $precision), $precision, ',', ' '));
+			->addFilter('round', static fn(float $value, int $precision = 2) => number_format(round($value, $precision), $precision, ',', ' '));
 	}
 }
