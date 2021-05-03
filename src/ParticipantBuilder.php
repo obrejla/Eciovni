@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace OndrejBrejla\Eciovni;
 
 
+use Nette\Utils\Strings;
+
 class ParticipantBuilder
 {
 	public const STREET_VALIDATOR = '/^(.+)\s+([\d\/\-]+\s*[a-zA-Z]*)(?:\s*-.+)?$/';
@@ -30,6 +32,7 @@ class ParticipantBuilder
 
 	public function __construct(string $name, string $street, ?string $houseNumber, string $city, string $zip)
 	{
+		$street = Strings::firstUpper(trim($street));
 		if (preg_match(self::STREET_VALIDATOR, $street, $streetParser)) { // case like "Rubešova 10"
 			$street = (string) $streetParser[1];
 			$houseNumber = (string) $streetParser[2];
@@ -39,7 +42,7 @@ class ParticipantBuilder
 		}
 
 		$this->name = trim($name);
-		$this->street = trim($street);
+		$this->street = Strings::firstUpper(trim($street));
 		$this->houseNumber = trim($houseNumber ?? '');
 		$this->city = trim($city);
 		$this->zip = trim($zip);
