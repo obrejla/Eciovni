@@ -23,11 +23,11 @@ class DataImpl
 
 	private ?string $specificSymbol = null;
 
-	private \DateTime $dueDate;
+	private \DateTimeInterface $dueDate;
 
-	private \DateTime $createdDate;
+	private \DateTimeInterface $createdDate;
 
-	private ?\DateTime $dateOfVatRevenueRecognition = null;
+	private ?\DateTimeInterface $dateOfVatRevenueRecognition = null;
 
 	private ?string $textBottom = null;
 
@@ -47,8 +47,8 @@ class DataImpl
 		string $title,
 		Participant $supplier,
 		Participant $customer,
-		\DateTime $expirationDate,
-		\DateTime $dateOfIssuance,
+		\DateTimeInterface $expirationDate,
+		\DateTimeInterface $dateOfIssuance,
 		array $items
 	) {
 		$this->setId($id);
@@ -69,8 +69,8 @@ class DataImpl
 		string $title,
 		Participant $supplier,
 		Participant $customer,
-		\DateTime $dueDate,
-		\DateTime $createdDate,
+		\DateTimeInterface $dueDate,
+		\DateTimeInterface $createdDate,
 		array $items
 	): self {
 		return new self($id, $title, $supplier, $customer, $dueDate, $createdDate, $items);
@@ -173,7 +173,7 @@ class DataImpl
 	}
 
 
-	public function setDueDate(\DateTime $dueDate): void
+	public function setDueDate(\DateTimeInterface $dueDate): void
 	{
 		$this->dueDate = $dueDate;
 	}
@@ -185,7 +185,7 @@ class DataImpl
 	}
 
 
-	public function setCreatedDate(\DateTime $createdDate): void
+	public function setCreatedDate(\DateTimeInterface $createdDate): void
 	{
 		$this->createdDate = $createdDate;
 	}
@@ -199,7 +199,7 @@ class DataImpl
 	}
 
 
-	public function setDateOfVatRevenueRecognition(?\DateTime $date): void
+	public function setDateOfVatRevenueRecognition(?\DateTimeInterface $date): void
 	{
 		$this->dateOfVatRevenueRecognition = $date;
 	}
