@@ -40,9 +40,13 @@ class ParticipantBuilder
 			$street = (string) $streetParserInverse[2];
 			$houseNumber = (string) $streetParserInverse[1];
 		}
+		$street = Strings::firstUpper(trim($street));
+		if ($street === '') {
+			throw new \InvalidArgumentException('Participant street is required, but empty string given.');
+		}
 
 		$this->name = trim($name);
-		$this->street = Strings::firstUpper(trim($street));
+		$this->street = $street;
 		$this->houseNumber = trim($houseNumber ?? '');
 		$this->city = trim($city);
 		$this->zip = trim($zip);
