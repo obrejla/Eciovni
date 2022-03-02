@@ -63,15 +63,15 @@
 					</tr>
 					<tr n:if="$createdDate">
 						<td>Datum vystavení:</td>
-						<td style="text-align:right">{$createdDate|replace:' ':'&nbsp;'|noescape}</td>
+						<td style="text-align:right">{$createdDate|replace:' ','&nbsp;'|noescape}</td>
 					</tr>
 					<tr n:if="$dueDate">
 						<td>Datum splatnosti:</td>
-						<td style="text-align:right">{$dueDate|replace:' ':'&nbsp;'|noescape}</td>
+						<td style="text-align:right">{$dueDate|replace:' ','&nbsp;'|noescape}</td>
 					</tr>
 					<tr n:if="$dateOfVatRevenueRecognition">
 						<td>Datum uskutečnění zdanitelného plnění:</td>
-						<td style="text-align:right">{$dateOfVatRevenueRecognition|replace:' ':'&nbsp;'|noescape}</td>
+						<td style="text-align:right">{$dateOfVatRevenueRecognition|replace:' ','&nbsp;'|noescape}</td>
 					</tr>
 				</table>
 			</td>
@@ -148,19 +148,19 @@
 			{foreach $items as $item}
 				<tr>
 					<td>{$item->getDescription()}</td>
-					<td style="text-align:right">{$item->countUntaxedUnitValue()|round|replace:' ':'&nbsp;'|noescape}</td>
+					<td style="text-align:right">{$item->countUntaxedUnitValue()|round|replace:' ','&nbsp;'|noescape}</td>
 					<td style="width:6px"></td>
 					{if $unit !== null}
 						<td style="text-align:right">{$unit}</td>
 						<td style="width:6px"></td>
 					{/if}
-					<td style="text-align:right">{$item->getCount()|round|replace:' ':'&nbsp;'|noescape}</td>
+					<td style="text-align:right">{$item->getCount()|round|replace:' ','&nbsp;'|noescape}</td>
 					<td style="width:6px"></td>
-					<td style="text-align:right">{$item->getTax()->inUpperDecimal() * 100 - 100|round|replace:' ':'&nbsp;'|noescape}</td>
+					<td style="text-align:right">{$item->getTax()->inUpperDecimal() * 100 - 100|round|replace:' ','&nbsp;'|noescape}</td>
 					<td style="width:6px"></td>
-					<td style="text-align:right">{$item->countTaxValue()|round|replace:' ':'&nbsp;'|noescape}</td>
+					<td style="text-align:right">{$item->countTaxValue()|round|replace:' ','&nbsp;'|noescape}</td>
 					<td style="width:6px"></td>
-					<td style="text-align:right">{$item->countFinalValue()|round|replace:' ':'&nbsp;'|noescape}</td>
+					<td style="text-align:right">{$item->countFinalValue()|round|replace:' ','&nbsp;'|noescape}</td>
 				</tr>
 			{/foreach}
 		</table>
@@ -170,15 +170,15 @@
 		<table style="width:100%">
 			<tr>
 				<td>Celkem bez DPH (Kč):</td>
-				<td style="text-align:right">{$finalUntaxedValue|round|replace:' ':'&nbsp;'|noescape}</td>
+				<td style="text-align:right">{$finalUntaxedValue|round|replace:' ','&nbsp;'|noescape}</td>
 			</tr>
 			<tr>
 				<td>DPH (Kč):</td>
-				<td style="text-align:right">{$finalTaxValue|round|replace:' ':'&nbsp;'|noescape}</td>
+				<td style="text-align:right">{$finalTaxValue|round|replace:' ','&nbsp;'|noescape}</td>
 			</tr>
 			<tr style="font-size:20px">
 				<td><strong>Cena celkem s DPH (Kč):</strong></td>
-				<td style="text-align:right"><strong>{$finalValue|round|replace:' ':'&nbsp;'|noescape}</strong></td>
+				<td style="text-align:right"><strong>{$finalValue|round|replace:' ','&nbsp;'|noescape}</strong></td>
 			</tr>
 		</table>
 	</div>
